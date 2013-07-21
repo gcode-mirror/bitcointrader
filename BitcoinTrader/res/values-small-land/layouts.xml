@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <item name="bitcointrader_content" type="layout">@layout/bitcointrader_activity_two_col</item>
+  <item name="price_info_fragment" type="layout">@layout/price_info_fragment_vertical</item>
+  <item name="place_order_fragment" type="layout">@layout/place_order_fragment_horizontal</item>
+</resources>

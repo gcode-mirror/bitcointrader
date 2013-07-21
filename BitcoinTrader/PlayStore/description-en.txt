@@ -1,0 +1,17 @@
+This app allows you to trade bitcoins at the currently biggest online exchange: MtGox.
+
+All you need is an account at MtGox and this app!
+
+Features:
+
+&bull; Trade in differenct currencies
+&bull; Display price charts (via bitcoincharts.com)
+&bull; Access your account history
+&bull; Login using the MtGox Application Access or API Key
+&bull; Get notifications about executed orders
+&bull; Widgets with account and ticker information
+
+The source-code of this app is available at https://code.google.com/p/bitcointrader/ .
+
+License: Apache License 2.0 
+http://www.apache.org/licenses/LICENSE-2.0

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="font_size_smaller">12sp</dimen>
+	<dimen name="font_size_small">14sp</dimen>
+	<dimen name="font_size_normal">16sp</dimen>
+    <dimen name="font_size_xlarge">25sp</dimen>
+    <dimen name="list_entry_padding_horizontal">12dp</dimen>
+    <dimen name="list_entry_padding_vertical">6dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+	<dimen name="order_row_padding_type">40dp</dimen>
+
+</resources>

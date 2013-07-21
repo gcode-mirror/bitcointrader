@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<PreferenceCategory android:title="@string/about_title" >
+		<Preference
+			android:key="about_version"
+			android:title="Version" />
+		<Preference
+            android:key="about_author"
+			android:summary="© 2013, Alexander Muthmann"
+			android:title="Copyright" />
+		<Preference
+			android:key="about_author_twitter"
+			android:summary="\@deveth0"
+			android:title="@string/about_author_twitter_title" />
+        <Preference
+          android:key="about_credits_xchange"
+          android:title="@string/about_credits_xchange_title" />
+        <Preference
+          android:key="about_credits_bitcoinwallet"
+          android:title="@string/about_credits_bitcoinwallet_title" />
+        <Preference
+          android:key="about_credits_zxing"
+          android:title="@string/about_credits_zxing_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+  <item
+    android:id="@+id/bitcointrader_options_select_currency"
+    android:icon="@drawable/ic_action_select_currency"
+    android:showAsAction="ifRoom"
+    android:title="@string/select_currency_title">
+    <menu>
+      <item android:id="@+id/bitcointrader_options_select_currency_submenu" android:title="Placeholder"></item>
+    </menu>
+  </item>
+  <item
+    android:id="@+id/bitcointrader_options_refresh"
+    android:icon="@drawable/ic_action_refresh"
+    android:showAsAction="ifRoom"
+    android:title="@string/refresh_title"/>
+  <item 
+    android:id="@+id/bitcointrader_options_price_chart"
+    android:showAsAction="never"
+    android:title="@string/price_chart_title"/>
+  <item
+    android:id="@+id/bitcointrader_options_wallet_history"
+    android:showAsAction="never"
+    android:title="@string/wallet_history_title"/>
+  <item
+    android:id="@+id/bitcointrader_options_preferences"
+    android:showAsAction="never"
+    android:title="@string/preferences_title"/>
+  <item
+    android:id="@+id/bitcointrader_options_about"
+    android:showAsAction="never"
+    android:title="@string/about_title"/>
+  <item
+    android:id="@+id/bitcointrader_options_donate"
+    android:showAsAction="never"
+    android:title="@string/bitcointrader_options_donate"/>
+  <item
+    android:id="@+id/bitcointrader_options_help"
+    android:showAsAction="never"
+    android:title="@string/bitcointrader_options_help"/>
+</menu>

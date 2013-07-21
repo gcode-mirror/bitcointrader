@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <item name="start_activity" type="layout">@layout/start_activity_portrait</item>
+  <item name="initial_setup_activity" type="layout">@layout/initial_setup_activity_portrait</item>
+  <item name="wallet_history_row_extended" type="layout">@layout/wallet_history_row_extended_two_col</item>
+</resources>

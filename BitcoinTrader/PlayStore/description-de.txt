@@ -1,0 +1,18 @@
+Diese App ermöglicht es, Bitcoins auf der größten Online-Börse für Bitcoins, MtGox, zu handeln. 
+
+Alles was hierzu benötigt wird ist ein Account bei MtGox und diese App.
+
+Funktionen:
+
+&bull; Handel in verschiedenen Währungen möglich
+&bull; Anzeige aktueller Bitcoin Kurse (via bitcoincharts.com)
+&bull; Zugriff auf die Account-History
+&bull; Anmeldung über MtGox Application Access oder API Key
+&bull; Benötigt nur "Trade" und "Get Info" Rechte (dadurch kein bösartiges Abheben des Guthabens möglich)
+&bull; Benachrichtigungen bei ausgeführten Trades
+&bull; Widgets mit Ticker und Account Informationen
+
+Diese Source-Code dieser App ist unter https://code.google.com/p/bitcointrader/ zu finden.
+
+Lizenz: Apache License 2.0 
+http://www.apache.org/licenses/LICENSE-2.0

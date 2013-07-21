@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="fg_black">#ff000000</color>
+  <color name="fg_grey">#ff666666</color>
+  <color name="bg_panel">#ffdcdce4</color>
+  <color name="bg_form">#ffebebf2</color>
+    
+  <color name="button_pressed">#85D3EF</color>
+  
+  <color name="red">#ffff0000</color>
+  <color name="orange">#ff7711</color>
+  
+  <color name="history_in">#F8EB09</color>
+  <color name="history_out">#D9660E</color>
+  <color name="history_deposit">#D1EED1</color>
+  <color name="history_withdraw">#FF7878</color>
+  <color name="history_fee">#FDDB38</color>
+  <color name="history_spend">#FDDFDE</color>
+  <color name="history_earned">#D0EBF4</color>
+</resources>

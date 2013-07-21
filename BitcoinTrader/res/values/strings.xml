@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Bitcoin Trader</string>
+
+  <string name="loading_info">Loading&#8230;</string>
+  <string name="connecting_info">Connecting&#8230;</string>
+  <string name="connection_failed">Could not connect. Please check your internet connection and try again.</string>
+  <string name="bitcoin_order_fragment_empty_text">No Open Orders.</string>
+  <string name="bitcoin_action_buy">Buy</string>
+  <string name="bitcoin_action_sell">Sell</string>
+  <string name="bitcoin_action_demo_info">End demo</string>
+  <string name="button_retry">Retry</string>
+  <string name="button_delete_order_text">Do you really want to delete the following order:\n%1$s (amount: %2$s)</string>
+  <string name="button_delete_order_confirm">Confirm</string>
+  <string name="button_delete_order_cancel">Cancel</string>
+
+  <string name="initial_setup_headline">Initial Setup</string>
+  <string name="initial_setup_info_text">To be able to use this app, you have to connect it to your Mt.Gox account.\nThere are two possibilities available which you can find in the \"Security Center\" on MtGox.com (<a href="https://mtgox.com/security">https://mtgox.com/security</a>).\nIn both cases you need to set the \"Get Info\" and \"Trade\" permission.</string>
+  <string name="initial_setup_manual_qrinfo">Click the QR code to scan your \"application access\" key</string>
+  <string name="initial_setup_manual_info">Or input the keypair generated with \"advanced api key generation\"</string>
+  <string name="initial_setup_manual_setupbutton">Go</string>
+  <string name="initial_setup_manual_key_label">Key</string>
+  <string name="initial_setup_manual_secretkey_label">Secret key</string>
+  <string name="initial_setup_demo_label">If you are not sure, if this is the right app for you, you can start a demo here.</string>
+  <string name="initial_setup_demo_button">Start demo</string>
+  <string name="initial_setup_demo">Starting Demo</string>
+  <string name="initial_setup_success">Setup completed for username %s</string>
+  <string name="initial_setup_testing">Testing credentials</string>
+  <string name="initial_setup_failed_wrong_credentials">Seems to be wrong credentials</string>
+  <string name="initial_setup_failed_key_expired">Key expired.</string>
+  <string name="initial_setup_failed_key_invalid">Key invalid.</string>
+  <string name="initial_setup_failed_not_enough_permissions">Not enough permissions.</string>
+  
+  <string name="wallet_history_title">Wallet History</string>
+  <string name="wallet_history_currency_spinner_label">Select Currency:</string>
+  <string name="wallet_history_out">Out</string>
+  <string name="wallet_history_in">In</string>
+  <string name="wallet_history_fee">Fee</string>
+  <string name="wallet_history_earned">Earned</string>
+  <string name="wallet_history_spent">Spent</string>
+  <string name="wallet_history_withdraw">Withdraw</string>
+  <string name="wallet_history_deposit">Deposit</string>
+  <string name="wallet_history_amount">Amount:</string>
+  <string name="wallet_history_balance">Balance:</string>
+  <string name="wallet_history_date">Date:</string>
+  <string name="wallet_history_info_bought">BTC bought: %1$s at %2$s</string>
+  <string name="wallet_history_info_sold">BTC sold: %1$s at %2$s</string>
+  <string name="wallet_history_empty_text">No wallet history for the current currency available</string>
+
+  <string name="price_chart_title">Price Chart</string>
+  <string name="price_chart_symbol">Symbol</string>
+  <string name="price_chart_low">Low</string>
+  <string name="price_chart_high">High</string>
+  <string name="price_chart_last">Last</string>
+  <string name="price_chart_vol">Vol</string>
+  <string name="price_chart_avg">Avg</string>
+  <string name="price_chart_ask">Ask</string>
+  <string name="price_chart_bid">Bid</string>
+    
+  <string name="account_info">Your Account</string>
+  <string name="account_info_trade_fee_label">Trade Fee:</string>
+  <string name="price_info">Ticker</string>
+  <string name="price_info_low_label">Low: </string>
+  <string name="price_info_high_label">High: </string>
+  <string name="price_info_ask_label">Ask: </string>
+  <string name="price_info_bid_label">Bid: </string>
+  <string name="price_info_volume_label">Volume: </string>
+  <string name="refresh_title">Refresh</string>
+
+  <string name="select_currency_title">Select currency</string>
+
+  <string name="notify_order_executed_title">Orders executed</string>
+  <string name="notify_order_executed_text">An order has been executed at %1$s (%2$s for %3$s)</string>
+  <string name="notify_update_success_text">Update successful!</string>
+  <string name="notify_update_failed_title">Update failed!</string>
+  <string name="notify_update_failed_text">There has been an error</string>
+
+  <string name="placeorder_title">Place Order</string>
+  <string name="place_order_fragment_type_label">Ordertype</string>
+  <string name="place_order_fragment_amount_label">Amount</string>
+  <string name="place_order_fragment_market_order">Market Order</string>
+  <string name="place_order_fragment_price_label">Price</string>
+  <string name="place_order_fragment_total_label">Total</string>
+  <string name="place_order_fragment_estimatedfee_label">Estimated Fee</string>
+  <string name="place_order_perform">Place Order</string>
+  <string name="place_order_cancel">Cancel</string>
+  <string name="place_order_submitting">Submitting Order</string>
+  <string name="place_order_invalid">Please validate your input</string>
+  <string name="place_order_success">Order created</string>
+  <string name="place_order_failed">Could not create order</string>
+  <string name="place_order_failed_demo">You cannot create orders in demo mode.</string>
+    
+  <string name="about_title">About</string>
+  <string name="about_author_twitter_title">Author at Twitter</string>
+  <string name="about_credits_bitcoinwallet_title">"This app is using 'bitcoin-wallet'"</string>
+  <string name="about_credits_xchange_title">"This app is using 'xchange'"</string>
+  <string name="about_credits_zxing_title">"This app is using 'zxing'"</string>
+    
+  <string name="preferences_title">Preferences</string>
+  <string name="preferences_category_mtgox">MtGox</string>
+  <string name="preferences_mtgox_api_key_summary">Your MtGox API key</string>
+  <string name="preferences_mtgox_api_key_title">API key</string>
+  <string name="preferences_mtgox_secret_key_summary">Your MtGox Secret key</string>
+  <string name="preferences_mtgox_secret_key_title">Secret key</string>
+  <string name="preferences_category_labs">Labs</string>
+  <string name="preferences_category_general">General Settings</string>
+  <string name="preferences_general_update_summary">Please set value</string>
+  <string name="preferences_general_update_title">Automatically update every&#8230;</string>
+  <string name="preferences_general_notify_on_update_summary">Notify even if update was successful</string>
+  <string name="preferences_general_notify_on_update_title">Notify on success</string>
+  <string name="preferences_labs">Here be dragons!!!</string>
+  <string name="preferences_labs_delete_account">Delete Account</string>
+    
+  <string name="bitcointrader_options_donate">Donate</string>
+  <string name="bitcointrader_options_help">Help</string>
+
+  <string name="report_issue_dialog_title_crash">Previous crash detected</string>
+  <string name="report_issue_dialog_message_crash">Would you like to send a crash report, helping to fix this issue in the future?</string>
+  <string name="report_issue_dialog_description">issue description</string>
+  <string name="report_issue_dialog_report">Report</string>
+  <string name="report_issue_dialog_collect_device_info">Append device information</string>
+  <string name="report_issue_dialog_collect_application_log">Append application log</string>
+  <string name="report_issue_dialog_mail_intent_chooser">Send report using…</string>
+
+  <string name="button_cancel">Cancel</string>
+	
+  <string name="widget_accountinfo_name">Bitcoin Trader Account Info</string>
+  <string name="widget_priceinfo_name">Bitcoin Trader Price Info</string>
+  
+</resources>

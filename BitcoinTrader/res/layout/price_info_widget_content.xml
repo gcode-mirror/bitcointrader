@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/price_info_widget_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/appwidget_dark_bg_clickable"
+>
+
+  <TextView
+    android:id="@+id/price_info_widget_low"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#eee"
+    android:gravity="left"
+    android:layout_margin="@dimen/list_entry_padding_vertical"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+  />
+    
+  <TextView
+    android:id="@+id/price_info_widget_high"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#eee"
+    android:gravity="right"
+    android:layout_margin="@dimen/list_entry_padding_vertical"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+  />
+
+  <TextView
+    android:id="@+id/price_info_widget_current"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/font_size_xlarge"
+    android:textColor="#eee"
+    android:layout_centerHorizontal="true"  />
+  <TextView
+    android:id="@+id/price_info_widget_volume"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#eee"
+    android:gravity="left"
+    android:layout_margin="@dimen/list_entry_padding_vertical"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentBottom="true"
+  />
+  <TextView
+    android:id="@+id/price_info_widget_lastupdate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#eee"
+    android:gravity="right"
+    android:layout_margin="@dimen/list_entry_padding_vertical"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+  />
+</RelativeLayout>

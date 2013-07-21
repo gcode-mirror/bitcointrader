@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Bitcoin Trader</string>
+
+  <string name="loading_info">Bitte warten&#8230;</string>
+  <string name="connecting_info">Verbindung wird hergestellt&#8230;</string>
+  <string name="connection_failed">Verbindung fehlgeschlagen. Bitte überprüfen Sie ihre Internetverbindung und versuchen es erneut.</string>
+  <string name="bitcoin_order_fragment_empty_text">Keine offenen Ordern.</string>
+  <string name="bitcoin_action_buy">Kaufen</string>
+  <string name="bitcoin_action_sell">Verkaufen</string>
+  <string name="bitcoin_action_demo_info">Demo beenden</string>
+  <string name="button_retry">Erneut versuchen.</string>
+  <string name="button_delete_order_text">Sind Sie sicher, dass Sie die folgenden Order löschen wollen:\n%1$s (Betrag: %2$s)</string>
+  <string name="button_delete_order_confirm">Bestätigen</string>
+  <string name="button_delete_order_cancel">Abbrechen</string>
+
+  <string name="initial_setup_headline">Initiale Einrichtung</string>
+  <string name="initial_setup_info_text">Um diese App nutzen zu können, müssen Sie eine Verbindung zu Ihrem Mt.Gox Account herstellen.\nHierzu gibt es zwei Möglichkeiten, welche beide unterhalb des \"Security Centers\" auf der Mt.Gox Seite (<a href="https://mtgox.com/security">https://mtgox.com/security</a>) zu finden sind.\nEs werden jeweils die Rechte \"Get Info\" sowie \"Trade\" benötigt.</string>
+  <string name="initial_setup_manual_qrinfo">Klicken Sie auf den QR-Code um ihren \"Application access\" Schlüssel einzuscannen.</string>
+  <string name="initial_setup_manual_info">Alternativ können Sie hier die mittels \"Advanced Api Key Generation\" erstellten Schlüssel eintragen.</string>
+  <string name="initial_setup_manual_setupbutton">Übernehmen</string>
+  <string name="initial_setup_manual_key_label">Key</string>
+  <string name="initial_setup_manual_secretkey_label">Secret key</string>
+  <string name="initial_setup_demo_label">Falls Sie sich noch nicht sicher sind, dass dies die richtige App für Sie ist, können Sie hier den Demo-Modus starten.</string>
+  <string name="initial_setup_demo_button">Demo starten</string>
+  <string name="initial_setup_demo">Demo wird gestartet</string>
+  <string name="initial_setup_success">Setup erfolgreich mit folgendem Nutzer durchgeführt: %s</string>
+  <string name="initial_setup_testing">Zugangsdaten werden getestet</string>
+  <string name="initial_setup_failed_wrong_credentials">Bitte überprüfen Sie die Zugangsdaten.</string>
+  <string name="initial_setup_failed_key_expired">Key abgelaufen</string>
+  <string name="initial_setup_failed_key_invalid">Key ungültig</string>
+  <string name="initial_setup_failed_not_enough_permissions">Für die App sind werden die Permissions \"Get Info\" und \"Trade\" benötigt.</string>
+  
+  <string name="wallet_history_title">Verlauf</string>
+  <string name="wallet_history_currency_spinner_label">Währung:</string>
+  <string name="wallet_history_out">Out</string>
+  <string name="wallet_history_in">In</string>
+  <string name="wallet_history_fee">Gebühr</string>
+  <string name="wallet_history_earned">Einnahme</string>
+  <string name="wallet_history_spent">Ausgabe</string>
+  <string name="wallet_history_withdraw">Auszahlung</string>
+  <string name="wallet_history_deposit">Einzahlung</string>
+  <string name="wallet_history_amount">Betrag:</string>
+  <string name="wallet_history_balance">Saldo:</string>
+  <string name="wallet_history_date">Datum:</string>
+  <string name="wallet_history_info_bought">BTC gekauft: %1$s für %2$s</string>
+  <string name="wallet_history_info_sold">BTC verkauft: %1$s für %2$s</string>
+  <string name="wallet_history_empty_text">Keine Verlauf für die aktuelle Währung verfügbar.</string>
+
+  <string name="price_chart_title">Preistafel</string>
+  <string name="price_chart_symbol">Symbol</string>
+  <string name="price_chart_low">Min</string>
+  <string name="price_chart_high">Max</string>
+  <string name="price_chart_last">Last</string>
+  <string name="price_chart_vol">Vol</string>
+  <string name="price_chart_avg">Durchschnitt</string>
+  <string name="price_chart_ask">Ask</string>
+  <string name="price_chart_bid">Bid</string>
+    
+  <string name="account_info">Konto Info</string>
+  <string name="account_info_trade_fee_label">Gebühr:</string>
+  <string name="price_info">Ticker</string>
+  <string name="price_info_low_label">Min: </string>
+  <string name="price_info_high_label">Max: </string>
+  <string name="price_info_ask_label">Ask </string>
+  <string name="price_info_bid_label">Bid </string>
+  <string name="price_info_volume_label">Volumen: </string>
+  <string name="refresh_title">Aktualisieren</string>
+
+  <string name="select_currency_title">Währung</string>
+
+  <string name="notify_order_executed_title">Order ausgeführt</string>
+  <string name="notify_order_executed_text">Eine Order wurde bei %1$s ausgeführt (%2$s für %3$s)</string>
+  <string name="notify_update_success_text">Update erfolgreich</string>
+  <string name="notify_update_failed_title">Update fehlgeschlagen!</string>
+  <string name="notify_update_failed_text">Beim Update ist ein Fehler aufgetreten.</string>
+
+  <string name="placeorder_title">Order erstellen</string>
+  <string name="place_order_fragment_type_label">Typ</string>
+  <string name="place_order_fragment_amount_label">Betrag</string>
+  <string name="place_order_fragment_market_order">Marktkurs-Order</string>
+  <string name="place_order_fragment_price_label">Preis</string>
+  <string name="place_order_fragment_total_label">Total</string>
+  <string name="place_order_fragment_estimatedfee_label">Geschätzte Gebühr</string>
+  <string name="place_order_perform">Order erstellen</string>
+  <string name="place_order_cancel">Abbrechen</string>
+  <string name="place_order_submitting">Order wird erstellt</string>
+  <string name="place_order_invalid">Bitte überprüfen Sie Ihre eingaben</string>
+  <string name="place_order_success">Order erstellt</string>
+  <string name="place_order_failed">Order konnte nicht erstellt werden</string>
+  <string name="place_order_failed_demo">Im Demo-Modus können Sie leider keine Ordern erstellen.</string>
+    
+  <string name="about_title">Info</string>
+  <string name="about_author_twitter_title">Author auf Twitter</string>
+  <string name="about_credits_bitcoinwallet_title">"Diese App nutzt 'bitcoin-wallet'"</string>
+  <string name="about_credits_xchange_title">"Diese App nutzt 'xchange'"</string>
+  <string name="about_credits_zxing_title">"Diese App nutzt 'zxing'"</string>
+    
+  <string name="preferences_title">Einstellungen</string>
+  <string name="preferences_category_mtgox">MtGox</string>
+  <string name="preferences_mtgox_api_key_summary">MtGox API key</string>
+  <string name="preferences_mtgox_api_key_title">API key</string>
+  <string name="preferences_mtgox_secret_key_summary">MtGox Secret key</string>
+  <string name="preferences_mtgox_secret_key_title">Secret key</string>
+  <string name="preferences_category_labs">Labs</string>
+  <string name="preferences_category_general">Allgemeine Einstellungen</string>
+  <string name="preferences_general_update_summary">Bitte Wert wählen</string>
+  <string name="preferences_general_update_title">Automatisches Update alle&#8230;</string>
+  <string name="preferences_general_notify_on_update_summary">Auch bei erfolgreichen Updates benachrichtigen</string>
+  <string name="preferences_general_notify_on_update_title">Bei Erfolgreichen Updates benachrichtigen</string>
+  <string name="preferences_labs">Here be dragons!!!</string>
+  <string name="preferences_labs_delete_account">Account löschen</string>
+    
+  <string name="bitcointrader_options_donate">Spenden</string>
+  <string name="bitcointrader_options_help">Hilfe</string>
+  
+  <string name="report_issue_dialog_title_crash">Absturz erkannt</string>
+  <string name="report_issue_dialog_message_crash">Möchtest du einen Fehlerbericht senden, um bei der Fehlerbehebung zu helfen?</string>
+  <string name="report_issue_dialog_description">Problembeschreibung</string>
+  <string name="report_issue_dialog_report">Senden</string>
+  <string name="report_issue_dialog_collect_device_info">Geräte-Informationen anhängen</string>
+  <string name="report_issue_dialog_collect_application_log">Applikations-Logfile anhängen</string>
+  <string name="report_issue_dialog_mail_intent_chooser">Bericht senden mit…</string>
+
+  <string name="button_cancel">Abbrechen</string>
+	
+  <string name="widget_accountinfo_name">Bitcoin Trader Account Info</string>
+  <string name="widget_priceinfo_name">Bitcoin Trader Ticker</string>
+	
+</resources>

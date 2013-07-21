@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0px"
+    android:layout_weight="1"
+    android:background="@color/bg_panel"
+    android:orientation="vertical" >
+
+    <fragment
+      android:id="@+id/bitcointrader_account_info_fragment"
+      android:name="de.dev.eth0.bitcointrader.ui.fragments.AccountInfoFragment"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center" />
+    <fragment
+      android:id="@+id/bitcointrader_price_info_fragment"
+      android:name="de.dev.eth0.bitcointrader.ui.fragments.PriceInfoFragment"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center" />
+
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0px"
+      android:layout_weight="1"
+      android:background="@android:color/white"
+      android:foreground="@drawable/fragment_shadow_horizontal_light"
+      android:foregroundGravity="top|fill_horizontal" >
+
+      <fragment
+        android:id="@+id/bitcointrader_orders_fragment"
+        android:name="de.dev.eth0.bitcointrader.ui.fragments.OrderListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center_horizontal" />
+    </FrameLayout>
+  </LinearLayout>
+  <fragment
+    android:id="@+id/bitcointrader_actions_fragment"
+    android:name="de.dev.eth0.bitcointrader.ui.fragments.BitcoinTraderActionsFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+</LinearLayout>

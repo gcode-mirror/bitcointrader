@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent" 
+  android:layout_height="fill_parent">
+  <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/default_padding"
+    android:paddingRight="@dimen/default_padding"
+    android:paddingTop="@dimen/default_padding"
+    android:focusableInTouchMode="true"
+  >
+    <TextView
+      android:id="@+id/initial_setup_activity_headline"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:text="@string/initial_setup_headline"
+      android:textSize="@dimen/font_size_normal"
+      android:textStyle="bold"
+      >
+      <requestFocus />
+    </TextView>
+    <TextView
+      android:id="@+id/initial_setup_activity_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_headline"
+      android:layout_centerHorizontal="true"
+      android:text="@string/initial_setup_info_text"
+    />
+    <TextView
+      android:id="@+id/initial_setup_activity_manual_qrinfo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_info"
+      android:layout_centerHorizontal="true"
+      android:text="@string/initial_setup_manual_qrinfo"
+    />
+    <ImageButton
+      android:id="@+id/initial_setup_activity_start_scan"
+      style="@style/My.Widget.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_qrinfo"
+      android:layout_centerHorizontal="true"
+      android:src="@drawable/ic_action_scan_qr" />
+
+    <TextView
+      android:id="@+id/initial_setup_activity_manual_info"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_start_scan"
+      android:layout_centerHorizontal="true"
+      android:text="@string/initial_setup_manual_info"
+    />
+    <TextView
+      android:id="@+id/initial_setup_activity_manual_key_label"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_info"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginTop="@dimen/default_padding"
+      android:text="@string/initial_setup_manual_key_label"
+      android:textStyle="bold" />
+    <EditText
+      android:id="@+id/initial_setup_activity_manual_key"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_key_label"
+      android:inputType="text"
+      android:imeOptions="flagNoExtractUi"
+      android:textSize="@dimen/font_size_normal"/>
+    <TextView
+      android:id="@+id/initial_setup_activity_manual_secretkey_label"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_key"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginTop="@dimen/default_padding"
+      android:text="@string/initial_setup_manual_secretkey_label"
+      android:textStyle="bold" />
+    <EditText
+      android:id="@+id/initial_setup_activity_manual_secretkey"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_secretkey_label"
+      android:inputType="text"
+      android:imeOptions="flagNoExtractUi"
+      android:textSize="@dimen/font_size_normal"/>
+    <Button
+      android:id="@+id/initial_setup_activity_manual_setupbutton"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_secretkey"
+      android:background="@drawable/btn_default"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:text="@string/initial_setup_manual_setupbutton"
+      android:textStyle="bold" />
+    
+     <TextView
+      android:id="@+id/initial_setup_activity_demo_label"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_manual_setupbutton"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginTop="@dimen/default_padding"
+      android:text="@string/initial_setup_demo_label"
+     />
+    <Button
+      android:id="@+id/initial_setup_activity_demo_button"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/initial_setup_activity_demo_label"
+      android:background="@drawable/btn_default"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:text="@string/initial_setup_demo_button"
+      android:textStyle="bold" />
+  </RelativeLayout>
+</ScrollView>

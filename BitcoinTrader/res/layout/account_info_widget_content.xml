@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/account_info_widget_content"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/appwidget_dark_bg_clickable"
+              android:baselineAligned="false"
+              android:layout_margin="0dp"
+              android:gravity="center_vertical"
+              android:orientation="horizontal" 
+>
+  <ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:src="@drawable/app_icon" />
+  <ImageView
+    android:layout_width="1dp"
+    android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/default_padding"
+    android:background="@drawable/appwidget_divider" />
+  
+  <LinearLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+  >
+    <TextView
+      android:id="@+id/account_info_widget_btc"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/font_size_xlarge"
+      android:singleLine="true"
+      android:textColor="#eee"
+    />
+    <TextView
+      android:id="@+id/account_info_widget_balance"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/font_size_xlarge"
+      android:singleLine="true"
+      android:textColor="#eee"
+    />
+  </LinearLayout>
+</LinearLayout>

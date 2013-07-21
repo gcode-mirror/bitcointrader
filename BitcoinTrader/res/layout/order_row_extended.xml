@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingLeft="@dimen/list_entry_padding_horizontal"
+                android:paddingTop="@dimen/default_padding"
+>
+  <TextView
+    android:id="@+id/order_row_askbid"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/order_row_padding_type"
+    android:layout_centerVertical="true"
+    android:textColor="@color/orange"
+    android:textStyle="bold"
+    android:textSize="@dimen/font_size_xlarge" />
+  
+  <de.dev.eth0.bitcointrader.ui.views.CurrencyTextView
+    android:id="@+id/order_row_total"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/order_row_askbid" 
+    android:textSize="@dimen/font_size_xlarge"/>
+
+  <de.dev.eth0.bitcointrader.ui.views.AmountTextView
+    android:id="@+id/order_row_amount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/order_row_total"
+    android:layout_alignLeft="@id/order_row_total"
+    android:layout_marginRight="@dimen/default_padding"
+  />
+    
+  <de.dev.eth0.bitcointrader.ui.views.CurrencyTextView
+    android:id="@+id/order_row_value"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/order_row_total"
+    android:layout_toRightOf="@id/order_row_amount" 
+  />
+  
+  <TextView
+    android:id="@+id/order_row_date"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/order_row_amount"
+    android:layout_alignLeft="@id/order_row_total"
+  />
+    
+  <ImageButton
+    android:id="@+id/order_row_delete"
+    style="@style/My.Widget.Button.Borderless"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/default_padding"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:src="@drawable/ic_action_delete_dark" />
+</RelativeLayout>
