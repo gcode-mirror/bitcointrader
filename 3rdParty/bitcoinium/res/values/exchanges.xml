@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Arrays for Prefered Exchange preferences -->
+    <string-array name="exchanges">
+        <item>MtGox</item>
+        <item>VirtEx</item>
+        <item>BTC-E</item>
+        <item>Bitstamp</item>
+        <item>CampBX</item>
+        <!--
+        <item>BitcoinCentral</item> 
+        <item>Bitfloor</item> 
+        <item>Bitcoin24</item>
+        -->
+    </string-array>
+    <string-array name="exchangeID">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <!--
+        <item>5</item>
+         <item>6</item>
+        <item>7</item>
+        -->
+    </string-array>
+
+    <!-- Array for Widget Exchange preferences -->
+    <string-array name="widgetexchangesvalues">
+        <item>MtGoxExchange</item>
+        <item>VirtExExchange</item>
+        <item>BTCEExchange</item>
+        <item>BitstampExchange</item>
+        <item>CampBXExchange</item>
+        <!--<item>BitcoinCentralExchange</item> 
+         <item>BitfloorExchange</item> 
+        <item>Bitcoin24Exchange</item> -->
+    </string-array>
+
+    <!-- Arrays that define properties of Exchanges -->
+    <!--
+        <string-array name="ExampleExchange">
+        <item>ExchangeName</item>
+        <item>xchangeClassName</item>
+        <item>mainCurrency</item>
+        <item>logo</item>
+        <item>notificationID</item>
+        <item>codename</item>
+        <item>supports latest trades</item>
+        <item>ticker supports bid/ask</item>
+    -->
+    <string-array name="MtGoxExchange">
+        <item>MtGox</item>
+        <item>com.xeiam.xchange.mtgox.v0.MtGoxExchange</item>
+        <item>USD</item>
+        <item>mtgoxlogo</item>
+        <item>0</item>
+        <item>mtgox</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+    <string-array name="VirtExExchange">
+        <item>VirtEx</item>
+        <item>com.xeiam.xchange.virtex.VirtExExchange</item>
+        <item>CAD</item>
+        <item>virtexlogo</item>
+        <item>1</item>
+        <item>virtex</item>
+        <item>true</item>
+        <item>false</item>
+    </string-array>
+    <string-array name="BTCEExchange">
+        <item>BTC-E</item>
+        <item>com.xeiam.xchange.btce.BTCEExchange</item>
+        <item>USD</item>
+        <item>btcelogo</item>
+        <item>2</item>
+        <item>btce</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+    <string-array name="BitstampExchange">
+        <item>Bitstamp</item>
+        <item>com.xeiam.xchange.bitstamp.BitstampExchange</item>
+        <item>USD</item>
+        <item>bitstamplogo</item>
+        <item>3</item>
+        <item>bitstamp</item>
+        <item>true</item>
+        <item>true</item>
+    </string-array>
+    <string-array name="CampBXExchange">
+        <item>CampBX</item>
+        <item>com.xeiam.xchange.campbx.CampBXExchange</item>
+        <item>USD</item>
+        <item>campbxlogo</item>
+        <item>4</item>
+        <item>campbx</item>
+        <item>false</item>
+ <!-- Not implemented -->
+        <item>true</item>
+    </string-array>
+    <string-array name="BitcoinCentralExchange">
+        <item>BitcoinCentral</item>
+        <item>com.xeiam.xchange.bitcoincentral.BitcoinCentralExchange</item>
+        <item>EUR</item>
+        <item>bitcoinicon</item>
+        <item>5</item>
+        <item>bitcoincentral</item>
+        <item>true</item>
+ <!-- Error 404 -->
+        <item>false</item>
+    </string-array>
+    <string-array name="BitfloorExchange">
+        <item>Bitfloor</item>
+        <item>com.xeiam.xchange.bitfloor.BitfloorExchange</item>
+        <item>USD</item>
+        <item>bitcoinicon</item>
+        <item>6</item>
+        <item>bitfloor</item>
+        <item>true</item>
+        <item>false</item>
+    </string-array>
+    <string-array name="Bitcoin24Exchange">
+        <item>Bitcoin24</item>
+        <item>com.xeiam.xchange.bitcoin24.Bitcoin24Exchange</item>
+        <item>EUR</item>
+        <item>bitcoinicon</item>
+        <item>7</item>
+        <item>bitcoin24</item>
+        <item>false</item>
+ <!-- Too large (contains all trades...) -->
+        <item>true</item>
+    </string-array>
+
+    <!-- Arrays for MtGox Currencies -->
+    <string-array name="mtgoxcurrencies">
+        <item>USD - United States Dollar</item>
+        <item>AUD - Australian Dollar</item>
+        <item>CAD - Canadian Dollar</item>
+        <item>GBP - British Pound</item>
+        <item>CNY - Chinese Yuan</item>
+        <item>DKK - Danish Krona</item>
+        <item>EUR - Euro</item>
+        <item>CHF - Swiss Francs</item>
+        <item>HKD - Hong Kong Dollar</item>
+        <item>JPY - Japanese Yen</item>
+        <item>NZD - New Zealand Dollar</item>
+        <item>PLN - Polish Zloty</item>
+        <item>RUB - Russian Rubles</item>
+        <item>SEK - Swedish Krona</item>
+        <item>SGD - Singapore Dollar</item>
+        <item>THB - Thai Baht</item>
+    </string-array>
+    <string-array name="mtgoxcurrenciesvalues">
+        <item>BTC/USD</item>
+        <item>BTC/AUD</item>
+        <item>BTC/CAD</item>
+        <item>BTC/GBP</item>
+        <item>BTC/CNY</item>
+        <item>BTC/DKK</item>
+        <item>BTC/EUR</item>
+        <item>BTC/CHF</item>
+        <item>BTC/HKD</item>
+        <item>BTC/JPY</item>
+        <item>BTC/NZD</item>
+        <item>BTC/PLN</item>
+        <item>BTC/RUB</item>
+        <item>BTC/SEK</item>
+        <item>BTC/SGD</item>
+        <item>BTC/THB</item>
+    </string-array>
+
+    <!-- Arrays for BTC-E Currencies -->
+    <string-array name="btcecurrencies">
+        <item>USD - United States Dollar</item>
+        <item>EUR - Euro</item>
+        <item>RUR - Old Russian Ruble</item>
+        <item>LTC/BTC</item>
+        <item>LTC/USD</item>
+        <item>LTC/RUR</item>
+        <item>NMC/BTC</item>
+        <item>USD/RUR</item>
+        <item>EUR/USD</item>
+        <item>NVC/BTC</item>
+        <item>TRC/BTC</item>
+        <item>PPC/BTC</item>
+        <item>FTC/BTC</item>
+        <item>CNC/BTC</item>
+    </string-array>
+    <string-array name="btcecurrenciesvalues">
+        <item>BTC/USD</item>
+        <item>BTC/EUR</item>
+        <item>BTC/RUR</item>
+        <item>LTC/BTC</item>
+        <item>LTC/USD</item>
+        <item>LTC/RUR</item>
+        <item>NMC/BTC</item>
+        <item>USD/RUR</item>
+        <item>EUR/USD</item>
+        <item>NVC/BTC</item>
+        <item>TRC/BTC</item>
+        <item>PPC/BTC</item>
+        <item>FTC/BTC</item>
+        <item>CNC/BTC</item>
+    </string-array>
+
+    <!-- Arrays for VirtEx Currencies -->
+    <string-array name="virtexcurrencies">
+        <item>CAD - Canadian Dollar</item>
+    </string-array>
+    <string-array name="virtexcurrenciesvalues">
+        <item>BTC/CAD</item>
+    </string-array>
+
+    <!-- Arrays for Bitstamp Currencies -->
+    <string-array name="bitstampcurrencies">
+        <item>USD - United States Dollar</item>
+    </string-array>
+    <string-array name="bitstampcurrenciesvalues">
+        <item>BTC/USD</item>
+    </string-array>
+
+    <!-- Arrays for CampBX Currencies -->
+    <string-array name="campbxcurrencies">
+        <item>USD - United States Dollar</item>
+    </string-array>
+    <string-array name="campbxcurrenciesvalues">
+        <item>BTC/USD</item>
+    </string-array>
+
+    <!-- Arrays for BitcoinCentral Currencies -->
+    <string-array name="bitcoincentralcurrencies">
+        <item>EUR - Euro</item>
+        <!--
+        Currently Disabled in XChange
+        <item>GBP - British Pound</item>
+        <item>USD - United States Dollar</item>
+        -->
+    </string-array>
+    <string-array name="bitcoincentralcurrencies">
+        <item>EUR - Euro</item>
+    </string-array>
+    <string-array name="bitcoincentralcurrenciesvalues">
+        <item>BTC/EUR</item>
+    </string-array>
+
+    <!-- Arrays for Bitfloor Currencies -->
+    <string-array name="bitfloorcurrencies">
+        <item>USD - United States Dollar</item>
+    </string-array>
+    <string-array name="bitfloorcurrenciesvalues">
+        <item>BTC/USD</item>
+    </string-array>
+
+    <!-- Arrays for Bitcoin24 Currencies -->
+    <string-array name="bitcoin24currencies">
+        <item>USD - United States Dollar</item>
+        <item>EUR - Euro</item>
+    </string-array>
+    <string-array name="bitcoin24currenciesvalues">
+        <item>BTC/USD</item>
+        <item>BTC/EUR</item>
+    </string-array>
+
+</resources>

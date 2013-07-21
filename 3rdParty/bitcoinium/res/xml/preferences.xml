@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="General" >
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/exchanges"
+            android:entryValues="@array/exchangeID"
+            android:key="favExchangePref"
+            android:summary="Automatically selected when Bitcoinium opens"
+            android:title="Favorite Exchange" />
+
+        <PreferenceScreen
+            android:summary="Default currency for OrderBook and Price Graph"
+            android:title="Default Exchange Currency" >
+            <ListPreference
+                android:defaultValue="BTC/USD"
+                android:entries="@array/mtgoxcurrencies"
+                android:entryValues="@array/mtgoxcurrenciesvalues"
+                android:key="mtgoxCurrencyPref"
+                android:summary="MtGox prices will be displayed in this currency"
+                android:title="MtGox Currency" />
+            <ListPreference
+                android:defaultValue="BTC/CAD"
+                android:entries="@array/virtexcurrencies"
+                android:entryValues="@array/virtexcurrenciesvalues"
+                android:key="virtexCurrencyPref"
+                android:summary="VirtEx prices will be displayed in this currency"
+                android:title="VirtEx Currency" />
+            <ListPreference
+                android:defaultValue="BTC/USD"
+                android:entries="@array/btcecurrencies"
+                android:entryValues="@array/btcecurrenciesvalues"
+                android:key="btceCurrencyPref"
+                android:summary="BTC-E prices will be displayed in this currency"
+                android:title="BTC-E Currency" />
+            <ListPreference
+                android:defaultValue="BTC/USD"
+                android:entries="@array/bitstampcurrencies"
+                android:entryValues="@array/bitstampcurrenciesvalues"
+                android:key="bitstampCurrencyPref"
+                android:summary="Bitstamp price will be displayed in this currency"
+                android:title="Bitstamp Currency" />
+            <ListPreference
+                android:defaultValue="BTC/USD"
+                android:entries="@array/campbxcurrencies"
+                android:entryValues="@array/campbxcurrenciesvalues"
+                android:key="campbxCurrencyPref"
+                android:summary="CampBX price will be displayed in this currency"
+                android:title="CampBX Currency" />
+            <!--
+            <ListPreference
+                android:defaultValue="EUR"
+                android:entries="@array/bitcoincentralcurrencies"
+                android:entryValues="@array/bitcoincentralcurrenciesvalues"
+                android:key="bitcoincentralCurrencyPref"
+                android:summary="BitcoinCentral price will be displayed in selected currency"
+                android:title="BitcoinCentral Currency" />
+                <ListPreference
+                android:defaultValue="USD"
+                android:entries="@array/bitfloorcurrencies"
+                android:entryValues="@array/bitfloorcurrenciesvalues"
+                android:key="bitfloorCurrencyPref"
+                android:summary="Bitfloor price will be displayed in selected currency"
+                android:title="Bitfloor Currency" />
+            <ListPreference
+                android:defaultValue="EUR"
+                android:entries="@array/bitcoin24currencies"
+                android:entryValues="@array/bitcoin24currenciesvalues"
+                android:key="bitcoin24CurrencyPref"
+                android:summary="Bitcoin24 price will be displayed in selected currency"
+                android:title="Bitcoin24 Currency" />
+            -->
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Widget Configuration" >
+        <PreferenceScreen
+            android:summary="Various display and power saving"
+            android:title="Widget Configuration" >
+            <PreferenceCategory android:title="General" >
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="checkboxPref"
+                    android:summary="Display update notification in taskbar"
+                    android:title="Display Updates" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="bidasktogglePref"
+                    android:summary="Replace High/Low with Bid/Ask if supported by exchange"
+                    android:title="Bid/Ask on Widget" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="wifiRefreshOnlyPref"
+                    android:summary="Disable updates on mobile connection"
+                    android:title="Refresh only on WiFi" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Power Saving" >
+                <ListPreference
+                    android:defaultValue="1800"
+                    android:entries="@array/interval"
+                    android:entryValues="@array/intervalvalues"
+                    android:key="refreshPref"
+                    android:summary="Time interval between widget updates \n *WARNING* \nUpdating the widget more often will increase battery drain \n "
+                    android:title="Widget Update Interval" />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="wakeupPref"
+                    android:summary="Disable updates when screen is off"
+                    android:title="Battery Saving Mode" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceScreen
+        android:summary="Choose your own background and text colors"
+        android:title="Customize Widget" >
+        <PreferenceCategory android:title="Customize Widget" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="enableWidgetCustomizationPref"
+                android:summary="Put the theme into effect."
+                android:title="Enable Customization" />
+
+            <net.margaritov.preference.colorpicker.ColorPickerPreference
+                android:defaultValue="@color/widgetMainTextColor"
+                android:key="widgetMainTextColorPref"
+                android:summary="Color for Exchange name and Last Price text"
+                android:title="Main Text Color" />
+            <net.margaritov.preference.colorpicker.ColorPickerPreference
+                android:defaultValue="@color/widgetSecondaryTextColor"
+                android:key="widgetSecondaryTextColorPref"
+                android:summary="Color for High, Low and Volume text"
+                android:title="Secondary Text Color" />
+            <net.margaritov.preference.colorpicker.ColorPickerPreference
+                alphaSlider="true"
+                android:defaultValue="@color/widgetBackgroundColor"
+                android:key="widgetBackgroundColorPref"
+                android:summary="Color for widget background"
+                android:title="Background Color" />
+            <!--
+                  <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="showRefreshTimePref"
+                android:summary="Toggle displaying last Refresh Time on widget"
+                android:title="Show Refresh Time" />
+            -->
+            <net.margaritov.preference.colorpicker.ColorPickerPreference
+                alphaSlider="true"
+                android:defaultValue="@color/widgetRefreshSuccessColor"
+                android:key="widgetRefreshSuccessColorPref"
+                android:summary="Color of the update time if successful"
+                android:title="Update Time Color (Success)" />
+            <net.margaritov.preference.colorpicker.ColorPickerPreference
+                alphaSlider="true"
+                android:defaultValue="@color/widgetRefreshFailedColor"
+                android:key="widgetRefreshFailedColorPref"
+                android:summary="Color of the update time if failed"
+                android:title="Update Time Color (Failed)" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:summary="Notfications when main miner is down"
+        android:title="Bitcoin Miner Alert" >
+        <PreferenceCategory android:title="Miner Widget Settings" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="bitminterAlertPref"
+                android:title="BitMinter miner down alert" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="deepbitAlertPref"
+                android:title="DeepBit miner down alert" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="slushAlertPref"
+                android:title="Slush miner down alert" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="50btcAlertPref"
+                android:title="50BTC miner down alert" />
+
+            <Preference
+                android:defaultValue="false"
+                android:key="eclipsemcAlertPref"
+                android:title="EclipseMC alert not yet supported" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceCategory android:title="Price Alarm" >
+        <Preference
+            android:key="alarmSettingsPref"
+            android:summary="Notifies you when price has passed a certain threshold \n *Note*: Alarm is triggered using default currency selected for exchange"
+            android:title="Price Alarm Notifications" >
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Notification Area Tickers" >
+        <PreferenceScreen
+            android:summary="Enable tickers in the notification drawer \n *Note*: Only supports the default currency selected for the exchange and respective widget needs to be active"
+            android:title="Notification Ticker" >
+            <PreferenceCategory android:title="Notification Drawer Ticker" >
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="mtgoxTickerPref"
+                    android:title="MtGox Notification Ticker" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="virtexTickerPref"
+                    android:title="VirtEx Notification Ticker" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="btceTickerPref"
+                    android:title="BTC-E Notification Ticker" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="bitstampTickerPref"
+                    android:title="Bitstamp Notification Ticker" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="campBXTickerPref"
+                    android:title="CampBX Notification Ticker" />
+                <!--
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="bitcoincentralTickerPref"
+                    android:title="BitcoinCentral Notification Ticker" />
+                     <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="bitfloorTickerPref"
+                    android:title="Bitfloor Notification Ticker" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="bitcoin24TickerPref"
+                    android:title="Bitcoin-24 Notification Ticker" />
+                -->
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Miner Stats Settings" >
+        <PreferenceScreen
+            android:summary="MinerStats account information. Your API tokens can be obtained at the respective mining pool."
+            android:title="Miner Stats API tokens" >
+            <PreferenceCategory android:title="Miner Stats" >
+                <EditTextPreference
+                    android:defaultValue=""
+                    android:key="deepbitKey"
+                    android:summary="Enter your Deepbit API token to use MinerStats"
+                    android:title="Deepbit API token" />
+                <EditTextPreference
+                    android:defaultValue=""
+                    android:key="bitminterKey"
+                    android:summary="Enter your BitMinter API token to use MinerStats."
+                    android:title="BitMinter API token" />
+                <EditTextPreference
+                    android:defaultValue=""
+                    android:key="emcKey"
+                    android:summary="Enter your EclipseMC API token to use MinerStats"
+                    android:title="EclipseMC API token" />
+                <EditTextPreference
+                    android:defaultValue=""
+                    android:key="slushKey"
+                    android:summary="Enter your Slush API token to use MinerStats"
+                    android:title="Slush API token" />
+                <EditTextPreference
+                    android:defaultValue=""
+                    android:key="50BTCKey"
+                    android:summary="Enter your 50BTC API token to use MinerStats"
+                    android:title="50BTC API token" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="OrderBook Settings" >
+        <PreferenceScreen
+            android:summary="Adjust liquidity highlighting and rendering settings"
+            android:title="OrderBook Settings" >
+            <PreferenceCategory android:title="OrderBook Settings" >
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="showCurrencySymbolPref"
+                    android:summary="Display currency symbols in the orderbook. \nDisable if text does not fit."
+                    android:title="Display Currency Symbols" />
+
+                <EditTextPreference
+                    android:defaultValue="100"
+                    android:digits="01234567890"
+                    android:inputType="numberDecimal"
+                    android:key="orderbookLimiterPref"
+                    android:summary="Limit values printed on screen to improve performance"
+                    android:title="OrderBook list length limit" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="Liquidity Highlighting" >
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="highlightPref"
+                    android:summary="Color of text depends on depth"
+                    android:title="Enable Liquidity Highlighting" />
+
+                <EditTextPreference
+                    android:defaultValue="50"
+                    android:digits="01234567890"
+                    android:inputType="numberDecimal"
+                    android:key="highlightUpper"
+                    android:summary="Text will be colored GREEN if depth over this value"
+                    android:title="High Depth" />
+                <EditTextPreference
+                    android:summary="Text will be colored YELLOW if depth is in between"
+                    android:title="Medium Depth" />
+                <EditTextPreference
+                    android:defaultValue="10"
+                    android:digits="01234567890"
+                    android:inputType="numberDecimal"
+                    android:key="highlightLower"
+                    android:summary="Text will be colored RED if depth under this value"
+                    android:title="Low Depth" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Price Graph Settings" >
+        <PreferenceScreen
+            android:summary="View window scaling and MtGox API mode settings"
+            android:title="Price Graph Settings" >
+            <PreferenceCategory android:title="Price Graph Settings" >
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="graphscalePref"
+                    android:summary="When the price graph is scrolled, max and min values will be reajusted to maximize viewing"
+                    android:title="View Window Scaling" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="mtgoxapiv1Pref"
+                    android:summary="Use MtGox API v2 for Price Graph. Allows to see a larger timeframe but uses a lot more bandwidth and very slow to load. \n*Caution*: May cause out of memory error on some devices"
+                    android:title="MtGox API v2 Mode" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="About" >
+        <PreferenceScreen
+            android:summary="Contact info, feedback and credits"
+            android:title="About Bitcoinium" >
+            <PreferenceCategory android:title="About" >
+                <Preference
+                    android:summary="Michael Lagacé (veken0m)"
+                    android:title="Author" />
+                <Preference
+                    android:key="donationAddressPref"
+                    android:summary="1yjDmiukhB2i1XyVw5t7hpAK4WXo32d54"
+                    android:title="Bitcoin Donation Address" />
+                <Preference
+                    android:key="devEmailPref"
+                    android:summary="veken0m.apps@gmail.com"
+                    android:title="Email" />
+                <Preference
+                    android:summary="1.6.0"
+                    android:title="Version" />
+                <Preference
+                    android:key="bitcoiniumGithubPref"
+                    android:summary="Please submit issues and feature requests here"
+                    android:title="Bitcoinium Github" />
+                <Preference
+                    android:key="xchangeGithubPref"
+                    android:summary="A Financial Exchange Library for Java, with support for Bitcoin"
+                    android:title="XChange Github" />
+                <Preference
+                    android:summary="Tim Molter - XChange Library\nMatija Mazi - XChange Library\nDest Romano - Bitcoin Alert \nArno Den Hond - GraphView library \nJonas Gehring - GraphView library \nSergey Margaritov - ColorPickerPreference library \nDaniel Nilsson - ColorPickerPreference library"
+                    android:title="Credits" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>
