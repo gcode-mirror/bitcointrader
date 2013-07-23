@@ -193,7 +193,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         if (walletHistory != null) {
           pages.add(walletHistory);
           if (walletHistory.getCurrentPage() < walletHistory.getMaxPage()) {
-            for (int page = 1; page <= walletHistory.getMaxPage(); page++) {
+            for (int page = 2; page <= walletHistory.getMaxPage(); page++) {
               walletHistory = exchange.getPollingAccountService().getMtGoxWalletHistory(currency, page);
               if (walletHistory != null) {
                 pages.add(walletHistory);
