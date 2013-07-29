@@ -29,15 +29,17 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     if (intent.getAction().equals(Constants.UPDATE_FAILED)) {
       notifyUpdateFailed(context);
-    } else if (intent.getAction().equals(Constants.UPDATE_SUCCEDED)) {
+    }
+    else if (intent.getAction().equals(Constants.UPDATE_SUCCEDED)) {
       notifyUpdateSucceded(context);
-    } else if (intent.getAction().equals(Constants.ORDER_EXECUTED)) {
+    }
+    else if (intent.getAction().equals(Constants.ORDER_EXECUTED)) {
       notifyOrderExecuted(context, intent.getParcelableArrayExtra(Constants.EXTRA_ORDERRESULT));
     }
   }
 
   private void notifyUpdateSucceded(Context context) {
-    NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager notificationmanager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
     notificationmanager.cancel(UPDATE_FAILED_NOTIFICATION_ID);
   }
 
@@ -54,28 +56,33 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
     mBuilder.setContentIntent(resultPendingIntent);
     mBuilder.setAutoCancel(true);
-    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
     mNotificationManager.notify(UPDATE_FAILED_NOTIFICATION_ID, mBuilder.build());
   }
 
   private void notifyOrderExecuted(Context context, Parcelable[] executedOrders) {
-    NotificationCompat.Builder mBuilder =
-            new NotificationCompat.Builder(context)
-            .setSmallIcon(R.drawable.ic_action_bitcoin)
-            .setContentTitle(context.getString(R.string.notify_order_executed_title))
-            .setContentText(context.getString(R.string.notify_order_executed_text));
-    NotificationCompat.BigTextStyle notificationStyle = new NotificationCompat.BigTextStyle();
-    notificationStyle.setBigContentTitle(context.getString(R.string.notify_order_executed_text));
     StringBuilder sb = new StringBuilder();
+    String contentText = null;
     for (Parcelable parcelable : executedOrders) {
       if (parcelable instanceof Bundle) {
-        Bundle bundle = (Bundle) parcelable;
+        Bundle bundle = (Bundle)parcelable;
+        contentText = context.getString(R.string.notify_order_executed_text,
+                bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
+                bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT),
+                bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALSPENT));
         sb.append(context.getString(R.string.notify_order_executed_text,
                 bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
                 bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT),
                 bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALSPENT)));
       }
     }
+    NotificationCompat.Builder mBuilder =
+            new NotificationCompat.Builder(context)
+            .setSmallIcon(R.drawable.ic_action_bitcoin)
+            .setContentTitle(context.getString(R.string.notify_order_executed_title))
+            .setContentText(contentText);
+    NotificationCompat.BigTextStyle notificationStyle = new NotificationCompat.BigTextStyle();
+    notificationStyle.setBigContentTitle(context.getString(R.string.notify_order_executed_title));
     notificationStyle.bigText(sb.toString());
     mBuilder.setStyle(notificationStyle);
     Intent resultIntent = new Intent(context, BitcoinTraderActivity.class);
@@ -87,7 +94,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     mBuilder.setAutoCancel(true);
     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     mBuilder.setSound(alarmSound);
-    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
     mNotificationManager.notify(ORDER_EXECUTED_NOTIFICATION_ID, mBuilder.build());
   }
 }
