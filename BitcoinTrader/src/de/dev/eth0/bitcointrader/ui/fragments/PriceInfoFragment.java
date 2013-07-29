@@ -24,7 +24,6 @@ import de.dev.eth0.bitcointrader.ui.views.AmountTextView;
 import de.dev.eth0.bitcointrader.ui.views.CurrencyTextView;
 import de.dev.eth0.bitcointrader.util.FormatHelper;
 import de.dev.eth0.bitcointrader.util.FormatHelper.DISPLAY_MODE;
-import java.text.DateFormat;
 
 /**
  * @author Alexander Muthmann

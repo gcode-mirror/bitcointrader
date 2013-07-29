@@ -55,6 +55,10 @@
       android:label="@string/price_chart_title"
     />
     <activity
+      android:name="de.dev.eth0.bitcointrader.ui.PriceChartDetailActivity"
+      android:label="@string/price_chart_detail_title"
+    />
+    <activity
       android:name="de.dev.eth0.bitcointrader.ui.WalletHistoryActivity"
       android:label="@string/wallet_history_title"
     />

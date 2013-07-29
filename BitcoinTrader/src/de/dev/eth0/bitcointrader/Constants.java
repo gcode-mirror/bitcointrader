@@ -24,9 +24,11 @@ public class Constants {
   public static final String REPORT_SUBJECT_CRASH = "Crash report";
   public static final String AUTHOR_URL = "http://www.dev-eth0.de";
   public static final String AUTHOR_TWITTER_URL = "https://twitter.com/#!/deveth0";
+  public static final String AUTHOR_SOURCE_URL = "https://code.google.com/p/bitcointrader/";
   public static final String CREDITS_BITCOINWALLET_URL = "http://code.google.com/p/bitcoin-wallet/";
   public static final String CREDITS_XCHANGE_URL = "https://github.com/timmolter/XChange";
   public static final String CREDITS_ZXING_URL = "http://zxing.googlecode.com";
+  public static final String CREDITS_GRAPHVIEW_URL = "http://www.jjoe64.com/p/graphview-library.html";
   // Prefs
   public static final String PREFS_KEY_DEMO = "demo";
   public static final String PREFS_KEY_MTGOX_APIKEY = "mtgox_apikey";

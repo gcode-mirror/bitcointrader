@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <item name="start_activity" type="layout">@layout/start_activity_portrait</item>
+  <item name="bitcointrader_content" type="layout">@layout/bitcointrader_activity_one_col</item>
   <item name="initial_setup_activity" type="layout">@layout/initial_setup_activity_portrait</item>
   <item name="wallet_history_row_extended" type="layout">@layout/wallet_history_row_extended_two_col</item>
+  <item name="price_chart_content" type="layout">@layout/price_chart_activity</item>
+  <item name="price_chart_detail_content" type="layout">@layout/price_chart_detail_activity</item>
+  <item name="price_info_fragment" type="layout">@layout/price_info_fragment_horizontal</item>
+  <item name="place_order_fragment" type="layout">@layout/place_order_fragment_vertical</item>
+
 </resources>

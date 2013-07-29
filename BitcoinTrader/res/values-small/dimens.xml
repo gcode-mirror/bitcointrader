@@ -2,4 +2,7 @@
 <resources>
 
 	<dimen name="order_row_padding_type">24dp</dimen>
+    
+    <dimen name="graph_vertical_label_height">25dp</dimen>
+    <dimen name="graph_horizontal_label_width">50dp</dimen>
 </resources>

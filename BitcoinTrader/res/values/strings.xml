@@ -67,6 +67,9 @@
   <string name="price_info_volume_label">Volume: </string>
   <string name="refresh_title">Refresh</string>
 
+  <string name="price_chart_detail_title">Price Chart Details</string>
+  <string name="price_chart_detail_period_description">Show last:</string>
+
   <string name="select_currency_title">Select currency</string>
 
   <string name="notify_order_executed_title">Orders executed</string>
@@ -92,9 +95,12 @@
     
   <string name="about_title">About</string>
   <string name="about_author_twitter_title">Author at Twitter</string>
+  <string name="about_license">License</string>
+  <string name="about_license_summary">This app is distributed under Apache 2.0 License</string>
   <string name="about_credits_bitcoinwallet_title">"This app is using 'bitcoin-wallet'"</string>
   <string name="about_credits_xchange_title">"This app is using 'xchange'"</string>
   <string name="about_credits_zxing_title">"This app is using 'zxing'"</string>
+  <string name="about_credits_graphview_title">"This app is using 'graphview'"</string>
     
   <string name="preferences_title">Preferences</string>
   <string name="preferences_category_mtgox">MtGox</string>
