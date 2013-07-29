@@ -101,7 +101,6 @@
   <string name="about_credits_xchange_title">"Diese App nutzt 'xchange'"</string>
   <string name="about_credits_zxing_title">"Diese App nutzt 'zxing'"</string>
   <string name="about_credits_graphview_title">"Diese App nutzt 'graphview'"</string>
-
     
   <string name="preferences_title">Einstellungen</string>
   <string name="preferences_category_mtgox">MtGox</string>

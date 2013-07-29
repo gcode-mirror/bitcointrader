@@ -180,11 +180,9 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
       double max = Double.MIN_VALUE;
       for (int i = 0; i < chartData.length; i++) {
         ChartData cd = chartData[i];
-        Log.d(TAG, "new entry: " + cd.toString());
         data[i] = new GraphViewData(Double.parseDouble(cd.getDate()) * 1000, cd.getWeightedPrice().doubleValue());
         min = Math.min(data[i].valueY, min);
         max = Math.max(data[i].valueY, max);
-        Log.d(TAG, "entry: " + data[i].valueX + "/" + data[i].valueY);
       }
       if (graphViewSeries == null) {
         graphViewSeries = new GraphViewSeries(data);
