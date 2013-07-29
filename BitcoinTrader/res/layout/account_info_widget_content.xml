@@ -4,6 +4,8 @@
               android:id="@+id/account_info_widget_content"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:minHeight="@dimen/cell_size_1"
+              android:minWidth="@dimen/cell_size_3"
               android:background="@drawable/appwidget_dark_bg_clickable"
               android:baselineAligned="false"
               android:layout_margin="0dp"
