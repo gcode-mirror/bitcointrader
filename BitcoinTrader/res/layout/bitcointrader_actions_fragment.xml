@@ -42,13 +42,4 @@
       android:textColor="@android:color/white"
       android:textStyle="bold" />
   </LinearLayout>
-  <TextView
-    android:id="@+id/bitcointrader_demo_info"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="4dp"
-    android:textColor="@android:color/black"
-    android:background="@color/red"
-    android:textSize="@dimen/font_size_xlarge" />
 </LinearLayout>

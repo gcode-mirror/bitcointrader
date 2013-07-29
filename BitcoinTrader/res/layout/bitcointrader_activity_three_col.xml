@@ -37,6 +37,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="bottom|center_horizontal" />
     </FrameLayout>
+    <fragment
+      android:id="@+id/bitcointrader_demo_notification_fragment"
+      android:name="de.dev.eth0.bitcointrader.ui.fragments.DemoNotificationFragment"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
   </LinearLayout>
 
   <LinearLayout  
