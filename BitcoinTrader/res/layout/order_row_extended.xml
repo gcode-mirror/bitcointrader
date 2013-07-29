@@ -17,7 +17,7 @@
     android:textSize="@dimen/font_size_xlarge" />
   
   <de.dev.eth0.bitcointrader.ui.views.CurrencyTextView
-    android:id="@+id/order_row_total"
+    android:id="@+id/order_row_value"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_toRightOf="@id/order_row_askbid" 
@@ -27,16 +27,16 @@
     android:id="@+id/order_row_amount"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/order_row_total"
-    android:layout_alignLeft="@id/order_row_total"
+    android:layout_below="@id/order_row_value"
+    android:layout_alignLeft="@id/order_row_value"
     android:layout_marginRight="@dimen/default_padding"
   />
     
   <de.dev.eth0.bitcointrader.ui.views.CurrencyTextView
-    android:id="@+id/order_row_value"
+    android:id="@+id/order_row_total"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/order_row_total"
+    android:layout_below="@id/order_row_value"
     android:layout_toRightOf="@id/order_row_amount" 
   />
   
@@ -45,7 +45,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/order_row_amount"
-    android:layout_alignLeft="@id/order_row_total"
+    android:layout_alignLeft="@id/order_row_value"
   />
     
   <ImageButton
