@@ -112,4 +112,8 @@ public class BitcoinTraderApplication extends Application implements SharedPrefe
     }
     return exchangeService;
   }
+
+  public String getCurrency() {
+    return PreferenceManager.getDefaultSharedPreferences(this).getString(Constants.PREFS_KEY_CURRENCY, "USD");
+  }
 }

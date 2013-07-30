@@ -129,6 +129,7 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    application.getExchangeService();
     View view = inflater.inflate(R.layout.place_order_fragment, container);
     totalView = (CurrencyTextView)view.findViewById(R.id.place_order_total);
     estimatedFeeView = (CurrencyTextView)view.findViewById(R.id.place_order_estimatedfee);
@@ -138,7 +139,7 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
     amountViewText.addTextChangedListener(valueChangedListener);
 
     priceView = (CurrencyAmountView)view.findViewById(R.id.place_order_price);
-    priceView.setCurrencyCode(getExchangeService().getCurrency());
+    priceView.setCurrencyCode(application.getCurrency());
     enablePriceViewContextButton();
 
     orderTypeSpinner = (Spinner)view.findViewById(R.id.place_order_type);
@@ -212,11 +213,11 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
     Log.d(TAG, ".updateView()");
     Editable amount = amountViewText.getEditableText();
     Editable price = priceViewText.getEditableText();
-    priceView.setCurrencyCode(getExchangeService().getCurrency());
+    priceView.setCurrencyCode(application.getCurrency());
     Order.OrderType type = (Order.OrderType)orderTypeSpinner.getSelectedItem();
     if (!TextUtils.isEmpty(amount) && !TextUtils.isEmpty(price)) {
       BigMoney amountBTC = BigMoney.parse("BTC 0" + amount.toString());
-      BigMoney amountUSD = BigMoney.parse(getExchangeService().getCurrency() + " 0" + price.toString());
+      BigMoney amountUSD = BigMoney.parse(application.getCurrency() + " 0" + price.toString());
       BigMoney totalSpend = amountUSD.multipliedBy(amountBTC.getAmount());
       totalView.setAmount(totalSpend);
       MtGoxAccountInfo accountInfo = getExchangeService().getAccountInfo();
@@ -267,10 +268,10 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
     Double price = Double.parseDouble(priceViewText.getEditableText().toString());
 
     if (marketOrder) {
-      order = new MarketOrder(type, BigDecimal.valueOf(amount), "BTC", getExchangeService().getCurrency());
+      order = new MarketOrder(type, BigDecimal.valueOf(amount), "BTC", application.getCurrency());
     }
     else {
-      order = new LimitOrder(type, BigDecimal.valueOf(amount), "BTC", getExchangeService().getCurrency(), BigMoney.of(CurrencyUnit.of(getExchangeService().getCurrency()), price));
+      order = new LimitOrder(type, BigDecimal.valueOf(amount), "BTC", application.getCurrency(), BigMoney.of(CurrencyUnit.of(application.getCurrency()), price));
     }
     getExchangeService().placeOrder(order, activity);
 

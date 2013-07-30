@@ -106,7 +106,7 @@ public class AccountInfoFragment extends AbstractBitcoinTraderFragment {
       if (mtgoxaccountInfo != null) {
         AccountInfo accountInfo = MtGoxAdapters.adaptAccountInfo(mtgoxaccountInfo);
         viewName.setText(accountInfo.getUsername());
-        viewDollar.setAmount(accountInfo.getBalance(CurrencyUnit.of(getExchangeService().getCurrency())));
+        viewDollar.setAmount(accountInfo.getBalance(CurrencyUnit.of(application.getCurrency())));
         viewBtc.setAmount(accountInfo.getBalance(CurrencyUnit.of("BTC")));
         viewTradeFee.setAmount(mtgoxaccountInfo.getTradeFee());
       }
