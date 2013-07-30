@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.text.TextUtils;
 import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.ui.BitcoinTraderActivity;
@@ -66,10 +67,12 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     for (Parcelable parcelable : executedOrders) {
       if (parcelable instanceof Bundle) {
         Bundle bundle = (Bundle)parcelable;
-        contentText = context.getString(R.string.notify_order_executed_text,
-                bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
-                bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT),
-                bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALSPENT));
+        if (TextUtils.isEmpty(contentText)) {
+          contentText = context.getString(R.string.notify_order_executed_text,
+                  bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
+                  bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT),
+                  bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALSPENT));
+        }
         sb.append(context.getString(R.string.notify_order_executed_text,
                 bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
                 bundle.getString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT),
