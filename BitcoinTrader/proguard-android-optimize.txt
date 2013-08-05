@@ -11,6 +11,7 @@
 -keepnames class org.codehaus.jackson.** { *; }
 -keep interface javax.ws.rs.** { *; }
 -keep class com.xeiam.xchange.** { *; }
+-keep class com.jjoe64.graphview.** { *; }
 
 -dontwarn javax.xml.**
 -dontwarn javax.xml.stream.events.**
