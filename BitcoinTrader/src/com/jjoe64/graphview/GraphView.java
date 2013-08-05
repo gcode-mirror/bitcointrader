@@ -66,7 +66,7 @@ public abstract class GraphView extends LinearLayout {
 
       float border = GraphViewConfig.BORDER + paint.getTextSize() / 2;
       // increase border if offset is enabled
-      if(horizontalLabelOffset){
+      if (horizontalLabelOffset) {
         border += paint.getTextSize();
       }
       float horstart = 0;
@@ -112,7 +112,8 @@ public abstract class GraphView extends LinearLayout {
         // display labels offset
         if (horizontalLabelOffset && (i % 2) == 0) {
           canvas.drawText(horlabels[i], x, height - 4 - paint.getTextSize(), paint);
-        } else {
+        }
+        else {
           canvas.drawText(horlabels[i], x, height - 4, paint);
         }
       }
@@ -148,7 +149,8 @@ public abstract class GraphView extends LinearLayout {
         double maxX = getMaxX(true);
         if (viewportStart < minX) {
           viewportStart = minX;
-        } else if (viewportStart + viewportSize > maxX) {
+        }
+        else if (viewportStart + viewportSize > maxX) {
           viewportStart = maxX - viewportSize;
         }
 
@@ -238,7 +240,7 @@ public abstract class GraphView extends LinearLayout {
       paint.setStrokeWidth(0);
 
       float border = GraphViewConfig.BORDER + paint.getTextSize() / 2;
-      if(horizontalLabelOffset){
+      if (horizontalLabelOffset) {
         border += paint.getTextSize();
       }
       float height = getHeight();
@@ -254,7 +256,7 @@ public abstract class GraphView extends LinearLayout {
       }
       if (maxLabelLength != Integer.MIN_VALUE) {
         maxLabelLength += GraphViewConfig.BORDER;
-        setLayoutParams(new LayoutParams((int) maxLabelLength, LayoutParams.MATCH_PARENT));
+        setLayoutParams(new LayoutParams((int)maxLabelLength, LayoutParams.MATCH_PARENT));
       }
 
 
@@ -308,7 +310,8 @@ public abstract class GraphView extends LinearLayout {
 
     if (title == null) {
       this.title = "";
-    } else {
+    }
+    else {
       this.title = title;
     }
 
@@ -353,7 +356,8 @@ public abstract class GraphView extends LinearLayout {
     if (viewportStart == 0 && viewportSize == 0) {
       // all data
       return values;
-    } else {
+    }
+    else {
       // viewport
       List<GraphViewData> listData = new ArrayList<GraphViewData>();
       for (int i = 0; i < values.length; i++) {
@@ -361,10 +365,12 @@ public abstract class GraphView extends LinearLayout {
           if (values[i].valueX > viewportStart + viewportSize) {
             listData.add(values[i]); // one more for nice scrolling
             break;
-          } else {
+          }
+          else {
             listData.add(values[i]);
           }
-        } else {
+        }
+        else {
           if (listData.isEmpty()) {
             listData.add(values[i]);
           }
@@ -427,19 +433,24 @@ public abstract class GraphView extends LinearLayout {
     if (numberformatter[i] == null) {
       if (customFormatter[i] != null) {
         numberformatter[i] = customFormatter[i];
-      } else {
+      }
+      else {
         NumberFormat numFormat = NumberFormat.getNumberInstance();
         double highestvalue = isValueX ? getMaxX(false) : getMaxY();
         double lowestvalue = isValueX ? getMinX(false) : getMinY();
         if (highestvalue - lowestvalue < 0.1) {
           numFormat.setMaximumFractionDigits(6);
-        } else if (highestvalue - lowestvalue < 1) {
+        }
+        else if (highestvalue - lowestvalue < 1) {
           numFormat.setMaximumFractionDigits(4);
-        } else if (highestvalue - lowestvalue < 20) {
+        }
+        else if (highestvalue - lowestvalue < 20) {
           numFormat.setMaximumFractionDigits(3);
-        } else if (highestvalue - lowestvalue < 100) {
+        }
+        else if (highestvalue - lowestvalue < 100) {
           numFormat.setMaximumFractionDigits(1);
-        } else {
+        }
+        else {
           numFormat.setMaximumFractionDigits(0);
         }
         numberformatter[i] = numFormat;
@@ -451,7 +462,7 @@ public abstract class GraphView extends LinearLayout {
   }
 
   private String[] generateHorlabels(float graphwidth) {
-    int numLabels = (int) (graphwidth / getResources().getDimensionPixelSize(R.dimen.graph_horizontal_label_width));
+    int numLabels = (int)(graphwidth / getResources().getDimensionPixelSize(R.dimen.graph_horizontal_label_width));
     String[] labels = new String[numLabels + 1];
     double min = getMinX(false);
     double max = getMaxX(false);
@@ -462,7 +473,7 @@ public abstract class GraphView extends LinearLayout {
   }
 
   synchronized private String[] generateVerlabels(float graphheight) {
-    int numLabels = (int) (graphheight / getResources().getDimensionPixelSize(R.dimen.graph_vertical_label_height));
+    int numLabels = (int)(graphheight / getResources().getDimensionPixelSize(R.dimen.graph_vertical_label_height));
     String[] labels = new String[numLabels + 1];
     double min = getMinY();
     double max = getMaxY();
@@ -497,7 +508,8 @@ public abstract class GraphView extends LinearLayout {
     // if viewport is set, use this
     if (!ignoreViewport && viewportSize != 0) {
       return viewportStart + viewportSize;
-    } else {
+    }
+    else {
       // otherwise use the max x value
       // values must be sorted by x, so the last value has the largest X value
       double highest = 0;
@@ -505,7 +517,8 @@ public abstract class GraphView extends LinearLayout {
         GraphViewData[] values = graphSeries.get(0).values;
         if (values.length == 0) {
           highest = 0;
-        } else {
+        }
+        else {
           highest = values[values.length - 1].valueX;
           for (int i = 1; i < graphSeries.size(); i++) {
             values = graphSeries.get(i).values;
@@ -513,6 +526,7 @@ public abstract class GraphView extends LinearLayout {
           }
         }
       }
+      Log.d(TAG, "getMaxX() returns " + highest);
       return highest;
     }
   }
@@ -526,7 +540,8 @@ public abstract class GraphView extends LinearLayout {
     double largest;
     if (manualYAxis) {
       largest = manualMaxYValue;
-    } else {
+    }
+    else {
       largest = Integer.MIN_VALUE;
       for (int i = 0; i < graphSeries.size(); i++) {
         GraphViewData[] values = _values(i);
@@ -551,7 +566,8 @@ public abstract class GraphView extends LinearLayout {
     // if viewport is set, use this
     if (!ignoreViewport && viewportSize != 0) {
       return viewportStart;
-    } else {
+    }
+    else {
       // otherwise use the min x value
       // values must be sorted by x, so the first value has the smallest X value
       double lowest = 0;
@@ -559,7 +575,8 @@ public abstract class GraphView extends LinearLayout {
         GraphViewData[] values = graphSeries.get(0).values;
         if (values.length == 0) {
           lowest = 0;
-        } else {
+        }
+        else {
           lowest = values[0].valueX;
           for (int i = 1; i < graphSeries.size(); i++) {
             values = graphSeries.get(i).values;
@@ -567,6 +584,7 @@ public abstract class GraphView extends LinearLayout {
           }
         }
       }
+      Log.d(TAG, "getMinX() returns " + lowest);
       return lowest;
     }
   }
@@ -580,7 +598,8 @@ public abstract class GraphView extends LinearLayout {
     double smallest;
     if (manualYAxis) {
       smallest = manualMinYValue;
-    } else {
+    }
+    else {
       smallest = Integer.MAX_VALUE;
       for (int i = 0; i < graphSeries.size(); i++) {
         GraphViewData[] values = _values(i);
@@ -705,7 +724,8 @@ public abstract class GraphView extends LinearLayout {
             // scroll left
             if (viewportStart - overlap > minX) {
               viewportStart -= overlap;
-            } else {
+            }
+            else {
               // maximal scale
               viewportStart = minX;
               viewportSize = maxX - viewportStart;

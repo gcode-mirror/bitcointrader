@@ -93,6 +93,10 @@
   <string name="place_order_failed">Order konnte nicht erstellt werden</string>
   <string name="place_order_failed_demo">Im Demo-Modus können Sie leider keine Ordern erstellen.</string>
     
+  <string name="market_depth_title">Markttiefe</string>
+  <string name="market_depth_asks_graph_title">Asks</string>
+  <string name="market_depth_bids_graph_title">Bids</string>
+    
   <string name="about_title">Info</string>
   <string name="about_author_twitter_title">Author auf Twitter</string>
   <string name="about_license">Lizenz</string>

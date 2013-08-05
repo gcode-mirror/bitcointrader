@@ -92,6 +92,10 @@
   <string name="place_order_success">Order created</string>
   <string name="place_order_failed">Could not create order</string>
   <string name="place_order_failed_demo">You cannot create orders in demo mode.</string>
+
+  <string name="market_depth_title">Market Depth</string>
+  <string name="market_depth_asks_graph_title">Asks</string>
+  <string name="market_depth_bids_graph_title">Bids</string>
     
   <string name="about_title">About</string>
   <string name="about_author_twitter_title">Author at Twitter</string>

@@ -32,6 +32,7 @@ import com.xeiam.xchange.ExchangeSpecification;
 import com.xeiam.xchange.currency.Currencies;
 import com.xeiam.xchange.currency.MoneyUtils;
 import com.xeiam.xchange.dto.Order;
+import com.xeiam.xchange.dto.marketdata.OrderBook;
 import com.xeiam.xchange.dto.marketdata.Ticker;
 import com.xeiam.xchange.dto.marketdata.Trades;
 import com.xeiam.xchange.dto.trade.LimitOrder;
@@ -170,6 +171,10 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
 
   public MtGoxExchangeWrapper getExchange() {
     return exchange;
+  }
+
+  public OrderBook getOrderBook() {
+    return getExchange().getPollingMarketDataService().getPartialOrderBook("BTC", getCurrency());
   }
 
   public Map<String, List<MtGoxWalletHistory>> getMtGoxWalletHistory(String[] currencies, boolean forceUpdate) {

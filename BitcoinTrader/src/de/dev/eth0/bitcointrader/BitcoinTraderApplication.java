@@ -27,6 +27,7 @@ public class BitcoinTraderApplication extends Application implements SharedPrefe
   private static final String TAG = BitcoinTraderApplication.class.getSimpleName();
   private boolean serviceBound = false;
   private ExchangeService exchangeService;
+  private Cache cache;
   private ServiceConnection serviceConnection = new ServiceConnection() {
     public void onServiceConnected(ComponentName name, IBinder binder) {
       exchangeService = ((ExchangeService.LocalBinder) binder).getService();
@@ -45,6 +46,7 @@ public class BitcoinTraderApplication extends Application implements SharedPrefe
     Log.d(TAG, ".onCreate()");
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     prefs.registerOnSharedPreferenceChangeListener(this);
+    cache = new Cache();
     updateServiceActionIntent = PendingIntent.getBroadcast(this, 0, new Intent(Constants.UPDATE_SERVICE_ACTION), 0);
     exchangeServiceIntent = new Intent(this, ExchangeService.class);
     super.onCreate();
@@ -89,6 +91,10 @@ public class BitcoinTraderApplication extends Application implements SharedPrefe
     }
   }
 
+  public Cache getCache() {
+    return cache;
+  }
+
   public void startExchangeService() {
     serviceBound = true;
     this.bindService(exchangeServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
@@ -107,7 +113,7 @@ public class BitcoinTraderApplication extends Application implements SharedPrefe
   }
 
   public ExchangeService getExchangeService() {
-    if(!serviceBound){
+    if (!serviceBound) {
       startExchangeService();
     }
     return exchangeService;

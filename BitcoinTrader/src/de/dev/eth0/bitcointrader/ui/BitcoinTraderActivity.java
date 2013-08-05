@@ -59,6 +59,9 @@ public class BitcoinTraderActivity extends AbstractBitcoinTraderActivity {
       case R.id.bitcointrader_options_wallet_history:
         startActivity(new Intent(this, WalletHistoryActivity.class));
         break;
+      case R.id.bitcointrader_options_market_depth:
+        startActivity(new Intent(this, MarketDepthActivity.class));
+        break;
       case R.id.bitcointrader_options_refresh:
         broadcastManager.sendBroadcast(new Intent(Constants.UPDATE_SERVICE_ACTION));
         break;

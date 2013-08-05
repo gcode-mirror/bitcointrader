@@ -22,7 +22,11 @@
     android:id="@+id/bitcointrader_options_wallet_history"
     android:showAsAction="never"
     android:title="@string/wallet_history_title"/>
-  <item
+    <item
+      android:id="@+id/bitcointrader_options_market_depth"
+      android:showAsAction="never"
+      android:title="@string/market_depth_title"/>
+    <item
     android:id="@+id/bitcointrader_options_preferences"
     android:showAsAction="never"
     android:title="@string/preferences_title"/>
