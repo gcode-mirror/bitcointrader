@@ -48,10 +48,10 @@ import de.schildbach.wallet.ui.HelpDialogFragment;
 import java.math.BigDecimal;
 import org.joda.money.BigMoney;
 import org.joda.money.CurrencyUnit;
+
 /**
  * @author Alexander Muthmann
  */
-
 public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
 
   private static final String TAG = PlaceOrderFragment.class.getSimpleName();
@@ -220,16 +220,18 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
       BigMoney amountUSD = BigMoney.parse(application.getCurrency() + " 0" + price.toString());
       BigMoney totalSpend = amountUSD.multipliedBy(amountBTC.getAmount());
       totalView.setAmount(totalSpend);
-      MtGoxAccountInfo accountInfo = getExchangeService().getAccountInfo();
-      if (accountInfo != null) {
-        if (type.equals(Order.OrderType.ASK)) {
-          estimatedFeeView.setPrecision(Constants.PRECISION_CURRENCY);
-          estimatedFeeView.setAmount(totalSpend.multipliedBy(accountInfo.getTradeFee().scaleByPowerOfTen(-2)));
-        }
-        else {
-          BigMoney fee = amountBTC.multipliedBy(accountInfo.getTradeFee().scaleByPowerOfTen(-2));
-          estimatedFeeView.setPrecision(Constants.PRECISION_BITCOIN);
-          estimatedFeeView.setAmount(fee);
+      if (getExchangeService() != null) {
+        MtGoxAccountInfo accountInfo = getExchangeService().getAccountInfo();
+        if (accountInfo != null) {
+          if (type.equals(Order.OrderType.ASK)) {
+            estimatedFeeView.setPrecision(Constants.PRECISION_CURRENCY);
+            estimatedFeeView.setAmount(totalSpend.multipliedBy(accountInfo.getTradeFee().scaleByPowerOfTen(-2)));
+          }
+          else {
+            BigMoney fee = amountBTC.multipliedBy(accountInfo.getTradeFee().scaleByPowerOfTen(-2));
+            estimatedFeeView.setPrecision(Constants.PRECISION_BITCOIN);
+            estimatedFeeView.setAmount(fee);
+          }
         }
       }
     }
