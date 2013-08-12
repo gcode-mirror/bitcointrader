@@ -18,7 +18,7 @@ public class Constants {
   public static final String MTGOX_DEMO_ACCOUNT_APIKEY = "cb7897cc-5c08-4e74-82a4-4c5e72457589";
   public static final String MTGOX_DEMO_ACCOUNT_SECRETKEY = "1LrjXFwoNped6Tw+7cQVzIkn6ZHnJdoFUEqWyEAplkDdtUAcREEsUn8xfkvQDOunyPhP2TVNv54660e9CFET7w==";
   // About
-  public static final String DONATION_ADDRESS = "1KjAux47WJUTfwpeTduNkBtbcdKGhN7yVj";
+  public static final String DONATION_ADDRESS = "1FDLG9HbYAECa9R1o7kE9Rt37XdnWv1teZ";
   public static final String REPORT_EMAIL = "bitcointraderissues@dev-eth0.de";
   public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
   public static final String REPORT_SUBJECT_CRASH = "Crash report";
