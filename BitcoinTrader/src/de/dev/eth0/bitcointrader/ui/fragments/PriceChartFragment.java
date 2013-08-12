@@ -76,7 +76,7 @@ public class PriceChartFragment extends SherlockListFragment {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.bitcointrader_options_refresh:
-        updateView();
+        updateView(true);
         break;
       case R.id.bitcointrader_options_help:
         HelpDialogFragment.page(activity.getSupportFragmentManager(), "help_price_chart");
@@ -172,11 +172,18 @@ public class PriceChartFragment extends SherlockListFragment {
   @Override
   public void onResume() {
     super.onResume();
-    updateView();
+    updateView(false);
   }
 
-  protected void updateView() {
+  protected void updateView(boolean forceUpdate) {
     Log.d(TAG, ".updateView()");
+    if (!forceUpdate) {
+      BitcoinChartsTicker[] ticker = application.getCache().getEntry(BitcoinChartsTicker[].class);
+      if (ticker != null) {
+        updateView(ticker);
+        return;
+      }
+    }
     GetTickerTask tradesTask = new GetTickerTask();
     tradesTask.executeOnExecutor(ICSAsyncTask.SERIAL_EXECUTOR);
   }
@@ -184,14 +191,6 @@ public class PriceChartFragment extends SherlockListFragment {
   protected void updateView(BitcoinChartsTicker[] tradesList) {
     Log.d(TAG, ".updateView");
     if (tradesList != null) {
-      // Sort Tickers by volume
-      Arrays.sort(tradesList, new Comparator<BitcoinChartsTicker>() {
-        @Override
-        public int compare(BitcoinChartsTicker entry1,
-                BitcoinChartsTicker entry2) {
-          return entry2.getVolume().compareTo(entry1.getVolume());
-        }
-      });
       List<BitcoinChartsTicker> tickers = new ArrayList<BitcoinChartsTicker>();
       for (BitcoinChartsTicker data : tradesList) {
         if (data.getVolume().intValue() != 0) {
@@ -222,6 +221,15 @@ public class PriceChartFragment extends SherlockListFragment {
         mDialog = null;
       }
       Log.d(TAG, "Found " + (ticker != null ? ticker.length : 0) + " ticker entries");
+      // Sort Tickers by volume
+      Arrays.sort(ticker, new Comparator<BitcoinChartsTicker>() {
+        @Override
+        public int compare(BitcoinChartsTicker entry1,
+                BitcoinChartsTicker entry2) {
+          return entry2.getVolume().compareTo(entry1.getVolume());
+        }
+      });
+      application.getCache().put(ticker);
       updateView(ticker);
     }
 
