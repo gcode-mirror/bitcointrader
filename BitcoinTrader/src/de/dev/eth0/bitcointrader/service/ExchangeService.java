@@ -32,11 +32,13 @@ import com.xeiam.xchange.ExchangeSpecification;
 import com.xeiam.xchange.currency.Currencies;
 import com.xeiam.xchange.currency.MoneyUtils;
 import com.xeiam.xchange.dto.Order;
+import com.xeiam.xchange.dto.account.AccountInfo;
 import com.xeiam.xchange.dto.marketdata.OrderBook;
 import com.xeiam.xchange.dto.marketdata.Ticker;
 import com.xeiam.xchange.dto.marketdata.Trades;
 import com.xeiam.xchange.dto.trade.LimitOrder;
 import com.xeiam.xchange.dto.trade.MarketOrder;
+import com.xeiam.xchange.mtgox.v2.MtGoxAdapters;
 import com.xeiam.xchange.mtgox.v2.dto.account.polling.MtGoxAccountInfo;
 import com.xeiam.xchange.mtgox.v2.dto.account.polling.MtGoxWalletHistory;
 import com.xeiam.xchange.mtgox.v2.dto.trade.polling.MtGoxOrderResult;
@@ -49,13 +51,16 @@ import de.dev.eth0.bitcointrader.ui.widgets.AccountInfoWidgetProvider;
 import de.dev.eth0.bitcointrader.ui.widgets.PriceInfoWidgetProvider;
 import de.dev.eth0.bitcointrader.util.FormatHelper;
 import de.dev.eth0.bitcointrader.util.ICSAsyncTask;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.joda.money.BigMoney;
+import org.joda.money.CurrencyUnit;
 import si.mazi.rescu.HttpException;
 
 /**
@@ -88,6 +93,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
   private final Binder binder = new LocalBinder();
   private MtGoxAccountInfo accountInfo;
   private List<LimitOrder> openOrders = new ArrayList<LimitOrder>();
+  private Float trailingStopThreadhold;
+  private BigDecimal trailingStopValue;
+  private BigDecimal[] trailingStopChecks = new BigDecimal[1];
   private boolean notifyOnUpdate;
   private int updateInterval;
   private Ticker ticker;
@@ -109,6 +117,16 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     prefs.registerOnSharedPreferenceChangeListener(this);
     notifyOnUpdate = prefs.getBoolean(Constants.PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE, false);
     updateInterval = Integer.parseInt(prefs.getString(Constants.PREFS_KEY_GENERAL_UPDATE, "0"));
+    float th = prefs.getFloat(Constants.PREFS_TRAILING_STOP_THREASHOLD, Float.MIN_VALUE);
+    if (th != Float.MIN_VALUE) {
+      trailingStopThreadhold = th;
+    }
+    String tvalue = prefs.getString(Constants.PREFS_TRAILING_STOP_VALUE, null);
+    if (!TextUtils.isEmpty(tvalue)) {
+      trailingStopValue = new BigDecimal(tvalue);
+    } else {
+      trailingStopValue = null;
+    }
     createExchange(prefs);
     return Service.START_STICKY;
   }
@@ -137,12 +155,25 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(Constants.PREFS_KEY_MTGOX_APIKEY) || key.equals(Constants.PREFS_KEY_MTGOX_SECRETKEY)) {
       createExchange(sharedPreferences);
-    }
-    if (key.equals(Constants.PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE)) {
+    } else if (key.equals(Constants.PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE)) {
       notifyOnUpdate = sharedPreferences.getBoolean(Constants.PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE, false);
-    }
-    if (key.equals(Constants.PREFS_KEY_GENERAL_UPDATE)) {
+    } else if (key.equals(Constants.PREFS_KEY_GENERAL_UPDATE)) {
       updateInterval = Integer.parseInt(sharedPreferences.getString(Constants.PREFS_KEY_GENERAL_UPDATE, "0"));
+    } else if (key.equals(Constants.PREFS_TRAILING_STOP_THREASHOLD)) {
+      float th = sharedPreferences.getFloat(Constants.PREFS_TRAILING_STOP_THREASHOLD, Float.MIN_VALUE);
+      if (th != Float.MIN_VALUE) {
+        trailingStopThreadhold = th;
+      }
+    } else if (key.equals(Constants.PREFS_TRAILING_STOP_VALUE)) {
+      String tvalue = sharedPreferences.getString(Constants.PREFS_TRAILING_STOP_VALUE, null);
+      if (!TextUtils.isEmpty(tvalue)) {
+        trailingStopValue = new BigDecimal(tvalue);
+      } else {
+        trailingStopValue = null;
+      }
+    } else if (key.equals(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES)) {
+      int updates = sharedPreferences.getInt(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES, 1);
+      trailingStopChecks = new BigDecimal[updates];
     }
   }
 
@@ -270,6 +301,49 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     sendBroadcast(new Intent(Constants.UPDATE_FAILED));
   }
 
+  private void broadcastTrailingStopEvent(BigDecimal trailingStopValue, BigDecimal currentPrice) {
+    Intent intent = new Intent(Constants.TRAILING_LOSS_EVENT);
+    intent.putExtra(Constants.EXTRA_TRAILING_LOSS_EVENT_VALUE, trailingStopValue.toString());
+    intent.putExtra(Constants.EXTRA_TRAILING_LOSS_EVENT_CURRENTPRICE, currentPrice.toString());
+    sendBroadcast(intent);
+  }
+
+  private void broadcastTrailingStopAlignmentEvent(BigDecimal trailingStopValue, BigDecimal currentPrice) {
+    Intent intent = new Intent(Constants.TRAILING_LOSS_ALIGNMENT_EVENT);
+    intent.putExtra(Constants.EXTRA_TRAILING_LOSS_ALIGNMENT_OLDVALUE, trailingStopValue.toString());
+    intent.putExtra(Constants.EXTRA_TRAILING_LOSS_ALIGNMENT_NEWVALUE, currentPrice.toString());
+    sendBroadcast(intent);
+  }
+
+  private <T extends Order> void broadcastOrderExecuted(Collection<T> openOrders) {
+    Intent intent = new Intent(Constants.ORDER_EXECUTED);
+    List<Parcelable> extras = new ArrayList<Parcelable>();
+    for (Order lo : openOrders) {
+      try {
+        MtGoxOrderResult result = exchange.getPollingTradeService().getOrderResult(lo);
+        Bundle bundle = new Bundle();
+        BigMoney amount = MoneyUtils.parse(result.getAvgCost().getCurrency() + " " + result.getAvgCost().getValue());
+
+        bundle.putString(Constants.EXTRA_ORDERRESULT_AVGCOST, FormatHelper.formatBigMoney(
+                FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount, Constants.PRECISION_BITCOIN).toString());
+        amount = MoneyUtils.parse(result.getTotalAmount().getCurrency() + " " + result.getTotalAmount().getValue());
+        bundle.putString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT, FormatHelper.formatBigMoney(
+                FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount, Constants.PRECISION_BITCOIN).toString());
+        amount = MoneyUtils.parse(result.getTotalSpent().getCurrency() + " " + result.getTotalSpent().getValue());
+        bundle.putString(Constants.EXTRA_ORDERRESULT_TOTALSPENT, FormatHelper.formatBigMoney(
+                FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount, Constants.PRECISION_CURRENCY).toString());
+        extras.add(bundle);
+      } catch (Exception ee) {
+        Log.d(TAG, "getting OrderResult failed", ee);
+      }
+    }
+    Log.d(TAG, "Sending out order executed intent");
+    if (!extras.isEmpty()) {
+      intent.putExtra(Constants.EXTRA_ORDERRESULT, extras.toArray(new Parcelable[extras.size()]));
+      sendBroadcast(intent);
+    }
+  }
+
   private class UpdateTask extends ICSAsyncTask<Void, Void, Boolean> {
 
     @Override
@@ -277,6 +351,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       Log.d(TAG, "performing update...");
       try {
         accountInfo = exchange.getPollingAccountService().getMtGoxAccountInfo();
+        ticker = exchange.getPollingMarketDataService().getTicker(Currencies.BTC, getCurrency());
+        checkTrailingStop();
+
         if (TextUtils.isEmpty(getCurrency())) {
           setCurrency(accountInfo.getWallets().getMtGoxWallets().get(1).getBalance().getCurrency());
         }
@@ -284,35 +361,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         openOrders.removeAll(orders);
         // Order executed
         if (!openOrders.isEmpty()) {
-          Intent intent = new Intent(Constants.ORDER_EXECUTED);
-          List<Parcelable> extras = new ArrayList<Parcelable>();
-          for (LimitOrder lo : openOrders) {
-            try {
-              MtGoxOrderResult result = exchange.getPollingTradeService().getOrderResult(lo);
-              Bundle bundle = new Bundle();
-              BigMoney amount = MoneyUtils.parse(result.getAvgCost().getCurrency() + " " + result.getAvgCost().getValue());
-
-              bundle.putString(Constants.EXTRA_ORDERRESULT_AVGCOST, FormatHelper.formatBigMoney(
-                      FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount, Constants.PRECISION_BITCOIN).toString());
-              amount = MoneyUtils.parse(result.getTotalAmount().getCurrency() + " " + result.getTotalAmount().getValue());
-              bundle.putString(Constants.EXTRA_ORDERRESULT_TOTALAMOUNT, FormatHelper.formatBigMoney(
-                      FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount, Constants.PRECISION_BITCOIN).toString());
-              amount = MoneyUtils.parse(result.getTotalSpent().getCurrency() + " " + result.getTotalSpent().getValue());
-              bundle.putString(Constants.EXTRA_ORDERRESULT_TOTALSPENT, FormatHelper.formatBigMoney(
-                      FormatHelper.DISPLAY_MODE.CURRENCY_CODE, amount,Constants.PRECISION_CURRENCY).toString());
-              extras.add(bundle);
-            } catch (Exception ee) {
-              Log.d(TAG, "getting OrderResult failed", ee);
-            }
-          }
-          Log.d(TAG, "Sending out order executed intent");
-          if (!extras.isEmpty()) {
-            intent.putExtra(Constants.EXTRA_ORDERRESULT, extras.toArray(new Parcelable[extras.size()]));
-            sendBroadcast(intent);
-          }
+          broadcastOrderExecuted(openOrders);
         }
         openOrders = orders;
-        ticker = exchange.getPollingMarketDataService().getTicker(Currencies.BTC, getCurrency());
         lastUpdate = new Date();
         broadcastUpdateSuccess();
       } catch (ExchangeException ee) {
@@ -329,6 +380,58 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         return false;
       }
       return true;
+    }
+
+    private void checkTrailingStop() {
+      // Check trailing stop loss
+      if (trailingStopThreadhold != null && trailingStopValue != null) {
+        Log.d(TAG, "checking trailing stop loss");
+        // compare current price from array with last updates
+        // first move all items one step to the left
+        for (int i = 0; i < trailingStopChecks.length - 1; i++) {
+          trailingStopChecks[i] = trailingStopChecks[i + 1];
+        }
+        trailingStopChecks[trailingStopChecks.length - 1] = ticker.getLast().getAmount();
+        // now calculate average
+        BigDecimal currentPrice = BigDecimal.ZERO;
+        for (int i = trailingStopChecks.length - 1; i >= 0; i--) {
+          BigDecimal bd = trailingStopChecks[i];
+          if (bd == null) {
+            Log.d(TAG, "not enough updates yet...");
+            return;  // if a single value is not set yet, we need more updates
+          }
+          currentPrice = currentPrice.add(bd);
+        }
+        currentPrice = currentPrice.divide(new BigDecimal(trailingStopChecks.length));
+        // check if price has fallen below the limit
+        if (currentPrice.compareTo(trailingStopValue) < 0) {
+          Log.d(TAG, "selling btc as the price has fallen from " + trailingStopValue.toString() + " to " + currentPrice.toString());
+          broadcastTrailingStopEvent(trailingStopValue, currentPrice);
+          SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ExchangeService.this);
+          SharedPreferences.Editor editor = prefs.edit();
+          editor.remove(Constants.PREFS_TRAILING_STOP_THREASHOLD);
+          editor.remove(Constants.PREFS_TRAILING_STOP_VALUE);
+          editor.remove(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES);
+          editor.apply();
+          if (prefs.getBoolean(Constants.PREFS_KEY_TRAILING_STOP_SELLING_ENABLED, false)) {
+            Log.d(TAG, "selling is enabled, selling btc");
+            AccountInfo accountInfo = MtGoxAdapters.adaptAccountInfo(getAccountInfo());
+            Order marketOrder = new MarketOrder(Order.OrderType.ASK, accountInfo.getBalance(CurrencyUnit.of("BTC")).getAmount(), "BTC", getCurrency());
+            placeOrder(marketOrder, null);
+          }
+        }
+        if (currentPrice.compareTo(trailingStopValue) > 0) {
+          // check if price has risen and a alignment is required
+          BigDecimal threshold = new BigDecimal(trailingStopThreadhold).divide(new BigDecimal(100));
+          BigDecimal newTrailingStopValue = currentPrice.subtract(currentPrice.multiply(threshold));
+          if (newTrailingStopValue.compareTo(currentPrice) < 0 && newTrailingStopValue.compareTo(trailingStopValue) > 0) {
+            Log.d(TAG, "updating trailing stop value from " + trailingStopValue.toString() + " to " + newTrailingStopValue.toString());
+            broadcastTrailingStopAlignmentEvent(trailingStopValue, newTrailingStopValue);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ExchangeService.this);
+            prefs.edit().putString(Constants.PREFS_TRAILING_STOP_VALUE, newTrailingStopValue.toString()).apply();
+          }
+        }
+      }
     }
 
     @Override
@@ -408,11 +511,13 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
 
     @Override
     protected void onPreExecute() {
-      mDialog = new ProgressDialog(activity);
-      mDialog.setMessage(getString(R.string.place_order_submitting));
-      mDialog.setCancelable(false);
-      mDialog.setOwnerActivity(activity);
-      mDialog.show();
+      if (activity != null) {
+        mDialog = new ProgressDialog(activity);
+        mDialog.setMessage(getString(R.string.place_order_submitting));
+        mDialog.setCancelable(false);
+        mDialog.setOwnerActivity(activity);
+        mDialog.show();
+      }
     }
 
     @Override
@@ -420,15 +525,18 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       if (success) {
         Toast.makeText(ExchangeService.this,
                 ExchangeService.this.getString(R.string.place_order_success), Toast.LENGTH_LONG).show();
-        PlaceOrderFragment placeOrderFragment = (PlaceOrderFragment) activity.getSupportFragmentManager().findFragmentById(R.id.place_order_fragment);
-        if (placeOrderFragment != null) {
-          placeOrderFragment.resetValues();
+        if (activity != null) {
+          PlaceOrderFragment placeOrderFragment = (PlaceOrderFragment) activity.getSupportFragmentManager().findFragmentById(R.id.place_order_fragment);
+          if (placeOrderFragment != null) {
+            placeOrderFragment.resetValues();
+          }
         }
       } else {
         Toast.makeText(ExchangeService.this, demoMode ? R.string.place_order_failed_demo : R.string.place_order_failed, Toast.LENGTH_LONG).show();
       }
-      mDialog.dismiss();
-
+      if (mDialog != null && mDialog.isShowing()) {
+        mDialog.dismiss();
+      }
     }
 
     @Override
@@ -441,6 +549,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
             if (order instanceof MarketOrder) {
               MarketOrder mo = (MarketOrder) order;
               orderId = exchange.getPollingTradeService().placeMarketOrder(mo);
+              List<MarketOrder> list = new ArrayList<MarketOrder>();
+              list.add(mo);
+              broadcastOrderExecuted(list);
             } else if (order instanceof LimitOrder) {
               LimitOrder lo = (LimitOrder) order;
               orderId = exchange.getPollingTradeService().placeLimitOrder(lo);
@@ -457,7 +568,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         }
       }
       // only finish activity if the order has been created in a PlaceOrderActivity
-      if (activity instanceof PlaceOrderActivity) {
+      if (activity != null && activity instanceof PlaceOrderActivity) {
         if (!TextUtils.isEmpty(orderId)) {
           activity.setResult(Activity.RESULT_OK);
         }

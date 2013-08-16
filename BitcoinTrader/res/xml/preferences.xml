@@ -25,6 +25,10 @@
       android:defaultValue="false"
       android:summary="@string/preferences_general_notify_on_update_summary"
       android:key="general_notify_on_update" />
+    <Preference
+      android:key="delete_account"
+      android:title="@string/preferences_delete_account_title"
+      android:summary="@string/preferences_delete_account_summary"/>
   </PreferenceCategory>
   
   <PreferenceCategory android:title="@string/preferences_category_labs" >
@@ -32,9 +36,12 @@
       android:icon="@drawable/ic_menu_warning"
       android:summary="@string/preferences_labs"
       android:title="Warning" />
-    <Preference
-      android:key="labs_delete_account"
-      android:title="@string/preferences_labs_delete_account" />
+    <CheckBoxPreference
+      android:key="trailing_stop_selling_enabled"
+      android:defaultValue="false"
+      android:title="@string/preferences_trailing_stop_enable_selling_title" 
+      android:summary="@string/preferences_trailing_stop_enable_selling_summary" 
+    />
   </PreferenceCategory>
 
 </PreferenceScreen>

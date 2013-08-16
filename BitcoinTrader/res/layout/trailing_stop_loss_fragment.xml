@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+    android:text="@string/trailing_stop_loss_description" />
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+    android:text="@string/trailing_stop_loss_price_description" />
+
+  <de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView
+    android:id="@+id/trailing_stop_dialog_price"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+  >
+
+    <EditText
+      android:id="@+id/trailing_stop_dialog_price_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:imeOptions="flagNoExtractUi"
+      android:textSize="@dimen/font_size_normal"
+      android:inputType="numberDecimal" />
+ 
+  </de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView>
+
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+    android:text="@string/trailing_stop_loss_percentage_description" />
+  <de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView
+    android:id="@+id/trailing_stop_dialog_percentage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+  >
+
+    <EditText
+      android:id="@+id/trailing_stop_dialog_percentage_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:imeOptions="flagNoExtractUi"
+      android:textSize="@dimen/font_size_normal"
+      android:inputType="numberDecimal"
+    />
+  </de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+    android:text="@string/trailing_stop_loss_updates_description" />
+  <EditText
+    android:id="@+id/trailing_stop_dialog_updates_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+    android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+    android:layout_marginBottom="@dimen/list_entry_padding_vertical"
+    android:layout_marginTop="@dimen/list_entry_padding_vertical"
+    android:imeOptions="flagNoExtractUi"
+    android:textSize="@dimen/font_size_normal"
+    android:inputType="number"
+  />
+
+
+  <ImageView
+    android:layout_width="0px"
+    android:layout_height="0px"
+    android:layout_weight="1" />
+
+  <ListView
+    android:id="@+id/trailing_stop_loss_foo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone" />
+
+  <include layout="@layout/trailing_stop_loss_buttons_include" />
+</LinearLayout>

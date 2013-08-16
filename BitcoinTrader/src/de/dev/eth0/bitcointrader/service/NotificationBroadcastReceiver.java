@@ -25,22 +25,26 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
 
   private final static int ORDER_EXECUTED_NOTIFICATION_ID = 1;
   private final static int UPDATE_FAILED_NOTIFICATION_ID = 2;
+  private final static int TRAILING_STOP_NOTIFICATION_ID = 3;
+  private final static int TRAILING_STOP_ALIGNMENT_NOTIFICATION_ID = 4;
 
   @Override
   public void onReceive(Context context, Intent intent) {
     if (intent.getAction().equals(Constants.UPDATE_FAILED)) {
       notifyUpdateFailed(context);
-    }
-    else if (intent.getAction().equals(Constants.UPDATE_SUCCEDED)) {
+    } else if (intent.getAction().equals(Constants.UPDATE_SUCCEDED)) {
       notifyUpdateSucceded(context);
-    }
-    else if (intent.getAction().equals(Constants.ORDER_EXECUTED)) {
+    } else if (intent.getAction().equals(Constants.TRAILING_LOSS_EVENT)) {
+      notifyTrailingStopEvent(context, intent);
+    } else if (intent.getAction().equals(Constants.TRAILING_LOSS_ALIGNMENT_EVENT)) {
+      notifyTrailingStopAlignment(context, intent);
+    } else if (intent.getAction().equals(Constants.ORDER_EXECUTED)) {
       notifyOrderExecuted(context, intent.getParcelableArrayExtra(Constants.EXTRA_ORDERRESULT));
     }
   }
 
   private void notifyUpdateSucceded(Context context) {
-    NotificationManager notificationmanager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager notificationmanager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     notificationmanager.cancel(UPDATE_FAILED_NOTIFICATION_ID);
   }
 
@@ -57,7 +61,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
     mBuilder.setContentIntent(resultPendingIntent);
     mBuilder.setAutoCancel(true);
-    NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     mNotificationManager.notify(UPDATE_FAILED_NOTIFICATION_ID, mBuilder.build());
   }
 
@@ -66,7 +70,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     String contentText = null;
     for (Parcelable parcelable : executedOrders) {
       if (parcelable instanceof Bundle) {
-        Bundle bundle = (Bundle)parcelable;
+        Bundle bundle = (Bundle) parcelable;
         if (TextUtils.isEmpty(contentText)) {
           contentText = context.getString(R.string.notify_order_executed_text,
                   bundle.getString(Constants.EXTRA_ORDERRESULT_AVGCOST),
@@ -97,7 +101,55 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     mBuilder.setAutoCancel(true);
     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     mBuilder.setSound(alarmSound);
-    NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     mNotificationManager.notify(ORDER_EXECUTED_NOTIFICATION_ID, mBuilder.build());
+  }
+
+  private void notifyTrailingStopEvent(Context context, Intent intent) {
+    String text = context.getString(R.string.trailing_stop_notify_text,
+            intent.getStringExtra(Constants.EXTRA_TRAILING_LOSS_EVENT_CURRENTPRICE),
+            intent.getStringExtra(Constants.EXTRA_TRAILING_LOSS_EVENT_VALUE));
+    NotificationCompat.Builder mBuilder =
+            new NotificationCompat.Builder(context)
+            .setSmallIcon(R.drawable.ic_action_warning)
+            .setContentTitle(context.getString(R.string.trailing_stop_notify_title))
+            .setContentText(text);
+    NotificationCompat.BigTextStyle notificationStyle = new NotificationCompat.BigTextStyle();
+    notificationStyle.setBigContentTitle(context.getString(R.string.trailing_stop_notify_title));
+    notificationStyle.bigText(text);
+    mBuilder.setStyle(notificationStyle);
+    Intent resultIntent = new Intent(context, BitcoinTraderActivity.class);
+    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+    stackBuilder.addParentStack(BitcoinTraderActivity.class);
+    stackBuilder.addNextIntent(resultIntent);
+    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+    mBuilder.setContentIntent(resultPendingIntent);
+    mBuilder.setAutoCancel(true);
+    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    mNotificationManager.notify(TRAILING_STOP_NOTIFICATION_ID, mBuilder.build());
+  }
+
+  private void notifyTrailingStopAlignment(Context context, Intent intent) {
+    String text = context.getString(R.string.trailing_stop_alignment_notify_text,
+            intent.getStringExtra(Constants.EXTRA_TRAILING_LOSS_ALIGNMENT_OLDVALUE),
+            intent.getStringExtra(Constants.EXTRA_TRAILING_LOSS_ALIGNMENT_NEWVALUE));
+    NotificationCompat.Builder mBuilder =
+            new NotificationCompat.Builder(context)
+            .setSmallIcon(R.drawable.ic_action_warning)
+            .setContentTitle(context.getString(R.string.trailing_stop_alignment_notify_title))
+            .setContentText(text);
+    NotificationCompat.BigTextStyle notificationStyle = new NotificationCompat.BigTextStyle();
+    notificationStyle.setBigContentTitle(context.getString(R.string.trailing_stop_alignment_notify_title));
+    notificationStyle.bigText(text);
+    mBuilder.setStyle(notificationStyle);
+    Intent resultIntent = new Intent(context, BitcoinTraderActivity.class);
+    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+    stackBuilder.addParentStack(BitcoinTraderActivity.class);
+    stackBuilder.addNextIntent(resultIntent);
+    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+    mBuilder.setContentIntent(resultPendingIntent);
+    mBuilder.setAutoCancel(true);
+    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    mNotificationManager.notify(TRAILING_STOP_NOTIFICATION_ID, mBuilder.build());
   }
 }

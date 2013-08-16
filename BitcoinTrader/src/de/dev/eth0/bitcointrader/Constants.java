@@ -30,12 +30,16 @@ public class Constants {
   public static final String CREDITS_ZXING_URL = "http://zxing.googlecode.com";
   public static final String CREDITS_GRAPHVIEW_URL = "http://www.jjoe64.com/p/graphview-library.html";
   // Prefs
+  public static final String PREFS_TRAILING_STOP_THREASHOLD = "trailingStopThreadhold";
+  public static final String PREFS_TRAILING_STOP_VALUE = "trailingStopValue";
   public static final String PREFS_KEY_DEMO = "demo";
   public static final String PREFS_KEY_MTGOX_APIKEY = "mtgox_apikey";
   public static final String PREFS_KEY_MTGOX_SECRETKEY = "mtgox_secretkey";
   public static final String PREFS_KEY_GENERAL_UPDATE = "general_update";
   public static final String PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE = "general_notify_on_update";
   public static final String PREFS_KEY_CURRENCY = "selected_currency";
+  public static final String PREFS_KEY_TRAILING_STOP_SELLING_ENABLED = "trailing_stop_selling_enabled";
+  public static final String PREFS_TRAILING_STOP_NUMBER_UPDATES = "trailing_stop_number_updates";
   public static final String MTGOX_SSL_URI = "https://data.mtgox.com";
   public static final String MTGOX_PLAIN_WEBSOCKET_URI = "ws://websocket.mtgox.com";
   public static final String MTGOX_SSL_WEBSOCKET_URI = "ws://websocket.mtgox.com";
@@ -44,9 +48,15 @@ public class Constants {
   public static final String UPDATE_SERVICE_ACTION = "de.dev.eth0.bitcointrader.UPDATE_SERVICE_ACTION";
   public static final String UPDATE_FAILED = "de.dev.eth0.bitcointrader.UPDATE_FAILED";
   public static final String ORDER_EXECUTED = "de.dev.eth0.bitcointrader.ORDER_EXECUTED";
+  public static final String TRAILING_LOSS_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_EVENT";
+  public static final String TRAILING_LOSS_ALIGNMENT_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_ALIGNMENT_EVENT";
   // Extras for intents
   public static final String EXTRA_ORDERRESULT = "orderresults";
   public static final String EXTRA_ORDERRESULT_AVGCOST = "avgcost";
   public static final String EXTRA_ORDERRESULT_TOTALAMOUNT = "totalamount";
   public static final String EXTRA_ORDERRESULT_TOTALSPENT = "totalspent";
+  public static final String EXTRA_TRAILING_LOSS_EVENT_CURRENTPRICE = "currentprice";
+  public static final String EXTRA_TRAILING_LOSS_EVENT_VALUE = "threashold";
+  public static final String EXTRA_TRAILING_LOSS_ALIGNMENT_OLDVALUE = "oldvalue";
+  public static final String EXTRA_TRAILING_LOSS_ALIGNMENT_NEWVALUE = "newvalue";
 }

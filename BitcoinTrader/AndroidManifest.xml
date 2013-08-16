@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="de.dev.eth0.bitcointrader"
           android:installLocation="internalOnly"
-          android:versionCode="17"
-          android:versionName="1.2.2" >
+          android:versionCode="18"
+          android:versionName="1.3.0" >
 
   <uses-sdk
     android:minSdkVersion="10"
@@ -64,6 +64,13 @@
       android:label="@string/market_depth_title"
     />
     <activity
+      android:name="de.dev.eth0.bitcointrader.ui.TrailingStopLossActivity"
+      android:label="@string/trailing_stop_loss_title"
+      android:configChanges="keyboard|keyboardHidden"
+      android:screenOrientation="behind"
+      android:windowSoftInputMode="adjustResize"
+    />
+    <activity
       android:name="de.dev.eth0.bitcointrader.ui.WalletHistoryActivity"
       android:label="@string/wallet_history_title"
     />
@@ -105,6 +112,8 @@
         <action android:name="de.dev.eth0.bitcointrader.UPDATE_SUCCEDED" />
         <action android:name="de.dev.eth0.bitcointrader.UPDATE_FAILED" />
         <action android:name="de.dev.eth0.bitcointrader.UPDATE_SERVICE_ACTION" />
+        <action android:name="de.dev.eth0.bitcointrader.TRAILING_LOSS_EVENT" />
+        <action android:name="de.dev.eth0.bitcointrader.TRAILING_LOSS_ALIGNMENT_EVENT" />
       </intent-filter>
     </receiver>
     
@@ -115,6 +124,8 @@
         <action android:name="de.dev.eth0.bitcointrader.UPDATE_FAILED" />
         <action android:name="de.dev.eth0.bitcointrader.UPDATE_SUCCEDED" />
         <action android:name="de.dev.eth0.bitcointrader.ORDER_EXECUTED" />
+        <action android:name="de.dev.eth0.bitcointrader.TRAILING_LOSS_EVENT" />
+        <action android:name="de.dev.eth0.bitcointrader.TRAILING_LOSS_ALIGNMENT_EVENT" />
       </intent-filter>
     </receiver>
     <service

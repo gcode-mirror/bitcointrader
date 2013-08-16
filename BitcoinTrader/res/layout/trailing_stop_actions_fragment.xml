@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/action_bar_background"
+              android:divider="@drawable/divider_dark"
+              android:orientation="vertical"
+              android:showDividers="middle" >
+
+  <Button
+    android:id="@+id/trailing_stop_actions_stop_loss_button"
+    style="@style/My.Widget.Button.Borderless"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_action_trailing_stop"
+    android:gravity="left|center_vertical"
+    android:textAllCaps="true"
+    android:textColor="@android:color/white"
+    android:textStyle="bold" />
+  
+</LinearLayout>

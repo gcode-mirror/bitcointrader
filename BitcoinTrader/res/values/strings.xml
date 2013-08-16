@@ -118,15 +118,18 @@
   <string name="preferences_general_update_title">Automatically update every&#8230;</string>
   <string name="preferences_general_notify_on_update_summary">Notify even if update was successful</string>
   <string name="preferences_general_notify_on_update_title">Notify on success</string>
+  <string name="preferences_trailing_stop_enable_selling_title">Sell on loss stop limit</string>
+  <string name="preferences_trailing_stop_enable_selling_summary">Sell if trailing stop limit is reached.</string>
+  <string name="preferences_delete_account_title">Delete Account</string>
+  <string name="preferences_delete_account_summary">Delete Account from this app (not from MtGox!)</string>
   <string name="preferences_labs">Here be dragons!!!</string>
-  <string name="preferences_labs_delete_account">Delete Account</string>
     
   <string name="bitcointrader_options_donate">Donate</string>
   <string name="bitcointrader_options_help">Help</string>
 
   <string name="report_issue_dialog_title_crash">Previous crash detected</string>
   <string name="report_issue_dialog_message_crash">Would you like to send a crash report, helping to fix this issue in the future?</string>
-  <string name="report_issue_dialog_description">issue description</string>
+  <string name="report_issue_dialog_description">Issue description</string>
   <string name="report_issue_dialog_report">Report</string>
   <string name="report_issue_dialog_collect_device_info">Append device information</string>
   <string name="report_issue_dialog_collect_application_log">Append application log</string>
@@ -136,5 +139,20 @@
 	
   <string name="widget_accountinfo_name">Bitcoin Trader Account Info</string>
   <string name="widget_priceinfo_name">Bitcoin Trader Price Info</string>
+  
+  <string name="trailing_stop_loss_title">Trailing Stop Loss</string>
+  <string name="trailing_stop_activate_stop_loss">Activate Stop-Loss</string>
+  <string name="trailing_stop_cancel_stop_loss">Cancel Stop-Loss (%2$s BTC, %1$s</string>
+  <string name="trailing_stop_loss_description">Place your stop loss here</string>
+  <string name="trailing_stop_loss_perform">Activate</string>
+  <string name="trailing_stop_loss_wrong_input">Please validate your input</string>
+  <string name="trailing_stop_loss_submitted">Trailing stop loss has been created.</string>
+  <string name="trailing_stop_loss_price_description">Threshold for trailing stop loss</string>
+  <string name="trailing_stop_loss_percentage_description">Percentage to adjust threshold</string>
+  <string name="trailing_stop_loss_updates_description">Number of updates before notification appears or threshold is adjusted.</string>
+  <string name="trailing_stop_notify_title">A trailing stop loss point has been reached.</string>
+  <string name="trailing_stop_notify_text">There has been an automatic sold of bitcoins at %1$s (your limit was %2$s).</string>
+  <string name="trailing_stop_alignment_notify_title">Your trailing stop price limit has been set to a new value</string>
+  <string name="trailing_stop_alignment_notify_text">As the stock price has gone up, your trailing stop price limit has changed from %1$s to %2$s.</string>
   
 </resources>

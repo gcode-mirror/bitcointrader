@@ -118,8 +118,11 @@
   <string name="preferences_general_update_title">Automatisches Update alle&#8230;</string>
   <string name="preferences_general_notify_on_update_summary">Auch bei erfolgreichen Updates benachrichtigen</string>
   <string name="preferences_general_notify_on_update_title">Bei Erfolgreichen Updates benachrichtigen</string>
+  <string name="preferences_trailing_stop_enable_selling_title">Verkauf bei Trailing Stop</string>
+  <string name="preferences_trailing_stop_enable_selling_summary">Automatischer Verkauf beim erreichen des Trailing Stop Limits.</string>
+  <string name="preferences_delete_account_title">Account löscht</string>
+  <string name="preferences_delete_account_summary">Löscht den Account aus dieser App (nicht von MtGox)</string>
   <string name="preferences_labs">Here be dragons!!!</string>
-  <string name="preferences_labs_delete_account">Account löschen</string>
     
   <string name="bitcointrader_options_donate">Spenden</string>
   <string name="bitcointrader_options_help">Hilfe</string>
@@ -137,4 +140,19 @@
   <string name="widget_accountinfo_name">Bitcoin Trader Account Info</string>
   <string name="widget_priceinfo_name">Bitcoin Trader Ticker</string>
 	
+  <string name="trailing_stop_loss_title">Trailing Stop Loss</string>
+  <string name="trailing_stop_activate_stop_loss">Stop-Loss aktivieren</string>
+  <string name="trailing_stop_cancel_stop_loss">Stop-Loss löschen (%2$s BTC, %1$s</string>
+  <string name="trailing_stop_loss_description">Konfiguration trailing stop loss</string>
+  <string name="trailing_stop_loss_perform">Aktivieren</string>
+  <string name="trailing_stop_loss_wrong_input">Bitte überprüfen Sie Ihre Eingabe.</string>
+  <string name="trailing_stop_loss_submitted">Trailing stop loss wurde angelegt.</string>
+  <string name="trailing_stop_loss_price_description">Schwellwert für trailing stop loss</string>
+  <string name="trailing_stop_loss_percentage_description">Prozente für Anpassung des Schwellwerts</string>
+  <string name="trailing_stop_loss_updates_description">Anzahl an Updates, bevor eine Meldung angezeigt oder der Schwellwert angepasst wird</string>
+  <string name="trailing_stop_notify_title">Der trailing stop loss Schwellwert wurde erreicht.</string>
+  <string name="trailing_stop_notify_text">Bitcoins wurden automatisch für %1$s verkauft (der Schwellwert lag bei %2$s).</string>
+  <string name="trailing_stop_alignment_notify_title">Ihr trailing stop loss Schwellwert wurde angepasst</string>
+  <string name="trailing_stop_alignment_notify_text">Da der Preis gestiegen ist, wurde der trailing stop loss Schwellwert von %1$s auf %2$s erhöht..</string>
+  
 </resources>

@@ -23,7 +23,7 @@ import de.dev.eth0.bitcointrader.R;
  * @author Alexander Muthmann
  */
 public class PreferencesActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener {
-  private static final String KEY_DELETE_ACCOUNT = "labs_delete_account";
+  private static final String KEY_DELETE_ACCOUNT = "delete_account";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class PreferencesActivity extends SherlockPreferenceActivity implements O
       editor.putString(Constants.PREFS_KEY_MTGOX_SECRETKEY, null);
       editor.putBoolean(Constants.PREFS_KEY_DEMO, false);
       editor.commit();
-      Toast.makeText(this, R.string.preferences_labs_delete_account, Toast.LENGTH_LONG).show();
+      Toast.makeText(this, R.string.preferences_delete_account_title, Toast.LENGTH_LONG).show();
       startActivity(new Intent(this, StartScreenActivity.class));
       finish();
     }

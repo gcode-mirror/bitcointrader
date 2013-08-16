@@ -4,7 +4,7 @@ package de.dev.eth0.bitcointrader.service;
 
 import com.xeiam.xchange.ExchangeException;
 import com.xeiam.xchange.ExchangeSpecification;
-import com.xeiam.xchange.dto.trade.LimitOrder;
+import com.xeiam.xchange.dto.Order;
 import com.xeiam.xchange.mtgox.MtGoxUtils;
 import com.xeiam.xchange.mtgox.v2.MtGoxExchange;
 import com.xeiam.xchange.mtgox.v2.dto.MtGoxException;
@@ -92,7 +92,7 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
       super(exchangeSpecification);
     }
 
-    public MtGoxOrderResult getOrderResult(LimitOrder lo) {
+    public MtGoxOrderResult getOrderResult(Order lo) {
       try {
         MtGoxOrderResultWrapper mtGoxOrderResultWrapper = mtGoxV2.getOrderResult(exchangeSpecification.getApiKey(), signatureCreator, MtGoxUtils.getNonce(),
                 lo.getType().toString().toLowerCase(), lo.getId());
