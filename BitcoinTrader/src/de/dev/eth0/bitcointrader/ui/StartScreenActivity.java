@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Window;
 import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.util.CrashReporter;
@@ -37,6 +38,7 @@ public class StartScreenActivity extends AbstractBitcoinTraderActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.start_activity);
     hadErrors = false;
     if (savedInstanceState == null) {
