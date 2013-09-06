@@ -193,11 +193,24 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
 
   public void setCurrency(String currency) {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    prefs.edit().putString(Constants.PREFS_KEY_CURRENCY, currency).apply();
+    if (!TextUtils.equals(prefs.getString(Constants.PREFS_KEY_CURRENCY, null), currency)) {
+      deleteTrailingStopLoss();
+      prefs.edit().putString(Constants.PREFS_KEY_CURRENCY, currency).apply();
+      sendBroadcast(new Intent(Constants.CURRENCY_CHANGE_EVENT));
+    }
   }
 
   public String getCurrency() {
     return PreferenceManager.getDefaultSharedPreferences(this).getString(Constants.PREFS_KEY_CURRENCY, "USD");
+  }
+
+  private void deleteTrailingStopLoss() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences.Editor editor = prefs.edit();
+    editor.remove(Constants.PREFS_TRAILING_STOP_THREASHOLD);
+    editor.remove(Constants.PREFS_TRAILING_STOP_VALUE);
+    editor.remove(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES);
+    editor.apply();
   }
 
   public MtGoxExchangeWrapper getExchange() {
@@ -407,12 +420,8 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         if (currentPrice.compareTo(trailingStopValue) < 0) {
           Log.d(TAG, "selling btc as the price has fallen from " + trailingStopValue.toString() + " to " + currentPrice.toString());
           broadcastTrailingStopEvent(trailingStopValue, currentPrice);
+          deleteTrailingStopLoss();
           SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ExchangeService.this);
-          SharedPreferences.Editor editor = prefs.edit();
-          editor.remove(Constants.PREFS_TRAILING_STOP_THREASHOLD);
-          editor.remove(Constants.PREFS_TRAILING_STOP_VALUE);
-          editor.remove(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES);
-          editor.apply();
           if (prefs.getBoolean(Constants.PREFS_KEY_TRAILING_STOP_SELLING_ENABLED, false)) {
             Log.d(TAG, "selling is enabled, selling btc");
             AccountInfo accountInfo = MtGoxAdapters.adaptAccountInfo(getAccountInfo());

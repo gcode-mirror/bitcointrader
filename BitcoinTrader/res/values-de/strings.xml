@@ -142,7 +142,7 @@
 	
   <string name="trailing_stop_loss_title">Trailing Stop Loss</string>
   <string name="trailing_stop_activate_stop_loss">Stop-Loss aktivieren</string>
-  <string name="trailing_stop_cancel_stop_loss">Stop-Loss löschen (%2$s BTC, %1$s</string>
+  <string name="trailing_stop_cancel_stop_loss">Stop-Loss löschen (%2$s, %1$s</string>
   <string name="trailing_stop_loss_description">Konfiguration trailing stop loss</string>
   <string name="trailing_stop_loss_perform">Aktivieren</string>
   <string name="trailing_stop_loss_wrong_input">Bitte überprüfen Sie Ihre Eingabe.</string>

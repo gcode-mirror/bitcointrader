@@ -142,7 +142,7 @@
   
   <string name="trailing_stop_loss_title">Trailing Stop Loss</string>
   <string name="trailing_stop_activate_stop_loss">Activate Stop-Loss</string>
-  <string name="trailing_stop_cancel_stop_loss">Cancel Stop-Loss (%2$s BTC, %1$s</string>
+  <string name="trailing_stop_cancel_stop_loss">Cancel Stop-Loss (%2$s, %1$s</string>
   <string name="trailing_stop_loss_description">Place your stop loss here</string>
   <string name="trailing_stop_loss_perform">Activate</string>
   <string name="trailing_stop_loss_wrong_input">Please validate your input</string>

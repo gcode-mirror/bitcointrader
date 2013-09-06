@@ -80,11 +80,14 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
+    final String currency = getExchangeService().getCurrency();
 
     percentageTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_percentage_text);
     priceTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_price_text);
     updatesTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_updates_text);
 
+    CurrencyAmountView priceView = (CurrencyAmountView)view.findViewById(R.id.trailing_stop_dialog_price);
+    priceView.setCurrencyCode(currency);
     CurrencyAmountView percentageView = (CurrencyAmountView)view.findViewById(R.id.trailing_stop_dialog_percentage);
     percentageView.setCurrencyCode("%");
     viewGo = (Button)view.findViewById(R.id.trailing_stop_loss_perform);
@@ -102,10 +105,10 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
           catch (NumberFormatException nfe) {
           }
           if (!TextUtils.isEmpty(price)) {
-            BigMoney priceBTC = BigMoney.parse("BTC 0" + price.toString());
+            BigMoney priceCurrency = BigMoney.parse(currency + " 0" + price.toString());
             SharedPreferences.Editor editor = prefs.edit();
             editor.putFloat(Constants.PREFS_TRAILING_STOP_THREASHOLD, threashold);
-            editor.putString(Constants.PREFS_TRAILING_STOP_VALUE, priceBTC.getAmount().toString());
+            editor.putString(Constants.PREFS_TRAILING_STOP_VALUE, priceCurrency.getAmount().toString());
             editor.putInt(Constants.PREFS_TRAILING_STOP_NUMBER_UPDATES, numberUpdates);
             editor.apply();
             Toast.makeText(getActivity(), R.string.trailing_stop_loss_submitted, Toast.LENGTH_LONG).show();

@@ -22,6 +22,8 @@ import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.ui.AbstractBitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.ui.TrailingStopLossActivity;
+import de.dev.eth0.bitcointrader.util.FormatHelper;
+import org.joda.money.BigMoney;
 
 /**
  * @author Alexander Muthmann
@@ -48,6 +50,7 @@ public class TrailingStopLossActionsFragment extends AbstractBitcoinTraderFragme
     broadcastManager = LocalBroadcastManager.getInstance(application);
     broadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(Constants.TRAILING_LOSS_ALIGNMENT_EVENT));
     broadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(Constants.TRAILING_LOSS_EVENT));
+    broadcastManager.registerReceiver(broadcastReceiver, new IntentFilter(Constants.CURRENCY_CHANGE_EVENT));
     updateView();
   }
 
@@ -95,7 +98,8 @@ public class TrailingStopLossActionsFragment extends AbstractBitcoinTraderFragme
           updateView();
         }
       });
-      activateStopLossButton.setText(getString(R.string.trailing_stop_cancel_stop_loss, threashold, value) + "%)");
+      BigMoney valueBM = BigMoney.parse(getExchangeService().getCurrency() + " " + value);
+      activateStopLossButton.setText(getString(R.string.trailing_stop_cancel_stop_loss, threashold, FormatHelper.formatBigMoney(FormatHelper.DISPLAY_MODE.CURRENCY_CODE, valueBM)) + "%)");
     }
   }
 }

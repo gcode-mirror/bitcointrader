@@ -48,6 +48,7 @@ public class Constants {
   public static final String UPDATE_SERVICE_ACTION = "de.dev.eth0.bitcointrader.UPDATE_SERVICE_ACTION";
   public static final String UPDATE_FAILED = "de.dev.eth0.bitcointrader.UPDATE_FAILED";
   public static final String ORDER_EXECUTED = "de.dev.eth0.bitcointrader.ORDER_EXECUTED";
+  public static final String CURRENCY_CHANGE_EVENT = "de.dev.eth0.bitcointrader.CURRENCY_CHANGE_EVENT";
   public static final String TRAILING_LOSS_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_EVENT";
   public static final String TRAILING_LOSS_ALIGNMENT_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_ALIGNMENT_EVENT";
   // Extras for intents
