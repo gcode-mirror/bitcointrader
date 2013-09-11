@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,8 +99,10 @@ public class TrailingStopLossActionsFragment extends AbstractBitcoinTraderFragme
           updateView();
         }
       });
-      BigMoney valueBM = BigMoney.parse(getExchangeService().getCurrency() + " " + value);
-      activateStopLossButton.setText(getString(R.string.trailing_stop_cancel_stop_loss, threashold, FormatHelper.formatBigMoney(FormatHelper.DISPLAY_MODE.CURRENCY_CODE, valueBM)) + "%)");
+      if (getExchangeService() != null && !TextUtils.isEmpty(getExchangeService().getCurrency())) {
+        BigMoney valueBM = BigMoney.parse(getExchangeService().getCurrency() + " " + value);
+        activateStopLossButton.setText(getString(R.string.trailing_stop_cancel_stop_loss, threashold, FormatHelper.formatBigMoney(FormatHelper.DISPLAY_MODE.CURRENCY_CODE, valueBM)) + "%)");
+      }
     }
   }
 }
