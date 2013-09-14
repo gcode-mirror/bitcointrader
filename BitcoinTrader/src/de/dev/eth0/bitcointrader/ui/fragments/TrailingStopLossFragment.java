@@ -21,6 +21,7 @@ import com.actionbarsherlock.view.MenuItem;
 import de.dev.eth0.bitcointrader.BitcoinTraderApplication;
 import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.R;
+import de.dev.eth0.bitcointrader.service.ExchangeService;
 import de.dev.eth0.bitcointrader.ui.AbstractBitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView;
 import de.schildbach.wallet.ui.HelpDialogFragment;
@@ -44,8 +45,8 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.activity = (AbstractBitcoinTraderActivity)activity;
-    this.application = (BitcoinTraderApplication)activity.getApplication();
+    this.activity = (AbstractBitcoinTraderActivity) activity;
+    this.application = (BitcoinTraderApplication) activity.getApplication();
   }
 
   @Override
@@ -80,17 +81,18 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
-    final String currency = getExchangeService().getCurrency();
 
-    percentageTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_percentage_text);
-    priceTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_price_text);
-    updatesTextView = (EditText)view.findViewById(R.id.trailing_stop_dialog_updates_text);
+    percentageTextView = (EditText) view.findViewById(R.id.trailing_stop_dialog_percentage_text);
+    priceTextView = (EditText) view.findViewById(R.id.trailing_stop_dialog_price_text);
+    updatesTextView = (EditText) view.findViewById(R.id.trailing_stop_dialog_updates_text);
 
-    CurrencyAmountView priceView = (CurrencyAmountView)view.findViewById(R.id.trailing_stop_dialog_price);
-    priceView.setCurrencyCode(currency);
-    CurrencyAmountView percentageView = (CurrencyAmountView)view.findViewById(R.id.trailing_stop_dialog_percentage);
+    CurrencyAmountView priceView = (CurrencyAmountView) view.findViewById(R.id.trailing_stop_dialog_price);
+    if (getExchangeService() != null && !TextUtils.isEmpty(getExchangeService().getCurrency())) {
+      priceView.setCurrencyCode(getExchangeService().getCurrency());
+    }
+    CurrencyAmountView percentageView = (CurrencyAmountView) view.findViewById(R.id.trailing_stop_dialog_percentage);
     percentageView.setCurrencyCode("%");
-    viewGo = (Button)view.findViewById(R.id.trailing_stop_loss_perform);
+    viewGo = (Button) view.findViewById(R.id.trailing_stop_loss_perform);
     viewGo.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         try {
@@ -101,10 +103,13 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
           int numberUpdates = 1;
           try {
             numberUpdates = Integer.parseInt(updates);
-          }
-          catch (NumberFormatException nfe) {
+          } catch (NumberFormatException nfe) {
           }
           if (!TextUtils.isEmpty(price)) {
+            String currency = "USD";
+            if(getExchangeService() != null && !TextUtils.isEmpty(getExchangeService().getCurrency())) {
+              currency = getExchangeService().getCurrency();
+            }
             BigMoney priceCurrency = BigMoney.parse(currency + " 0" + price.toString());
             SharedPreferences.Editor editor = prefs.edit();
             editor.putFloat(Constants.PREFS_TRAILING_STOP_THREASHOLD, threashold);
@@ -115,15 +120,14 @@ public class TrailingStopLossFragment extends AbstractBitcoinTraderFragment {
             activity.setResult(Activity.RESULT_OK);
             activity.finish();
           }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
           Log.w(TAG, ex);
           Toast.makeText(getActivity(), R.string.trailing_stop_loss_wrong_input, Toast.LENGTH_LONG).show();
         }
       }
     });
 
-    viewCancel = (Button)view.findViewById(R.id.trailing_stop_loss_cancel);
+    viewCancel = (Button) view.findViewById(R.id.trailing_stop_loss_cancel);
     viewCancel.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         activity.setResult(Activity.RESULT_CANCELED);
