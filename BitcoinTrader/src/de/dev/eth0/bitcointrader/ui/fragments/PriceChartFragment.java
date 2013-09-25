@@ -220,7 +220,11 @@ public class PriceChartFragment extends SherlockListFragment {
         mDialog.dismiss();
         mDialog = null;
       }
-      Log.d(TAG, "Found " + (ticker != null ? ticker.length : 0) + " ticker entries");
+      if (ticker == null) {
+        Log.d(TAG, "Ticker returned null");
+        return;
+      }
+      Log.d(TAG, "Found " + ticker.length + " ticker entries");
       // Sort Tickers by volume
       Arrays.sort(ticker, new Comparator<BitcoinChartsTicker>() {
         @Override
