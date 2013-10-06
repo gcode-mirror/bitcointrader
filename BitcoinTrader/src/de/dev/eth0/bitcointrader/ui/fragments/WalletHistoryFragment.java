@@ -63,6 +63,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
   private CurrencyTextView amountView;
   private CurrencyTextView balanceView;
   private TextView dateView;
+  private String mDialogLoadingString;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,6 +113,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
     super.onAttach(activity);
     this.activity = (AbstractBitcoinTraderActivity) activity;
     this.application = (BitcoinTraderApplication) activity.getApplication();
+    this.mDialogLoadingString = activity.getString(R.string.loading_info);
   }
 
   @Override
@@ -247,7 +249,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
     protected void onPreExecute() {
       if (mDialog == null) {
         mDialog = new ProgressDialog(activity);
-        mDialog.setMessage(getString(R.string.loading_info));
+        mDialog.setMessage(mDialogLoadingString);
         mDialog.setCancelable(false);
         mDialog.setOwnerActivity(activity);
         mDialog.show();

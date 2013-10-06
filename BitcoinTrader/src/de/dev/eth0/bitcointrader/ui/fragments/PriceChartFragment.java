@@ -55,12 +55,14 @@ public class PriceChartFragment extends SherlockListFragment {
   private CurrencyTextView highView;
   private CurrencyTextView bidView;
   private CurrencyTextView askView;
-
+  private String mDialogString; 
+  
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     this.activity = (AbstractBitcoinTraderActivity)activity;
     this.application = (BitcoinTraderApplication)activity.getApplication();
+    this.mDialogString = activity.getString(R.string.loading_info);
   }
 
   @Override
@@ -202,12 +204,12 @@ public class PriceChartFragment extends SherlockListFragment {
   }
 
   private class GetTickerTask extends ICSAsyncTask<Void, Void, BitcoinChartsTicker[]> {
-
+    
     @Override
     protected void onPreExecute() {
       if (mDialog == null) {
         mDialog = new ProgressDialog(activity);
-        mDialog.setMessage(getString(R.string.loading_info));
+        mDialog.setMessage(mDialogString);
         mDialog.setCancelable(false);
         mDialog.setOwnerActivity(activity);
         mDialog.show();

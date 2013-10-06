@@ -219,7 +219,7 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
     protected void onPreExecute() {
       if (mDialog == null) {
         mDialog = new ProgressDialog(activity);
-        mDialog.setMessage(getString(R.string.loading_info));
+        mDialog.setMessage(mDialogLoadingString);
         mDialog.setCancelable(false);
         mDialog.setOwnerActivity(activity);
         mDialog.show();
