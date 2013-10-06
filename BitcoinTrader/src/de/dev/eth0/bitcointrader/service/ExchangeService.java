@@ -544,7 +544,12 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         Toast.makeText(ExchangeService.this, demoMode ? R.string.place_order_failed_demo : R.string.place_order_failed, Toast.LENGTH_LONG).show();
       }
       if (mDialog != null && mDialog.isShowing()) {
-        mDialog.dismiss();
+        try {
+          mDialog.dismiss();
+        } catch (IllegalArgumentException iae) {
+          // not really nice, but works for this case. (#140)
+          Log.w(TAG, iae);
+        }
       }
     }
 
