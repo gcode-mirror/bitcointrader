@@ -64,6 +64,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
   private CurrencyTextView balanceView;
   private TextView dateView;
   private String mDialogLoadingString;
+  private Toast mInfoToast;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -156,6 +157,9 @@ public class WalletHistoryFragment extends SherlockListFragment {
   public void onListItemClick(ListView l, View v, int position, long id) {
     MtGoxWalletHistoryEntry entry = adapter.getItem(position);
     if (entry != null) {
+      if (mInfoToast != null) {
+        mInfoToast.cancel();
+      }
       if (entry.getType().equals("out")) {
         typeView.setText(R.string.wallet_history_out);
       } else if (entry.getType().equals("fee")) {
@@ -189,10 +193,10 @@ public class WalletHistoryFragment extends SherlockListFragment {
       balanceView.setAmount(balance);
       dateView.setText(entry.getDate());
 
-      Toast toast = new Toast(getActivity());
-      toast.setDuration(Toast.LENGTH_SHORT);
-      toast.setView(infoToastLayout);
-      toast.show();
+      mInfoToast = new Toast(getActivity());
+      mInfoToast.setDuration(Toast.LENGTH_SHORT);
+      mInfoToast.setView(infoToastLayout);
+      mInfoToast.show();
     }
   }
 
