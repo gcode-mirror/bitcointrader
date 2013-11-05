@@ -55,8 +55,8 @@ public class PriceChartFragment extends SherlockListFragment {
   private CurrencyTextView highView;
   private CurrencyTextView bidView;
   private CurrencyTextView askView;
-  private String mDialogString; 
-  
+  private String mDialogString;
+
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
@@ -140,8 +140,12 @@ public class PriceChartFragment extends SherlockListFragment {
       avgView.setAmount(BigMoney.parse("BTC " + entry.getAvg()));
       lowView.setAmount(BigMoney.parse("BTC " + entry.getLow()));
       highView.setAmount(BigMoney.parse("BTC " + entry.getHigh()));
-      bidView.setAmount(BigMoney.parse("BTC " + entry.getBid()));
-      askView.setAmount(BigMoney.parse("BTC " + entry.getAsk()));
+      if (entry.getBid() != null) {
+        bidView.setAmount(BigMoney.parse("BTC " + entry.getBid()));
+      }
+      if (entry.getAsk() != null) {
+        askView.setAmount(BigMoney.parse("BTC " + entry.getAsk()));
+      }
       volView.setAmount(entry.getVolume());
 
       Toast toast = new Toast(getActivity());
@@ -204,7 +208,7 @@ public class PriceChartFragment extends SherlockListFragment {
   }
 
   private class GetTickerTask extends ICSAsyncTask<Void, Void, BitcoinChartsTicker[]> {
-    
+
     @Override
     protected void onPreExecute() {
       if (mDialog == null) {
