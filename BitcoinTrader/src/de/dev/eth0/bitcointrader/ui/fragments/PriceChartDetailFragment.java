@@ -240,7 +240,7 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
     protected ChartData[] doInBackground(Void... params) {
       try {
         Log.d(TAG, "Loading chartdate for the last " + selectedPeriod + " days");
-        ChartData[] chartdata = BitcoinChartsAdapters.adaptChartData(BitcoinChartsFactory.createInstance().getChartData(exchange, selectedPeriod));
+        ChartData[] chartdata = BitcoinChartsAdapters.adaptChartData(BitcoinChartsFactory.createChartDataInstance().getChartData(exchange, selectedPeriod));
         return chartdata == null ? new ChartData[0] : chartdata;
       } catch (Exception e) {
         activity.sendBroadcast(new Intent(Constants.UPDATE_FAILED));

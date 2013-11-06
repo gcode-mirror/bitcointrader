@@ -42,7 +42,10 @@ public class BitcoinChartsFactory {
    * @return the Rest Proxy
    */
   public static BitcoinCharts createInstance() {
+    return RestProxyFactory.createProxy(BitcoinCharts.class, "http://api.bitcoincharts.com");
+  }
 
+  public static BitcoinCharts createChartDataInstance() {
     return RestProxyFactory.createProxy(BitcoinCharts.class, "http://bitcoincharts.com");
   }
 }
