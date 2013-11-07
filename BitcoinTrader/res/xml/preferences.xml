@@ -25,7 +25,17 @@
       android:defaultValue="false"
       android:summary="@string/preferences_general_notify_on_update_summary"
       android:key="general_notify_on_update" />
-    <Preference
+      <CheckBoxPreference
+        android:title="@string/preferences_general_vibrate_title"
+        android:defaultValue="false"
+        android:summary="@string/preferences_general_vibrate_summary"
+        android:key="general_vibrate" />
+      <CheckBoxPreference
+        android:title="@string/preferences_general_sound_title"
+        android:defaultValue="false"
+        android:summary="@string/preferences_general_sound_summary"
+        android:key="general_sound" />
+      <Preference
       android:key="delete_account"
       android:title="@string/preferences_delete_account_title"
       android:summary="@string/preferences_delete_account_summary"/>

@@ -56,6 +56,7 @@
   <string name="price_chart_avg">Avg</string>
   <string name="price_chart_ask">Ask</string>
   <string name="price_chart_bid">Bid</string>
+  <string name="price_chart_failed">Could not load pricechart data from bitcoincharts.com. This should be a temporary problem</string>
     
   <string name="account_info">Your Account</string>
   <string name="account_info_trade_fee_label">Trade Fee:</string>
@@ -118,6 +119,10 @@
   <string name="preferences_general_update_title">Automatically update every&#8230;</string>
   <string name="preferences_general_notify_on_update_summary">Notify even if update was successful</string>
   <string name="preferences_general_notify_on_update_title">Notify on success</string>
+  <string name="preferences_general_sound_title">Play Sound</string>
+  <string name="preferences_general_sound_summary">Plays a sound if a notification is created.</string>
+  <string name="preferences_general_vibrate_title">Vibration</string>
+  <string name="preferences_general_vibrate_summary">Vibrate if a notification is created.</string>
   <string name="preferences_trailing_stop_enable_selling_title">Sell on loss stop limit</string>
   <string name="preferences_trailing_stop_enable_selling_summary">Sell if trailing stop limit is reached.</string>
   <string name="preferences_delete_account_title">Delete Account</string>

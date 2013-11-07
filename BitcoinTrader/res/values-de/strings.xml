@@ -56,6 +56,7 @@
   <string name="price_chart_avg">Durchschnitt</string>
   <string name="price_chart_ask">Ask</string>
   <string name="price_chart_bid">Bid</string>
+  <string name="price_chart_failed">Laden der Preistafel von bitcoincharts.com ist fehlgeschlagen. Bitte versuchen Sie es später erneut.</string>
     
   <string name="account_info">Konto Info</string>
   <string name="account_info_trade_fee_label">Gebühr:</string>
@@ -118,6 +119,10 @@
   <string name="preferences_general_update_title">Automatisches Update alle&#8230;</string>
   <string name="preferences_general_notify_on_update_summary">Auch bei erfolgreichen Updates benachrichtigen</string>
   <string name="preferences_general_notify_on_update_title">Bei Erfolgreichen Updates benachrichtigen</string>
+  <string name="preferences_general_sound_title">Sound</string>
+  <string name="preferences_general_sound_summary">Bei einer Benachrichtigung wird der Systemsound abgespielt.</string>
+  <string name="preferences_general_vibrate_title">Vibration</string>
+  <string name="preferences_general_vibrate_summary">Aktiviert die Vibration für Benachrichtigungen.</string>
   <string name="preferences_trailing_stop_enable_selling_title">Verkauf bei Trailing Stop</string>
   <string name="preferences_trailing_stop_enable_selling_summary">Automatischer Verkauf beim erreichen des Trailing Stop Limits.</string>
   <string name="preferences_delete_account_title">Account löscht</string>

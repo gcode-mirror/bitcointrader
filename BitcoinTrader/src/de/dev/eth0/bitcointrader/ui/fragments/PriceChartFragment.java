@@ -205,6 +205,9 @@ public class PriceChartFragment extends SherlockListFragment {
       }
       adapter.replace(tickers);
     }
+    else {
+      Toast.makeText(activity, R.string.price_chart_failed, Toast.LENGTH_LONG).show();
+    }
   }
 
   private class GetTickerTask extends ICSAsyncTask<Void, Void, BitcoinChartsTicker[]> {

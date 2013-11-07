@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -200,6 +201,9 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
       graphView.addSeries(graphViewSeries);
       graphView.setManualYAxisBounds(max * 1.025, min * 0.975);
       graphView.redrawAll();
+    }
+    else {
+      Toast.makeText(activity, R.string.price_chart_failed, Toast.LENGTH_LONG).show();
     }
   }
 

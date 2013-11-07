@@ -37,6 +37,8 @@ public class Constants {
   public static final String PREFS_KEY_MTGOX_SECRETKEY = "mtgox_secretkey";
   public static final String PREFS_KEY_GENERAL_UPDATE = "general_update";
   public static final String PREFS_KEY_GENERAL_NOTIFY_ON_UPDATE = "general_notify_on_update";
+  public static final String PREFS_KEY_GENERAL_SOUND = "general_sound";
+  public static final String PREFS_KEY_GENERAL_VIBRATE = "general_vibrate";
   public static final String PREFS_KEY_CURRENCY = "selected_currency";
   public static final String PREFS_KEY_TRAILING_STOP_SELLING_ENABLED = "trailing_stop_selling_enabled";
   public static final String PREFS_TRAILING_STOP_NUMBER_UPDATES = "trailing_stop_number_updates";
