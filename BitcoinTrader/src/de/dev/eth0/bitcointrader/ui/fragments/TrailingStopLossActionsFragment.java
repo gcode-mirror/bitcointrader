@@ -82,7 +82,7 @@ public class TrailingStopLossActionsFragment extends AbstractBitcoinTraderFragme
 
   private void updateView() {
     activateStopLossButton.setClickable(false);
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
     Float threashold = prefs.getFloat(Constants.PREFS_TRAILING_STOP_THREASHOLD, Float.MIN_VALUE);
     String value = prefs.getString(Constants.PREFS_TRAILING_STOP_VALUE, "");
     if (threashold == Float.MIN_VALUE) {
@@ -99,7 +99,7 @@ public class TrailingStopLossActionsFragment extends AbstractBitcoinTraderFragme
         activateStopLossButton.setText(getString(R.string.trailing_stop_cancel_stop_loss, threashold, FormatHelper.formatBigMoney(FormatHelper.DISPLAY_MODE.CURRENCY_CODE, valueBM)) + "%)");
         activateStopLossButton.setOnClickListener(new OnClickListener() {
           public void onClick(View v) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
             prefs.edit().remove(Constants.PREFS_TRAILING_STOP_THREASHOLD).apply();
             updateView();
           }

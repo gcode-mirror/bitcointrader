@@ -21,7 +21,6 @@ import com.actionbarsherlock.view.MenuItem;
 import de.dev.eth0.bitcointrader.BitcoinTraderApplication;
 import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.R;
-import de.dev.eth0.bitcointrader.service.ExchangeService;
 import de.dev.eth0.bitcointrader.ui.AbstractBitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.ui.views.CurrencyAmountView;
 import de.schildbach.wallet.ui.HelpDialogFragment;
