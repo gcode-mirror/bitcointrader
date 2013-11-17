@@ -3,8 +3,8 @@
 
 
 -libraryjars /libs/android-support-v4.jar
--libraryjars /libs/xchange-bitcoincharts-1.8.0-SNAPSHOT.jar
--libraryjars /libs/xchange-mtgox-1.8.0-SNAPSHOT-with-dependencies.jar
+-libraryjars /libs/joda-convert-1.5.jar
+-libraryjars /libs/xchange-aggregator-bitcointrader-1-with-dependencies.jar
 -dontskipnonpubliclibraryclassmembers
 -dontobfuscate
 

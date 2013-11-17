@@ -17,6 +17,7 @@ import com.xeiam.xchange.mtgox.v2.dto.trade.polling.MtGoxOrderResultWrapper;
 import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingAccountService;
 import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingMarketDataService;
 import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingTradeService;
+import java.io.IOException;
 
 /**
  * @author Alexander Muthmann
@@ -68,6 +69,9 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
       } catch (MtGoxException e) {
         throw new ExchangeException("Error calling getAccountInfo(): " + e.getError());
       }
+      catch (IOException e) {
+        throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
+      }
     }
 
     public MtGoxWalletHistory getMtGoxWalletHistory(String currency, Integer page) {
@@ -82,6 +86,9 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
         }
       } catch (MtGoxException e) {
         throw new ExchangeException("Error calling getMtGoxWalletHistory(): " + e.getError());
+      }
+      catch (IOException e) {
+        throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
       }
     }
   }
@@ -105,6 +112,9 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
         }
       } catch (MtGoxException e) {
         throw new ExchangeException("Error calling getMtGoxWalletHistory(): " + e.getError());
+      }
+      catch (IOException e) {
+        throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
       }
     }
   }

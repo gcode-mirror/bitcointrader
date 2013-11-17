@@ -51,6 +51,7 @@ import de.dev.eth0.bitcointrader.ui.widgets.AccountInfoWidgetProvider;
 import de.dev.eth0.bitcointrader.ui.widgets.PriceInfoWidgetProvider;
 import de.dev.eth0.bitcointrader.util.FormatHelper;
 import de.dev.eth0.bitcointrader.util.ICSAsyncTask;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -61,7 +62,6 @@ import java.util.List;
 import java.util.Map;
 import org.joda.money.BigMoney;
 import org.joda.money.CurrencyUnit;
-import si.mazi.rescu.HttpException;
 
 /**
  * Service to cache all data from exchange to prevent multiple calls
@@ -101,7 +101,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
   private Ticker ticker;
   private Date lastUpdate;
   private Date lastUpdateWalletHistory;
-  private Map<String, List<MtGoxWalletHistory>> walletHistoryCache = new HashMap<String, List<MtGoxWalletHistory>>();
+  private final Map<String, List<MtGoxWalletHistory>> walletHistoryCache = new HashMap<String, List<MtGoxWalletHistory>>();
 
   @Override
   public void onCreate() {
@@ -217,7 +217,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     return exchange;
   }
 
-  public OrderBook getOrderBook() {
+  public OrderBook getOrderBook() throws IOException {
     return getExchange().getPollingMarketDataService().getPartialOrderBook("BTC", getCurrency());
   }
 
@@ -263,10 +263,8 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       } catch (ExchangeException ee) {
         Log.i(TAG, "ExchangeException", ee);
         broadcastUpdateFailure();
-      } catch (HttpException uhe) {
-        Log.e(TAG, "HttpException", uhe);
-        broadcastUpdateFailure();
-      } catch (RuntimeException iae) {
+      }
+      catch (RuntimeException iae) {
         Log.e(TAG, "RuntimeException", iae);
         broadcastUpdateFailure();
       }
@@ -275,7 +273,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     return Collections.unmodifiableMap(walletHistoryCache);
   }
 
-  public Trades getTrades() {
+  public Trades getTrades() throws IOException {
     return exchange.getPollingMarketDataService().getTrades("BTC", getCurrency());
   }
 
@@ -390,8 +388,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         Log.i(TAG, "ExchangeException", ee);
         broadcastUpdateFailure();
         return false;
-      } catch (HttpException uhe) {
-        Log.e(TAG, "HttpException", uhe);
+      }
+      catch (IOException ioe) {
+        Log.e(TAG, "IOException", ioe);
         broadcastUpdateFailure();
         return false;
       } catch (RuntimeException iae) {
@@ -500,8 +499,9 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       } catch (ExchangeException ee) {
         Log.i(TAG, "ExchangeException", ee);
         broadcastUpdateFailure();
-      } catch (HttpException uhe) {
-        Log.e(TAG, "HttpException", uhe);
+      }
+      catch (IOException ioe) {
+        Log.e(TAG, "IOException", ioe);
         broadcastUpdateFailure();
         return false;
       }
@@ -517,8 +517,8 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
   private class PlaceOrderTask extends ICSAsyncTask<Order, Void, Boolean> {
 
     private ProgressDialog mDialog;
-    private FragmentActivity activity;
-    private boolean demoMode = PreferenceManager.getDefaultSharedPreferences(getApplication()).getBoolean(Constants.PREFS_KEY_DEMO, false);
+    private final FragmentActivity activity;
+    private final boolean demoMode = PreferenceManager.getDefaultSharedPreferences(getApplication()).getBoolean(Constants.PREFS_KEY_DEMO, false);
 
     public PlaceOrderTask(FragmentActivity activity) {
       super();
@@ -583,9 +583,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         } catch (ExchangeException ee) {
           Log.i(TAG, "ExchangeException", ee);
           broadcastUpdateFailure();
-        } catch (HttpException uhe) {
-          Log.e(TAG, "HttpException", uhe);
+        }
+        catch (IOException ioe) {
+          Log.e(TAG, "IOException", ioe);
           broadcastUpdateFailure();
+          return false;
         }
       }
       // only finish activity if the order has been created in a PlaceOrderActivity

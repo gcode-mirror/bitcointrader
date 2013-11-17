@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -42,8 +43,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
-import si.mazi.rescu.HttpException;
-import si.mazi.rescu.JSONUtils;
 
 /**
  * @author Alexander Muthmann
@@ -206,8 +205,8 @@ public class InitialSetupActivity extends AbstractBitcoinTraderActivity {
       }
     }
 
-    private String[] getApiKeys(String scannedKey)
-            throws UnsupportedEncodingException, HttpException, IOException, ExpiredException, InvalidException, NotEnoughPermissionsException {
+    private void getApiKeys(String scannedKey)
+            throws UnsupportedEncodingException, IOException, ExpiredException, InvalidException, NotEnoughPermissionsException {
       String urlEncodedKey = URLEncoder.encode(scannedKey, "UTF-8");
       URL query = new URL(Constants.APP_ACTIVATION_URL);
       HttpsURLConnection c = (HttpsURLConnection)query.openConnection();
@@ -254,7 +253,8 @@ public class InitialSetupActivity extends AbstractBitcoinTraderActivity {
       String response = sb.toString();
 
       ObjectMapper mapper = new ObjectMapper();
-      Map<String, Object> rawJSON = JSONUtils.getJsonGenericMap(response, mapper);
+      Map<String, Object> rawJSON = mapper.readValue(response, new TypeReference<Map<String, Object>>() {
+      });
 
       String result = (String)rawJSON.get("result");
       if ("error".equals(result)) {
@@ -288,7 +288,6 @@ public class InitialSetupActivity extends AbstractBitcoinTraderActivity {
       }
       key = apiKey;
       secretKey = apiSecret;
-      return null;
     }
   }
 
@@ -346,7 +345,7 @@ public class InitialSetupActivity extends AbstractBitcoinTraderActivity {
         InitialSetupActivity.this.finish();
       }
       else {
-        if (exception instanceof HttpException) {
+        if (exception instanceof IOException) {
           Toast.makeText(InitialSetupActivity.this, R.string.connection_failed, Toast.LENGTH_LONG).show();
         }
         else if (exception instanceof ExchangeException) {

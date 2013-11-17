@@ -273,7 +273,7 @@ public class PlaceOrderFragment extends AbstractBitcoinTraderFragment {
       order = new MarketOrder(type, BigDecimal.valueOf(amount), "BTC", application.getCurrency());
     }
     else {
-      order = new LimitOrder(type, BigDecimal.valueOf(amount), "BTC", application.getCurrency(), BigMoney.of(CurrencyUnit.of(application.getCurrency()), price));
+      order = new LimitOrder(type, BigDecimal.valueOf(amount), "BTC", application.getCurrency(), "", null, BigMoney.of(CurrencyUnit.of(application.getCurrency()), price));
     }
     getExchangeService().placeOrder(order, activity);
 
