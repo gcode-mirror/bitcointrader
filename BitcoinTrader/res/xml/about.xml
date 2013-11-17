@@ -4,15 +4,19 @@
 	<PreferenceCategory android:title="@string/about_title" >
 		<Preference
 			android:key="about_version"
-			android:title="Version" />
+			android:title="@string/version" />
 		<Preference
-            android:key="about_author"
-			android:summary="Alexander Muthmann"
-          android:title="Developed by" />
+          android:key="about_author"
+          android:summary="Alexander Muthmann"
+          android:title="@string/developed_by" />
         <Preference
           android:key="about_author_twitter"
           android:summary="\@deveth0"
           android:title="@string/about_author_twitter_title" />
+        <Preference
+          android:key="contribution"
+          android:summary="Daniel Kaminski de Souza"
+          android:title="@string/contribution" />
         <Preference
           android:key="about_license"
           android:summary="@string/about_license_summary"

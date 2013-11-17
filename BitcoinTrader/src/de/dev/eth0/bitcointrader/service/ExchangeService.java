@@ -221,7 +221,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     return getExchange().getPollingMarketDataService().getPartialOrderBook("BTC", getCurrency());
   }
 
-  public Map<String, List<MtGoxWalletHistory>> getMtGoxWalletHistory(String[] currencies, boolean forceUpdate) {
+  public Map<String, List<MtGoxWalletHistory>> getMtGoxWalletHistory(String[] currencies, boolean forceUpdate, ProgressDialog dialog) {
     boolean update = forceUpdate;
     if (updateInterval > 0 && !forceUpdate) {
       // one minute has 60*1000 miliseconds
@@ -235,7 +235,14 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       return Collections.unmodifiableMap(walletHistoryCache);
     }
     walletHistoryCache.clear();
+    if (dialog != null) {
+      dialog.setMax(currencies.length);
+    }
+    int i = 1;
     for (String currency : currencies) {
+      if (dialog != null) {
+        dialog.setProgress(i++);
+      }
       try {
         MtGoxWalletHistory walletHistory = exchange.getPollingAccountService().getMtGoxWalletHistory(currency, null);
         List<MtGoxWalletHistory> pages = new ArrayList<MtGoxWalletHistory>();

@@ -159,5 +159,11 @@
   <string name="trailing_stop_notify_text">There has been an automatic sold of bitcoins at %1$s (your limit was %2$s).</string>
   <string name="trailing_stop_alignment_notify_title">Your trailing stop price limit has been set to a new value</string>
   <string name="trailing_stop_alignment_notify_text">As the stock price has gone up, your trailing stop price limit has changed from %1$s to %2$s.</string>
+  <string name="capital_ask">ASK</string>
+  <string name="capital_bid">BID</string>
+  <string name="preferences_warning">Warning</string>
+  <string name="developed_by">Developed by</string>
+  <string name="version">Version</string>
+  <string name="contribution">Contribution</string>
   
 </resources>

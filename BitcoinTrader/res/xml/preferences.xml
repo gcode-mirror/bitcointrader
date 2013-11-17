@@ -45,7 +45,7 @@
     <Preference
       android:icon="@drawable/ic_menu_warning"
       android:summary="@string/preferences_labs"
-      android:title="Warning" />
+      android:title="@string/preferences_warning" />
     <CheckBoxPreference
       android:key="trailing_stop_selling_enabled"
       android:defaultValue="false"

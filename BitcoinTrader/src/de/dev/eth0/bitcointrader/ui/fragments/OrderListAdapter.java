@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.xeiam.xchange.dto.Order;
+import com.xeiam.xchange.dto.Order.OrderType;
 import com.xeiam.xchange.dto.trade.LimitOrder;
 import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.Constants;
@@ -30,7 +31,13 @@ public class OrderListAdapter extends AbstractListAdapter<Order> {
   public void bindView(View row, final Order order) {
     // ask or bid
     TextView rowAskBid = (TextView) row.findViewById(R.id.order_row_askbid);
-    rowAskBid.setText(order.getType().name());
+    OrderType theOrderType = order.getType();
+    switch (theOrderType){
+    case ASK:
+      rowAskBid.setText(R.string.capital_ask);
+    case BID:
+      rowAskBid.setText(R.string.capital_bid);
+    }
 
     // date
     TextView rowDate = (TextView) row.findViewById(R.id.order_row_date);

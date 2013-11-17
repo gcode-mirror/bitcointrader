@@ -74,12 +74,18 @@ public final class HelpDialogFragment extends DialogFragment {
   }
 
   private final static String languagePrefix() {
+    final String currentLocale = Locale.getDefault().toString();
     final String language = Locale.getDefault().getLanguage();
     if ("de".equals(language)) {
       return "_de";
     }
     else {
-      return "";
+      if ("pt_BR".equals(currentLocale)) {
+          return "_pt_BR";
+      }
+      else {
+        return "";
+      }
     }
   }
 }

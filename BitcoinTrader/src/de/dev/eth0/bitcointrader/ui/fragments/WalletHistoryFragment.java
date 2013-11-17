@@ -253,6 +253,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
     protected void onPreExecute() {
       if (mDialog == null) {
         mDialog = new ProgressDialog(activity);
+        mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mDialog.setMessage(mDialogLoadingString);
         mDialog.setCancelable(false);
         mDialog.setOwnerActivity(activity);
@@ -277,7 +278,7 @@ public class WalletHistoryFragment extends SherlockListFragment {
 
       if (exchangeService != null) {
         HistoryCurrencySpinnerAdapter adapter = (HistoryCurrencySpinnerAdapter) historyCurrencySpinner.getAdapter();
-        Map<String, List<MtGoxWalletHistory>> histories = exchangeService.getMtGoxWalletHistory(adapter.getEntries(), params[0]);
+        Map<String, List<MtGoxWalletHistory>> histories = exchangeService.getMtGoxWalletHistory(adapter.getEntries(), params[0], mDialog);
         return histories.get(currency);
       }
       return null;

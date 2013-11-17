@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Bitcoin Trader</string>
+
+  <string name="loading_info">Carregando&#8230;</string>
+  <string name="connecting_info">Conectando&#8230;</string>
+  <string name="connection_failed">Não pôde conectar. Por favor cheque a sua conecção de internet e tente novamente.</string>
+  <string name="bitcoin_order_fragment_empty_text">Nenhuma Ordem Aberta.</string>
+  <string name="bitcoin_action_buy">Comprar</string>
+  <string name="bitcoin_action_sell">Vender</string>
+  <string name="bitcoin_action_demo_info">Fim da demonstração</string>
+  <string name="button_retry">Tentar Novamente</string>
+  <string name="button_delete_order_text">Você realmente quer apagar a seguinte ordem:\n%1$s (quantidade: %2$s)</string>
+  <string name="button_delete_order_confirm">Confirmar</string>
+  <string name="button_delete_order_cancel">Cancelar</string>
+
+  <string name="initial_setup_headline">Configuração inicial</string>
+  <string name="initial_setup_info_text">Para ser capaz de utilizar esse aplicativo, você tem que conectá-lo à sua conta da Mt.Gox.\nExistem duas possibilidades disponíveis que você pode encontrar na \"Security Center\" do site MtGox.com (<a href="https://mtgox.com/security">https://mtgox.com/security</a>).\nEm ambos os casos você precisa habilitar as funções \"Get Info\" e \"Trade\".</string>
+  <string name="initial_setup_manual_qrinfo">Clique no QR code para escanear a sua chave de \"application access\"</string>
+  <string name="initial_setup_manual_info">Ou entre com o par de chaves gerado com \"advanced api key generation\"</string>
+  <string name="initial_setup_manual_setupbutton">Pronto</string>
+  <string name="initial_setup_manual_key_label">Chave</string>
+  <string name="initial_setup_manual_secretkey_label">Chave Secreta</string>
+  <string name="initial_setup_demo_label">Se você não tem certeza, se esse não é o app certo pra você, você pode iniciar uma demonstração aqui.</string>
+  <string name="initial_setup_demo_button">Iniciar Demonstração</string>
+  <string name="initial_setup_demo">Iniciando Demonstração</string>
+  <string name="initial_setup_success">Configuração completada para o usuário %s</string>
+  <string name="initial_setup_testing">Testando credenciais</string>
+  <string name="initial_setup_failed_wrong_credentials">Parece que as credencias estão erradas</string>
+  <string name="initial_setup_failed_key_expired">Chave expirada.</string>
+  <string name="initial_setup_failed_key_invalid">Chave inválida.</string>
+  <string name="initial_setup_failed_not_enough_permissions">Permissões insuficientes.</string>
+  
+  <string name="wallet_history_title">Histórico da Carteira</string>
+  <string name="wallet_history_currency_spinner_label">Selecione a Moeda:</string>
+  <string name="wallet_history_out">Saída</string>
+  <string name="wallet_history_in">Entrada</string>
+  <string name="wallet_history_fee">Taxa</string>
+  <string name="wallet_history_earned">Recebido</string>
+  <string name="wallet_history_spent">Gasto</string>
+  <string name="wallet_history_withdraw">Resgate</string>
+  <string name="wallet_history_deposit">Depósito</string>
+  <string name="wallet_history_amount">Quantidade:</string>
+  <string name="wallet_history_balance">Saldo:</string>
+  <string name="wallet_history_date">Data:</string>
+  <string name="wallet_history_info_bought">BTC compradas: %1$s em %2$s</string>
+  <string name="wallet_history_info_sold">BTC vendidas: %1$s em %2$s</string>
+  <string name="wallet_history_empty_text">Histórico de carteira indisponível para a moeda atual</string>
+
+  <string name="price_chart_title">Gráfico de Preços</string>
+  <string name="price_chart_symbol">Símbolo</string>
+  <string name="price_chart_low">Mín</string>
+  <string name="price_chart_high">Máx</string>
+  <string name="price_chart_last">Último</string>
+  <string name="price_chart_vol">Vol</string>
+  <string name="price_chart_avg">Méd</string>
+  <string name="price_chart_ask">Venda</string>
+  <string name="price_chart_bid">Compra</string>
+  <string name="price_chart_failed">Falha ao carregar os dados de gráfico de preços de bitcoincharts.com. Esse deve ser um problema temporario</string>
+    
+  <string name="account_info">Sua Conta</string>
+  <string name="account_info_trade_fee_label">Taxa de negociação:</string>
+  <string name="price_info">Ticker</string>
+  <string name="price_info_low_label">Mín: </string>
+  <string name="price_info_high_label">Máx: </string>
+  <string name="price_info_ask_label">Venda: </string>
+  <string name="price_info_bid_label">Compra: </string>
+  <string name="price_info_volume_label">Volume: </string>
+  <string name="refresh_title">Refrescar</string>
+
+  <string name="price_chart_detail_title">Detalhes do Gráfico de Preços</string>
+  <string name="price_chart_detail_period_description">Mostrar último:</string>
+
+  <string name="select_currency_title">Selecionar moeda</string>
+
+  <string name="notify_order_executed_title">Ordens executadas</string>
+  <string name="notify_order_executed_text">Uma ordem foi executada em %1$s (%2$s por %3$s)</string>
+  <string name="notify_update_success_text">Atualização completada!</string>
+  <string name="notify_update_failed_title">A atualização falhou!</string>
+  <string name="notify_update_failed_text">Houve um erro</string>
+
+  <string name="placeorder_title">Colocar Ordem</string>
+  <string name="place_order_fragment_type_label">Tipo da Ordem</string>
+  <string name="place_order_fragment_amount_label">Quantidade</string>
+  <string name="place_order_fragment_market_order">Ordem de Mercado</string>
+  <string name="place_order_fragment_price_label">Preço</string>
+  <string name="place_order_fragment_total_label">Total</string>
+  <string name="place_order_fragment_estimatedfee_label">Taxa Estimada</string>
+  <string name="place_order_perform">Colocar Ordem</string>
+  <string name="place_order_cancel">Cancelar</string>
+  <string name="place_order_submitting">Submetendo Ordem</string>
+  <string name="place_order_invalid">Por favor valide sua entrada</string>
+  <string name="place_order_success">Ordem criada</string>
+  <string name="place_order_failed">Ordem não pôde ser criada</string>
+  <string name="place_order_failed_demo">Você não pode criar ordens no modo demonstração.</string>
+
+  <string name="market_depth_title">Profundidade de Mercado</string>
+  <string name="market_depth_asks_graph_title">Venda</string>
+  <string name="market_depth_bids_graph_title">Compra</string>
+    
+  <string name="about_title">Sobre</string>
+  <string name="about_author_twitter_title">Autor no Twitter</string>
+  <string name="about_license">Licença</string>
+  <string name="about_license_summary">Esse aplicativo está distribuído sob a licença Apache 2.0</string>
+  <string name="about_credits_bitcoinwallet_title">"Esse aplicativo está utilizando o 'bitcoin-wallet'"</string>
+  <string name="about_credits_xchange_title">"Esse aplicativo está utilizando o 'xchange'"</string>
+  <string name="about_credits_zxing_title">"Esse aplicativo está utilizando o 'zxing'"</string>
+  <string name="about_credits_graphview_title">"Esse aplicativo está utilizando o 'graphview'"</string>
+    
+  <string name="preferences_title">Preferencias</string>
+  <string name="preferences_category_mtgox">MtGox</string>
+  <string name="preferences_mtgox_api_key_summary">Sua chave API do MtGox</string>
+  <string name="preferences_mtgox_api_key_title">chave API</string>
+  <string name="preferences_mtgox_secret_key_summary">Sua chave secreta do MtGox</string>
+  <string name="preferences_mtgox_secret_key_title">Chave secreta</string>
+  <string name="preferences_category_labs">Labs</string>
+  <string name="preferences_category_general">Configurações Gerais</string>
+  <string name="preferences_general_update_summary">Por favor fixe o valor</string>
+  <string name="preferences_general_update_title">Automaticamente atualizar a cada &#8230;</string>
+  <string name="preferences_general_notify_on_update_summary">Notificar mesmo se a atualização foi completada</string>
+  <string name="preferences_general_notify_on_update_title">Notificar quando completar</string>
+  <string name="preferences_general_sound_title">Tocar Som</string>
+  <string name="preferences_general_sound_summary">Toca um som se uma notificação é criada.</string> 
+  <string name="preferences_general_vibrate_title">Vibração</string>
+  <string name="preferences_general_vibrate_summary">Vibrar se uma notificação é criada.</string>
+  <string name="preferences_trailing_stop_enable_selling_title">Vender no limite stop loss</string>
+  <string name="preferences_trailing_stop_enable_selling_summary">Vender se o limite de stop móvel foi alcançado.</string>
+  <string name="preferences_delete_account_title">Apagar Conta</string>
+  <string name="preferences_delete_account_summary">Apagar conta desse app (não do Mercado Bitcoin!)</string>
+  <string name="preferences_labs">Aqui jazem dragões!!!</string>
+    
+  <string name="bitcointrader_options_donate">Doar</string>
+  <string name="bitcointrader_options_help">Ajuda</string>
+
+  <string name="report_issue_dialog_title_crash">Parada de funcionamento anterior detectada</string>
+  <string name="report_issue_dialog_message_crash">Você gostaria de enviar um relatorio de paradas de funcionamento, ajudando-nos a consertar esse problema no futuro?</string>
+  <string name="report_issue_dialog_description">Descrição do problema</string>
+  <string name="report_issue_dialog_report">Relatorio</string>
+  <string name="report_issue_dialog_collect_device_info">Anexar informação do aparelho</string>
+  <string name="report_issue_dialog_collect_application_log">Anexar log do aplicativo</string>
+  <string name="report_issue_dialog_mail_intent_chooser">Enviar relatorio utilizando…</string>
+
+  <string name="button_cancel">Cancelar</string>
+	
+  <string name="widget_accountinfo_name">Informação de conta do Bitcoin Trader</string>
+  <string name="widget_priceinfo_name">Informação de preço do Bitcoin Trader</string>
+  
+  <string name="trailing_stop_loss_title">Stop loss móvel</string>
+  <string name="trailing_stop_activate_stop_loss">Ativar stop loss</string>
+  <string name="trailing_stop_cancel_stop_loss">Cancelar stop loss (%2$s, %1$s</string>
+  <string name="trailing_stop_loss_description">Colocar seu stop loss aqui</string>
+  <string name="trailing_stop_loss_perform">Ativar</string>
+  <string name="trailing_stop_loss_wrong_input">Por favor valide sua entrada</string>
+  <string name="trailing_stop_loss_submitted">O stop loss móvel foi criado.</string>
+  <string name="trailing_stop_loss_price_description">Limite para o stop loss móvel</string>
+  <string name="trailing_stop_loss_percentage_description">Percentual para ajustar limite</string>
+  <string name="trailing_stop_loss_updates_description">Número de atualizações antes que a notificação apareça ou limite seja ajustado.</string>
+  <string name="trailing_stop_notify_title">Um ponto de stop loss móvel foi alcançado.</string>
+  <string name="trailing_stop_notify_text">Houve uma venda automática de bitcoins em %1$s (seu limite era %2$s).</string>
+  <string name="trailing_stop_alignment_notify_title">O limite de preço do seu stop móvel foi fixado em um novo valor</string>
+  <string name="trailing_stop_alignment_notify_text">Como o preço da moeda subiu, O limite de preço do seu stop móvel mudou de %1$s para %2$s.</string>
+  <string name="capital_ask">VENDA</string>
+  <string name="capital_bid">COMPRA</string>
+  <string name="preferences_warning">Alerta</string>
+  <string name="developed_by">Desenvolvido por</string>
+  <string name="version">Versão</string>
+  <string name="contribution">Contribuição</string>
+  
+</resources>

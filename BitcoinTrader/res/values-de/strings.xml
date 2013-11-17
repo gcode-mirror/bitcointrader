@@ -159,5 +159,11 @@
   <string name="trailing_stop_notify_text">Bitcoins wurden automatisch für %1$s verkauft (der Schwellwert lag bei %2$s).</string>
   <string name="trailing_stop_alignment_notify_title">Ihr trailing stop loss Schwellwert wurde angepasst</string>
   <string name="trailing_stop_alignment_notify_text">Da der Preis gestiegen ist, wurde der trailing stop loss Schwellwert von %1$s auf %2$s erhöht..</string>
+  <string name="capital_ask">ASK</string>
+  <string name="capital_bid">BID</string>
+  <string name="preferences_warning">Warning</string>
+  <string name="developed_by">Developed by</string>
+  <string name="version">Version</string>
+  <string name="contribution">Contribution</string>
   
 </resources>
