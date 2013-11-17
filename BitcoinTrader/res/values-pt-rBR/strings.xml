@@ -14,6 +14,9 @@
   <string name="button_delete_order_confirm">Confirmar</string>
   <string name="button_delete_order_cancel">Cancelar</string>
 
+  <string name="order_deleted">Ordem excluída com sucesso</string>
+  <string name="order_delete_failed">A exclusão da ordem falhou</string>
+
   <string name="initial_setup_headline">Configuração inicial</string>
   <string name="initial_setup_info_text">Para ser capaz de utilizar esse aplicativo, você tem que conectá-lo à sua conta da Mt.Gox.\nExistem duas possibilidades disponíveis que você pode encontrar na \"Security Center\" do site MtGox.com (<a href="https://mtgox.com/security">https://mtgox.com/security</a>).\nEm ambos os casos você precisa habilitar as funções \"Get Info\" e \"Trade\".</string>
   <string name="initial_setup_manual_qrinfo">Clique no QR code para escanear a sua chave de \"application access\"</string>
@@ -164,6 +167,5 @@
   <string name="preferences_warning">Alerta</string>
   <string name="developed_by">Desenvolvido por</string>
   <string name="version">Versão</string>
-  <string name="contribution">Contribuição</string>
   
 </resources>

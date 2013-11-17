@@ -13,6 +13,9 @@
   <string name="button_delete_order_text">Sind Sie sicher, dass Sie die folgenden Order löschen wollen:\n%1$s (Betrag: %2$s)</string>
   <string name="button_delete_order_confirm">Bestätigen</string>
   <string name="button_delete_order_cancel">Abbrechen</string>
+  
+  <string name="order_deleted">Order erfolgreich gelöscht</string>
+  <string name="order_delete_failed">Order konnte nicht gelöscht werden.</string>
 
   <string name="initial_setup_headline">Initiale Einrichtung</string>
   <string name="initial_setup_info_text">Um diese App nutzen zu können, müssen Sie eine Verbindung zu Ihrem Mt.Gox Account herstellen.\nHierzu gibt es zwei Möglichkeiten, welche beide unterhalb des \"Security Centers\" auf der Mt.Gox Seite (<a href="https://mtgox.com/security">https://mtgox.com/security</a>) zu finden sind.\nEs werden jeweils die Rechte \"Get Info\" sowie \"Trade\" benötigt.</string>
@@ -161,9 +164,10 @@
   <string name="trailing_stop_alignment_notify_text">Da der Preis gestiegen ist, wurde der trailing stop loss Schwellwert von %1$s auf %2$s erhöht..</string>
   <string name="capital_ask">ASK</string>
   <string name="capital_bid">BID</string>
-  <string name="preferences_warning">Warning</string>
-  <string name="developed_by">Developed by</string>
+  <string name="preferences_warning">Warnung</string>
+  <string name="developed_by">Entwickelt von</string>
   <string name="version">Version</string>
-  <string name="contribution">Contribution</string>
+  <string name="contribution">Weitere Entwicklung</string>
+
   
 </resources>

@@ -13,6 +13,9 @@
   <string name="button_delete_order_text">Do you really want to delete the following order:\n%1$s (amount: %2$s)</string>
   <string name="button_delete_order_confirm">Confirm</string>
   <string name="button_delete_order_cancel">Cancel</string>
+  
+  <string name="order_deleted">Order deleted successfully</string>
+  <string name="order_delete_failed">Order deletion failed</string>
 
   <string name="initial_setup_headline">Initial Setup</string>
   <string name="initial_setup_info_text">To be able to use this app, you have to connect it to your Mt.Gox account.\nThere are two possibilities available which you can find in the \"Security Center\" on MtGox.com (<a href="https://mtgox.com/security">https://mtgox.com/security</a>).\nIn both cases you need to set the \"Get Info\" and \"Trade\" permission.</string>
@@ -93,6 +96,7 @@
   <string name="place_order_success">Order created</string>
   <string name="place_order_failed">Could not create order</string>
   <string name="place_order_failed_demo">You cannot create orders in demo mode.</string>
+
 
   <string name="market_depth_title">Market Depth</string>
   <string name="market_depth_asks_graph_title">Asks</string>

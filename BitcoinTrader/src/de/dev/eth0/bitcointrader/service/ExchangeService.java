@@ -510,7 +510,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
 
     @Override
     protected void onPostExecute(Boolean success) {
-      Toast.makeText(ExchangeService.this, "Order deleted " + (success ? "successfully" : "unsuccessfully"), Toast.LENGTH_LONG).show();
+      Toast.makeText(ExchangeService.this, (success ? R.string.order_deleted : R.string.order_delete_failed), Toast.LENGTH_LONG).show();
     }
   };
 
