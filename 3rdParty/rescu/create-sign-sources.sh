@@ -1,1 +1,0 @@
-mvn -P release-sign-artifacts clean install
