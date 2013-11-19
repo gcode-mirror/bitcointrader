@@ -52,6 +52,12 @@
       android:title="@string/preferences_trailing_stop_enable_selling_title" 
       android:summary="@string/preferences_trailing_stop_enable_selling_summary" 
     />
+    <CheckBoxPreference
+      android:key="debug"
+      android:defaultValue="false"
+      android:title="@string/preferences_debug_title"
+      android:summary="@string/preferences_debug_summary"
+    />
   </PreferenceCategory>
 
 </PreferenceScreen>

@@ -42,6 +42,7 @@ public class Constants {
   public static final String PREFS_KEY_CURRENCY = "selected_currency";
   public static final String PREFS_KEY_TRAILING_STOP_SELLING_ENABLED = "trailing_stop_selling_enabled";
   public static final String PREFS_TRAILING_STOP_NUMBER_UPDATES = "trailing_stop_number_updates";
+  public static final String PREFS_KEY_DEBUG = "debug";
   public static final String MTGOX_SSL_URI = "https://data.mtgox.com";
   public static final String MTGOX_PLAIN_WEBSOCKET_URI = "ws://websocket.mtgox.com";
   public static final String MTGOX_SSL_WEBSOCKET_URI = "ws://websocket.mtgox.com";

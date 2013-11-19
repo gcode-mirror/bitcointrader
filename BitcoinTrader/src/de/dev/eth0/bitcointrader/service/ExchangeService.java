@@ -77,7 +77,7 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
       Log.d(TAG, ".onReceive()");
       // only run if currently no running task
       if (exchange != null) {
-        executeTask(new UpdateTask(), (Void) null);
+        executeTask(new UpdateTask(), (Void)null);
       }
     }
   };
@@ -317,7 +317,10 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
 
   private void broadcastUpdateFailure(Exception e) {
     Intent intent = new Intent(Constants.UPDATE_FAILED);
-    intent.getExtras().putString(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
+    if (PreferenceManager.getDefaultSharedPreferences(ExchangeService.this).getBoolean(Constants.PREFS_KEY_DEBUG, false)
+            && e != null) {
+      intent.putExtra(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
+    }
     sendBroadcast(intent);
   }
 

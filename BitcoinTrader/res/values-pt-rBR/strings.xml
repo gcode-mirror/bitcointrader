@@ -131,6 +131,9 @@
   <string name="preferences_delete_account_title">Apagar Conta</string>
   <string name="preferences_delete_account_summary">Apagar conta desse app (não do Mercado Bitcoin!)</string>
   <string name="preferences_labs">Aqui jazem dragões!!!</string>
+  <string name="preferences_debug_title">Debug</string>
+  <string name="preferences_debug_summary">Enables debug options</string>
+  
     
   <string name="bitcointrader_options_donate">Doar</string>
   <string name="bitcointrader_options_help">Ajuda</string>

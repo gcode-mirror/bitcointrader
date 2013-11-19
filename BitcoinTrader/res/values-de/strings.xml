@@ -131,6 +131,9 @@
   <string name="preferences_delete_account_title">Account löscht</string>
   <string name="preferences_delete_account_summary">Löscht den Account aus dieser App (nicht von MtGox)</string>
   <string name="preferences_labs">Here be dragons!!!</string>
+  <string name="preferences_debug_title">Debug</string>
+  <string name="preferences_debug_summary">Aktiviert Debug-Optionen</string>
+
     
   <string name="bitcointrader_options_donate">Spenden</string>
   <string name="bitcointrader_options_help">Hilfe</string>
