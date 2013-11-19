@@ -253,7 +253,9 @@ public class PriceChartFragment extends SherlockListFragment {
         return ticker == null ? new BitcoinChartsTicker[0] : ticker;
       }
       catch (Exception e) {
-        activity.sendBroadcast(new Intent(Constants.UPDATE_FAILED));
+        Intent intent = new Intent(Constants.UPDATE_FAILED);
+        intent.getExtras().putString(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
+        activity.sendBroadcast(intent);
         Log.e(TAG, "Exception", e);
       }
       return null;

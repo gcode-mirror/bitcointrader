@@ -32,7 +32,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     if (intent.getAction().equals(Constants.UPDATE_FAILED)) {
-      notifyUpdateFailed(context);
+      notifyUpdateFailed(context, intent);
     }
     else if (intent.getAction().equals(Constants.UPDATE_SUCCEDED)) {
       notifyUpdateSucceded(context);
@@ -53,12 +53,15 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     notificationmanager.cancel(UPDATE_FAILED_NOTIFICATION_ID);
   }
 
-  private void notifyUpdateFailed(Context context) {
+  private void notifyUpdateFailed(Context context, Intent intent) {
+
     NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(context)
             .setSmallIcon(R.drawable.ic_action_warning)
             .setContentTitle(context.getString(R.string.notify_update_failed_title))
-            .setContentText(context.getString(R.string.notify_update_failed_text));
+            .setContentText((intent != null && intent.hasExtra(Constants.EXTRA_MESSAGE))
+                    ? intent.getStringExtra(Constants.EXTRA_MESSAGE)
+                    : context.getString(R.string.notify_update_failed_text));
     Intent resultIntent = new Intent(context, BitcoinTraderActivity.class);
     TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
     stackBuilder.addParentStack(BitcoinTraderActivity.class);

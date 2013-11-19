@@ -262,11 +262,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         }
       } catch (ExchangeException ee) {
         Log.i(TAG, "ExchangeException", ee);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(ee);
       }
       catch (RuntimeException iae) {
         Log.e(TAG, "RuntimeException", iae);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(iae);
       }
     }
     lastUpdateWalletHistory = new Date();
@@ -315,8 +315,10 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
     sendBroadcast(new Intent(Constants.UPDATE_SUCCEDED));
   }
 
-  private void broadcastUpdateFailure() {
-    sendBroadcast(new Intent(Constants.UPDATE_FAILED));
+  private void broadcastUpdateFailure(Exception e) {
+    Intent intent = new Intent(Constants.UPDATE_FAILED);
+    intent.getExtras().putString(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
+    sendBroadcast(intent);
   }
 
   private void broadcastTrailingStopEvent(BigDecimal trailingStopValue, BigDecimal currentPrice) {
@@ -386,16 +388,16 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         broadcastUpdateSuccess();
       } catch (ExchangeException ee) {
         Log.i(TAG, "ExchangeException", ee);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(ee);
         return false;
       }
       catch (IOException ioe) {
         Log.e(TAG, "IOException", ioe);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(ioe);
         return false;
       } catch (RuntimeException iae) {
         Log.e(TAG, "RuntimeException", iae);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(iae);
         return false;
       }
       return true;
@@ -498,11 +500,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         }
       } catch (ExchangeException ee) {
         Log.i(TAG, "ExchangeException", ee);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(ee);
       }
       catch (IOException ioe) {
         Log.e(TAG, "IOException", ioe);
-        broadcastUpdateFailure();
+        broadcastUpdateFailure(ioe);
         return false;
       }
       return false;
@@ -582,11 +584,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
           }
         } catch (ExchangeException ee) {
           Log.i(TAG, "ExchangeException", ee);
-          broadcastUpdateFailure();
+          broadcastUpdateFailure(ee);
         }
         catch (IOException ioe) {
           Log.e(TAG, "IOException", ioe);
-          broadcastUpdateFailure();
+          broadcastUpdateFailure(ioe);
           return false;
         }
       }

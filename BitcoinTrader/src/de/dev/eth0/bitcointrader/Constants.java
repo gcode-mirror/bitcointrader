@@ -54,6 +54,7 @@ public class Constants {
   public static final String TRAILING_LOSS_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_EVENT";
   public static final String TRAILING_LOSS_ALIGNMENT_EVENT = "de.dev.eth0.bitcointrader.TRAILING_LOSS_ALIGNMENT_EVENT";
   // Extras for intents
+  public static final String EXTRA_MESSAGE = "message";
   public static final String EXTRA_ORDERRESULT = "orderresults";
   public static final String EXTRA_ORDERRESULT_AVGCOST = "avgcost";
   public static final String EXTRA_ORDERRESULT_TOTALAMOUNT = "totalamount";
