@@ -249,7 +249,7 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
       }
       catch (Exception e) {
         Intent intent = new Intent(Constants.UPDATE_FAILED);
-        intent.getExtras().putString(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
+        intent.putExtra(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
         activity.sendBroadcast(intent);
         Log.e(TAG, "Exception", e);
       }
