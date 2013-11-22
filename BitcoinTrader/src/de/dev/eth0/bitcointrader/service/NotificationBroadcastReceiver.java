@@ -54,14 +54,18 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
   }
 
   private void notifyUpdateFailed(Context context, Intent intent) {
-
+    String message = (intent != null && intent.hasExtra(Constants.EXTRA_MESSAGE))
+            ? intent.getStringExtra(Constants.EXTRA_MESSAGE)
+            : context.getString(R.string.notify_update_failed_text);
     NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(context)
             .setSmallIcon(R.drawable.ic_action_warning)
             .setContentTitle(context.getString(R.string.notify_update_failed_title))
-            .setContentText((intent != null && intent.hasExtra(Constants.EXTRA_MESSAGE))
-                    ? intent.getStringExtra(Constants.EXTRA_MESSAGE)
-                    : context.getString(R.string.notify_update_failed_text));
+            .setContentText(message);
+    NotificationCompat.BigTextStyle notificationStyle = new NotificationCompat.BigTextStyle();
+    notificationStyle.setBigContentTitle(context.getString(R.string.notify_update_failed_title));
+    notificationStyle.bigText(message);
+    mBuilder.setStyle(notificationStyle);
     Intent resultIntent = new Intent(context, BitcoinTraderActivity.class);
     TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
     stackBuilder.addParentStack(BitcoinTraderActivity.class);
