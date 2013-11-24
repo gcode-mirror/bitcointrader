@@ -13,6 +13,7 @@ import com.actionbarsherlock.view.MenuItem;
 import de.dev.eth0.bitcointrader.BitcoinTraderApplication;
 import de.dev.eth0.bitcointrader.Constants;
 import de.dev.eth0.bitcointrader.R;
+import de.schildbach.wallet.integration.android.BitcoinIntegration;
 
 /**
  * @author Alexander Muthmann
@@ -27,6 +28,7 @@ public class AboutActivity extends SherlockPreferenceActivity {
   private static final String KEY_ABOUT_CREDITS_XCHANGE = "about_credits_xchange";
   private static final String KEY_ABOUT_CREDITS_ZXING = "about_credits_zxing";
   private static final String KEY_ABOUT_CREDITS_GRAPHVIEW = "about_credits_graphview";
+  private static final String KEY_ABOUT_DONATE = "about_donate";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class AboutActivity extends SherlockPreferenceActivity {
     findPreference(KEY_ABOUT_CREDITS_XCHANGE).setSummary(Constants.CREDITS_XCHANGE_URL);
     findPreference(KEY_ABOUT_CREDITS_ZXING).setSummary(Constants.CREDITS_ZXING_URL);
     findPreference(KEY_ABOUT_CREDITS_GRAPHVIEW).setSummary(Constants.CREDITS_GRAPHVIEW_URL);
+    findPreference(KEY_ABOUT_DONATE).setSummary(Constants.DONATION_ADDRESS);
 
   }
 
@@ -81,6 +84,10 @@ public class AboutActivity extends SherlockPreferenceActivity {
     }
     else if (KEY_ABOUT_CREDITS_GRAPHVIEW.equals(key)) {
       startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CREDITS_GRAPHVIEW_URL)));
+      finish();
+    }
+    else if (KEY_ABOUT_DONATE.equals(key)) {
+      BitcoinIntegration.request(this, Constants.DONATION_ADDRESS);
       finish();
     }
     return false;
