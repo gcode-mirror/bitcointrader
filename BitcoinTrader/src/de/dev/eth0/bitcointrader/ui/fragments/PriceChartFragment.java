@@ -257,7 +257,7 @@ public class PriceChartFragment extends SherlockListFragment {
         Intent intent = new Intent(Constants.UPDATE_FAILED);
         intent.putExtra(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
         activity.sendBroadcast(intent);
-        Log.e(TAG, "Exception", e);
+        Log.e(TAG, Log.getStackTraceString(e), e);
       }
       return null;
     }

@@ -21,9 +21,9 @@ import com.jjoe64.graphview.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
 import com.xeiam.xchange.dto.marketdata.OrderBook;
 import com.xeiam.xchange.dto.trade.LimitOrder;
-import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.BitcoinTraderApplication;
 import de.dev.eth0.bitcointrader.Constants;
+import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.ui.AbstractBitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.util.ICSAsyncTask;
 import de.schildbach.wallet.ui.HelpDialogFragment;
@@ -221,7 +221,7 @@ public class MarketDepthFragment extends AbstractBitcoinTraderFragment {
         Intent intent = new Intent(Constants.UPDATE_FAILED);
         intent.putExtra(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
         activity.sendBroadcast(intent);
-        Log.e(TAG, "Exception", e);
+        Log.e(TAG, Log.getStackTraceString(e), e);
       }
       return null;
     }
