@@ -153,16 +153,17 @@ public class PriceChartFragment extends SherlockListFragment {
       toast.setView(infoToastLayout);
       toast.show();
 
-      Object o = activity.getSupportFragmentManager().findFragmentById(R.id.price_chart_detail_fragment);
-      if (o != null) {
-        PriceChartDetailFragment pcdf = (PriceChartDetailFragment)o;
-        pcdf.update(entry.getSymbol());
-      }
-      else {
-        Intent detailsActivity = new Intent(activity, PriceChartDetailActivity.class);
-        detailsActivity.putExtra(PriceChartDetailActivity.INTENT_EXTRA_EXCHANGE, entry.getSymbol());
-        startActivity(detailsActivity);
-      }
+      //TODO: Disabled due to #179
+//      Object o = activity.getSupportFragmentManager().findFragmentById(R.id.price_chart_detail_fragment);
+//      if (o != null) {
+//        PriceChartDetailFragment pcdf = (PriceChartDetailFragment)o;
+//        pcdf.update(entry.getSymbol());
+//      }
+//      else {
+//        Intent detailsActivity = new Intent(activity, PriceChartDetailActivity.class);
+//        detailsActivity.putExtra(PriceChartDetailActivity.INTENT_EXTRA_EXCHANGE, entry.getSymbol());
+//        startActivity(detailsActivity);
+//      }
     }
   }
 
