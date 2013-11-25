@@ -2,43 +2,27 @@
 //$Id$
 package de.dev.eth0.bitcointrader.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewStyle;
-import com.jjoe64.graphview.LineGraphView;
-import com.xeiam.xchange.bitcoincharts.BitcoinChartsAdapters;
-import com.xeiam.xchange.bitcoincharts.BitcoinChartsFactory;
-import com.xeiam.xchange.bitcoincharts.dto.charts.ChartData;
-import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.BitcoinTraderApplication;
 import de.dev.eth0.bitcointrader.Constants;
+import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.ui.AbstractBitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.ui.PriceChartDetailActivity;
-import de.dev.eth0.bitcointrader.util.ICSAsyncTask;
 import de.schildbach.wallet.ui.HelpDialogFragment;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Alexander Muthmann
@@ -48,14 +32,9 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
   private static final String TAG = PriceChartDetailFragment.class.getSimpleName();
   private BitcoinTraderApplication application;
   private AbstractBitcoinTraderActivity activity;
-  private ProgressDialog mDialog;
-  private Spinner selectPeriodSpinner;
-  private GraphView graphView;
-  private TextView titleView;
-  private GraphViewSeries graphViewSeries;
+  private WebView webview;
+
   private String exchange;
-  private int selectedPeriod = 1;
-  private final Map<String, SparseArray<ChartData[]>> cache = new HashMap<String, SparseArray<ChartData[]>>();
 
   @Override
   public void onAttach(Activity activity) {
@@ -75,9 +54,11 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.bitcointrader_options_refresh:
-        cache.clear();
-        updateView();
-        break;
+        webview.reload();
+        return true;
+      case R.id.price_chart_detail_option_new_window:
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Constants.BITCOINCHARTS_URL, exchange))));
+        return true;
       case R.id.bitcointrader_options_help:
         HelpDialogFragment.page(activity.getSupportFragmentManager(), "help_price_chart_detail");
         return true;
@@ -93,44 +74,33 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
   }
 
   @Override
+  @SuppressLint("SetJavaScriptEnabled")
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    titleView = (TextView) view.findViewById(R.id.price_chart_detail_title);
-    graphView = new LineGraphView(activity, "");
-    graphView.setScrollable(true);
-    //graphView.setScalable(true);
-    graphView.setGraphViewStyle(new GraphViewStyle(Color.BLACK, Color.BLACK, Color.BLACK));
-    if (selectedPeriod > 2) {
-      SimpleDateFormat df = (SimpleDateFormat) DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-      df.applyPattern(df.toPattern().replaceAll("y", ""));
-      graphView.setFormatter(df, true);
-    } else {
-      graphView.setFormatter(DateFormat.getTimeInstance(DateFormat.SHORT), true);
-    }
-    graphView.setHorizontalLabelsOffset(true);
-    LinearLayout layout = (LinearLayout) view.findViewById(R.id.price_chart_detail_graph);
-    layout.addView(graphView);
-
-    selectPeriodSpinner = (Spinner) view.findViewById(R.id.price_chart_detail_period_spinner);
-    selectPeriodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedPeriod = getResources().getIntArray(R.array.priceChartDetailPeriodValue)[position];
-        switchPeriod();
-      }
-
-      public void onNothingSelected(AdapterView<?> parent) {
+    webview = (WebView) view.findViewById(R.id.price_chart_detail_graph_webview);
+    webview.getSettings().setSupportZoom(true);
+    webview.getSettings().setBuiltInZoomControls(true);
+    webview.getSettings().setJavaScriptEnabled(true);
+    webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+    webview.setWebChromeClient(new WebChromeClient() {
+      @Override
+      public void onProgressChanged(WebView view, int progress) {
+        // Activities and WebViews measure progress with different scales.
+        // The progress meter will automatically disappear when we reach 100%
+        activity.setProgress(progress * 1000);
       }
     });
-
+    webview.setWebViewClient(new WebViewClient() {
+      @Override
+      public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+        Log.w(TAG, description);
+      }
+    });
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    if (mDialog != null && mDialog.isShowing()) {
-      mDialog.dismiss();
-    }
-    mDialog = null;
   }
 
   @Override
@@ -144,116 +114,17 @@ public class PriceChartDetailFragment extends AbstractBitcoinTraderFragment {
     super.onCreateOptionsMenu(menu, inflater);
     // only add menu if included in pricechartactivity
     if (activity instanceof PriceChartDetailActivity) {
-      inflater.inflate(R.menu.pricechart_options, menu);
+      inflater.inflate(R.menu.pricechartdetail_options, menu);
     }
-  }
-
-  protected void switchPeriod() {
-    if (cache.containsKey(exchange)) {
-      SparseArray<ChartData[]> entry = cache.get(exchange);
-      ChartData[] cd = entry.get(selectedPeriod);
-      if (cd != null) {
-        updateView(cd);
-        return;
-      }
-    }
-    if (selectedPeriod > 2) {
-      SimpleDateFormat df = (SimpleDateFormat) DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-      df.applyPattern(df.toPattern().replaceAll("y", ""));
-      graphView.setFormatter(df, true);
-    } else {
-      graphView.setFormatter(DateFormat.getTimeInstance(DateFormat.SHORT), true);
-    }
-    updateView();
   }
 
   protected void updateView() {
     Log.d(TAG, ".updateView()");
-    PriceChartDetailFragment.GetChartDataTask tradesTask = new PriceChartDetailFragment.GetChartDataTask();
-    tradesTask.executeOnExecutor(ICSAsyncTask.SERIAL_EXECUTOR);
-  }
-
-  protected void updateView(ChartData[] chartData) {
-    Log.d(TAG, ".updateView");
-    if (chartData != null) {
-      GraphViewData[] data = new GraphViewData[chartData.length];
-      double min = Double.MAX_VALUE;
-      double max = Double.MIN_VALUE;
-      for (int i = 0; i < chartData.length; i++) {
-        ChartData cd = chartData[i];
-        data[i] = new GraphViewData(Double.parseDouble(cd.getDate()) * 1000, cd.getWeightedPrice().doubleValue());
-        min = Math.min(data[i].valueY, min);
-        max = Math.max(data[i].valueY, max);
-      }
-      if (graphViewSeries == null) {
-        graphViewSeries = new GraphViewSeries(data);
-      } else {
-        graphViewSeries.resetData(data);
-      }
-      SparseArray<ChartData[]> entry;
-      if (cache.containsKey(exchange)) {
-        entry = cache.get(exchange);
-      } else {
-        entry = new SparseArray<ChartData[]>();
-        cache.put(exchange, entry);
-      }
-      entry.put(selectedPeriod, chartData);
-      graphView.addSeries(graphViewSeries);
-      graphView.setManualYAxisBounds(max * 1.025, min * 0.975);
-      graphView.redrawAll();
-    }
-    else {
-      Toast.makeText(activity, R.string.price_chart_failed, Toast.LENGTH_LONG).show();
-    }
+    webview.loadUrl(String.format(Constants.BITCOINCHARTS_URL, exchange));
   }
 
   public void update(String exchange) {
     this.exchange = exchange;
-    this.titleView.setText(exchange);
     updateView();
-
-
-
-
   }
-
-  private class GetChartDataTask extends ICSAsyncTask<Void, Void, ChartData[]> {
-
-    @Override
-    protected void onPreExecute() {
-      if (mDialog == null) {
-        mDialog = new ProgressDialog(activity);
-        mDialog.setMessage(mDialogLoadingString);
-        mDialog.setCancelable(false);
-        mDialog.setOwnerActivity(activity);
-        mDialog.show();
-      }
-    }
-
-    @Override
-    protected void onPostExecute(ChartData[] chartData) {
-      if (mDialog != null && mDialog.isShowing()) {
-        mDialog.dismiss();
-        mDialog = null;
-      }
-      Log.d(TAG, "Found " + (chartData != null ? chartData.length : 0) + " ticker entries");
-      updateView(chartData);
-    }
-
-    @Override
-    protected ChartData[] doInBackground(Void... params) {
-      try {
-        Log.d(TAG, "Loading chartdate for the last " + selectedPeriod + " days");
-        ChartData[] chartdata = BitcoinChartsAdapters.adaptChartData(BitcoinChartsFactory.createInstance().getChartData(exchange, selectedPeriod));
-        return chartdata == null ? new ChartData[0] : chartdata;
-      }
-      catch (Exception e) {
-        Intent intent = new Intent(Constants.UPDATE_FAILED);
-        intent.putExtra(Constants.EXTRA_MESSAGE, e.getLocalizedMessage());
-        activity.sendBroadcast(intent);
-        Log.e(TAG, "Exception", e);
-      }
-      return null;
-    }
-  };
 }

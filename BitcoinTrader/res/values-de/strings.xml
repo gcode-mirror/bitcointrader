@@ -72,7 +72,7 @@
   <string name="refresh_title">Aktualisieren</string>
 
   <string name="price_chart_detail_title">Preisverlauf</string>
-  <string name="price_chart_detail_period_description">Zeitraum:</string>
+  <string name="price_chart_detail_open_in_new_window">In Browser öffnen</string>
 
   <string name="select_currency_title">Währung</string>
 

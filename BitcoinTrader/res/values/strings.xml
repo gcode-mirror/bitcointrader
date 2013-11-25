@@ -72,7 +72,7 @@
   <string name="refresh_title">Refresh</string>
 
   <string name="price_chart_detail_title">Price Chart Details</string>
-  <string name="price_chart_detail_period_description">Show last:</string>
+  <string name="price_chart_detail_open_in_new_window">Open in Browser</string>
 
   <string name="select_currency_title">Select currency</string>
 

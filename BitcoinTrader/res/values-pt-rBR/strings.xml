@@ -72,7 +72,7 @@
   <string name="refresh_title">Refrescar</string>
 
   <string name="price_chart_detail_title">Detalhes do Gráfico de Preços</string>
-  <string name="price_chart_detail_period_description">Mostrar último:</string>
+  <string name="price_chart_detail_open_in_new_window">Open in Browser</string>
 
   <string name="select_currency_title">Selecionar moeda</string>
 

@@ -17,6 +17,7 @@ public class Constants {
   public static final String APP_ACTIVATION_ID = "00287aa0-775a-41b3-b799-2d7a0116bb06";
   public static final String MTGOX_DEMO_ACCOUNT_APIKEY = "cb7897cc-5c08-4e74-82a4-4c5e72457589";
   public static final String MTGOX_DEMO_ACCOUNT_SECRETKEY = "1LrjXFwoNped6Tw+7cQVzIkn6ZHnJdoFUEqWyEAplkDdtUAcREEsUn8xfkvQDOunyPhP2TVNv54660e9CFET7w==";
+  public static final String BITCOINCHARTS_URL = "http://bitcoincharts.com/markets/%s.html";
   // About
   public static final String DONATION_ADDRESS = "1FDLG9HbYAECa9R1o7kE9Rt37XdnWv1teZ";
   public static final String REPORT_EMAIL = "bitcointraderissues@dev-eth0.de";
