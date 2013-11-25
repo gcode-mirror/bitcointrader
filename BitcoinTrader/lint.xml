@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+
+<!-- Ignore the InvalidPackage issue in the given files -->
+<issue id="InvalidPackage">
+	<!-- joda convert has a reference to javax.xml.bind which is not available on android. as jodaconvert is included for joda-money, there should be no problem -->
+<ignore path="libs\joda-convert-1.5.jar" />
+</issue>
+
+</lint>

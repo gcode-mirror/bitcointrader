@@ -2,6 +2,7 @@
 //$Id$
 package de.dev.eth0.bitcointrader.service;
 
+import android.util.Log;
 import com.xeiam.xchange.ExchangeException;
 import com.xeiam.xchange.ExchangeSpecification;
 import com.xeiam.xchange.dto.Order;
@@ -18,11 +19,14 @@ import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingAccountService;
 import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingMarketDataService;
 import com.xeiam.xchange.mtgox.v2.service.polling.MtGoxPollingTradeService;
 import java.io.IOException;
+import java.util.Locale;
 
 /**
  * @author Alexander Muthmann
  */
 public class MtGoxExchangeWrapper extends MtGoxExchange {
+
+  private static final String TAG = MtGoxExchangeWrapper.class.getSimpleName();
 
   @Override
   public void applySpecification(ExchangeSpecification exchangeSpecification) {
@@ -67,10 +71,11 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
           throw new ExchangeException("Error calling getAccountInfo(): Unexpected result!");
         }
       } catch (MtGoxException e) {
-        throw new ExchangeException("Error calling getAccountInfo(): " + e.getError());
-      }
-      catch (IOException e) {
-        throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
+        Log.d(TAG, Log.getStackTraceString(e), e);
+        throw new ExchangeException("Error calling getAccountInfo()", e);
+      } catch (IOException e) {
+        Log.d(TAG, Log.getStackTraceString(e), e);
+        throw new ExchangeException("Error calling getAccountInfo()", e);
       }
     }
 
@@ -85,9 +90,10 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
           throw new ExchangeException("Error calling getMtGoxWalletHistory(): Unexpected result!");
         }
       } catch (MtGoxException e) {
+        Log.d(TAG, Log.getStackTraceString(e), e);
         throw new ExchangeException("Error calling getMtGoxWalletHistory(): " + e.getError());
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
+        Log.d(TAG, Log.getStackTraceString(e), e);
         throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
       }
     }
@@ -99,10 +105,10 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
       super(exchangeSpecification);
     }
 
-    public MtGoxOrderResult getOrderResult(Order lo) {
+    public MtGoxOrderResult getOrderResult(Order order) {
       try {
         MtGoxOrderResultWrapper mtGoxOrderResultWrapper = mtGoxV2.getOrderResult(exchangeSpecification.getApiKey(), signatureCreator, MtGoxUtils.getNonce(),
-                lo.getType().toString().toLowerCase(), lo.getId());
+                order.getType().toString().toLowerCase(Locale.US), order.getId());
         if (mtGoxOrderResultWrapper.getResult().equals("success")) {
           return mtGoxOrderResultWrapper.getMtGoxOrderResult();
         } else if (mtGoxOrderResultWrapper.getResult().equals("error")) {
@@ -111,9 +117,10 @@ public class MtGoxExchangeWrapper extends MtGoxExchange {
           throw new ExchangeException("Error calling getMtGoxWalletHistory(): Unexpected result!");
         }
       } catch (MtGoxException e) {
+        Log.d(TAG, Log.getStackTraceString(e), e);
         throw new ExchangeException("Error calling getMtGoxWalletHistory(): " + e.getError());
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
+        Log.d(TAG, Log.getStackTraceString(e), e);
         throw new ExchangeException("Error calling getAccountInfo(): " + e.getLocalizedMessage());
       }
     }

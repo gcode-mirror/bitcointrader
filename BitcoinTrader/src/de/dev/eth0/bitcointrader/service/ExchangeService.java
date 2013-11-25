@@ -42,8 +42,8 @@ import com.xeiam.xchange.mtgox.v2.MtGoxAdapters;
 import com.xeiam.xchange.mtgox.v2.dto.account.polling.MtGoxAccountInfo;
 import com.xeiam.xchange.mtgox.v2.dto.account.polling.MtGoxWalletHistory;
 import com.xeiam.xchange.mtgox.v2.dto.trade.polling.MtGoxOrderResult;
-import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.Constants;
+import de.dev.eth0.bitcointrader.R;
 import de.dev.eth0.bitcointrader.ui.BitcoinTraderActivity;
 import de.dev.eth0.bitcointrader.ui.PlaceOrderActivity;
 import de.dev.eth0.bitcointrader.ui.fragments.PlaceOrderFragment;
@@ -261,11 +261,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
           walletHistoryCache.put(currency, pages);
         }
       } catch (ExchangeException ee) {
-        Log.i(TAG, "ExchangeException", ee);
+        Log.i(TAG, Log.getStackTraceString(ee), ee);
         broadcastUpdateFailure(ee);
       }
       catch (RuntimeException iae) {
-        Log.e(TAG, "RuntimeException", iae);
+        Log.e(TAG, Log.getStackTraceString(iae), iae);
         broadcastUpdateFailure(iae);
       }
     }
@@ -390,16 +390,16 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
         lastUpdate = new Date();
         broadcastUpdateSuccess();
       } catch (ExchangeException ee) {
-        Log.i(TAG, "ExchangeException", ee);
+        Log.i(TAG, Log.getStackTraceString(ee), ee);
         broadcastUpdateFailure(ee);
         return false;
       }
       catch (IOException ioe) {
-        Log.e(TAG, "IOException", ioe);
+        Log.e(TAG, Log.getStackTraceString(ioe), ioe);
         broadcastUpdateFailure(ioe);
         return false;
       } catch (RuntimeException iae) {
-        Log.e(TAG, "RuntimeException", iae);
+        Log.e(TAG, Log.getStackTraceString(iae), iae);
         broadcastUpdateFailure(iae);
         return false;
       }
@@ -502,11 +502,11 @@ public class ExchangeService extends Service implements SharedPreferences.OnShar
           return ret;
         }
       } catch (ExchangeException ee) {
-        Log.i(TAG, "ExchangeException", ee);
+        Log.i(TAG, Log.getStackTraceString(ee), ee);
         broadcastUpdateFailure(ee);
       }
       catch (IOException ioe) {
-        Log.e(TAG, "IOException", ioe);
+        Log.e(TAG, Log.getStackTraceString(ioe), ioe);
         broadcastUpdateFailure(ioe);
         return false;
       }

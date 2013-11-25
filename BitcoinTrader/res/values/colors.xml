@@ -4,7 +4,6 @@
   <color name="fg_black">#ff000000</color>
   <color name="fg_grey">#ff666666</color>
   <color name="bg_panel">#ffdcdce4</color>
-  <color name="bg_form">#ffebebf2</color>
     
   <color name="button_pressed">#85D3EF</color>
   

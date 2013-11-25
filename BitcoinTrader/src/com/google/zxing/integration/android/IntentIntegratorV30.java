@@ -17,6 +17,7 @@
  */
 package com.google.zxing.integration.android;
 
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Intent;
 
@@ -32,6 +33,7 @@ public final class IntentIntegratorV30 extends IntentIntegrator {
   /**
    * @param fragment Fragment to handle activity response.
    */
+  @TargetApi(11)
   public IntentIntegratorV30(Fragment fragment) {
     super(fragment.getActivity());
     this.fragment = fragment;

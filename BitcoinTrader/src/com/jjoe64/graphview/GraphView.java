@@ -1,9 +1,6 @@
 package com.jjoe64.graphview;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,11 +12,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.jjoe64.graphview.compatible.ScaleGestureDetector;
 import de.dev.eth0.bitcointrader.R;
 import java.text.Format;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GraphView is a Android View for creating zoomable and scrollable graphs. This is the abstract base class for all graphs. Extend this class and implement
@@ -235,6 +234,7 @@ public abstract class GraphView extends LinearLayout {
      * @param canvas
      */
     @Override
+    @SuppressLint("DrawAllocation")
     protected void onDraw(Canvas canvas) {
       // normal
       paint.setStrokeWidth(0);
@@ -256,7 +256,7 @@ public abstract class GraphView extends LinearLayout {
       }
       if (maxLabelLength != Integer.MIN_VALUE) {
         maxLabelLength += GraphViewConfig.BORDER;
-        setLayoutParams(new LayoutParams((int)maxLabelLength, LayoutParams.MATCH_PARENT));
+        setLayoutParams(new LayoutParams((int) maxLabelLength, LayoutParams.MATCH_PARENT));
       }
 
 

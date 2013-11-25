@@ -25,7 +25,6 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginRight="@dimen/list_entry_padding_horizontal"
-      android:layout_toRightOf="@id/wallet_history_row_type" 
       android:text="@string/wallet_history_amount"
     />
   

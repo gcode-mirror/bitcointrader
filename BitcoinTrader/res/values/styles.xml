@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
   <style name="My.Theme" parent="@style/Theme.Sherlock.Light.DarkActionBar">
     <item name="actionBarStyle">@style/My.Widget.ActionBar</item>
-    <item name="android:actionBarStyle">@style/My.Widget.ActionBar</item>
+    <item name="android:actionBarStyle" tools:targetApi="11">@style/My.Widget.ActionBar</item>
     <item name="android:editTextStyle">@style/My.Widget.EditText</item>
     <item name="android:autoCompleteTextViewStyle">@style/My.Widget.AutoCompleteTextView</item>
     <item name="android:spinnerStyle">@style/My.Widget.Spinner</item>
@@ -17,9 +17,9 @@
     <item name="background">@drawable/action_bar_background</item>
     <item name="android:background">@drawable/action_bar_background</item>
     <item name="titleTextStyle">@style/My.TextAppearance.Widget.ActionBar.Title</item>
-    <item name="android:titleTextStyle">@style/My.TextAppearance.Widget.ActionBar.Title</item>
+    <item name="android:titleTextStyle" tools:targetApi="11">@style/My.TextAppearance.Widget.ActionBar.Title</item>
     <item name="subtitleTextStyle">@style/My.TextAppearance.Widget.ActionBar.Subtitle</item>
-    <item name="android:subtitleTextStyle">@style/My.TextAppearance.Widget.ActionBar.Subtitle</item>
+    <item name="android:subtitleTextStyle" tools:targetApi="11">@style/My.TextAppearance.Widget.ActionBar.Subtitle</item>
   </style>
 
   <style name="My.TextAppearance.Widget.ActionBar.Title" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Title">

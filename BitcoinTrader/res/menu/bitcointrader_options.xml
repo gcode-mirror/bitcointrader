@@ -6,7 +6,7 @@
     android:showAsAction="ifRoom"
     android:title="@string/select_currency_title">
     <menu>
-      <item android:id="@+id/bitcointrader_options_select_currency_submenu" android:title="Placeholder"></item>
+      <item android:id="@+id/bitcointrader_options_select_currency_submenu" android:title="@string/empty"></item>
     </menu>
   </item>
   <item

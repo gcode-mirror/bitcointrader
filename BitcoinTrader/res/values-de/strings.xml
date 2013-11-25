@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Bitcoin Trader</string>
+  <string name="empty"></string>
 
   <string name="loading_info">Bitte warten&#8230;</string>
   <string name="connecting_info">Verbindung wird hergestellt&#8230;</string>
