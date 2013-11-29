@@ -44,12 +44,11 @@
   <string name="wallet_history_spent">Gasto</string>
   <string name="wallet_history_withdraw">Resgate</string>
   <string name="wallet_history_deposit">Depósito</string>
-  <string name="wallet_history_amount">Quantidade:</string>
   <string name="wallet_history_balance">Saldo:</string>
   <string name="wallet_history_date">Data:</string>
+  <string name="wallet_history_price">Preço:</string>
   <string name="wallet_history_info_bought">BTC compradas: %1$s em %2$s</string>
   <string name="wallet_history_info_sold">BTC vendidas: %1$s em %2$s</string>
-  <string name="wallet_history_empty_text">Histórico de carteira indisponível para a moeda atual</string>
 
   <string name="price_chart_title">Gráfico de Preços</string>
   <string name="price_chart_symbol">Símbolo</string>

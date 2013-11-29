@@ -17,7 +17,7 @@ import org.joda.money.BigMoney;
  * @author Alexander Muthmann
  */
 public class PriceChartListAdapter extends AbstractListAdapter<BitcoinChartsTicker> {
-  
+
   private final static String TAG = PriceChartListAdapter.class.getSimpleName();
 
   public PriceChartListAdapter(AbstractBitcoinTraderActivity activity) {
@@ -31,35 +31,34 @@ public class PriceChartListAdapter extends AbstractListAdapter<BitcoinChartsTick
 
   @Override
   public void bindView(View row, BitcoinChartsTicker entry) {
-    
-   ImageView trendView = (ImageView) row.findViewById(R.id.chart_row_trend);
-    TextView symbolView = (TextView) row.findViewById(R.id.chart_row_symbol);
-    CurrencyTextView lastView = (CurrencyTextView) row.findViewById(R.id.chart_row_last);
-    AmountTextView volView = (AmountTextView) row.findViewById(R.id.chart_row_vol);
-    CurrencyTextView lowView = (CurrencyTextView) row.findViewById(R.id.chart_row_low);
-    CurrencyTextView highView = (CurrencyTextView) row.findViewById(R.id.chart_row_high);
+
+    ImageView trendView = (ImageView)row.findViewById(R.id.chart_row_trend);
+    TextView symbolView = (TextView)row.findViewById(R.id.chart_row_symbol);
+    CurrencyTextView lastView = (CurrencyTextView)row.findViewById(R.id.chart_row_last);
+    AmountTextView volView = (AmountTextView)row.findViewById(R.id.chart_row_vol);
+    CurrencyTextView lowView = (CurrencyTextView)row.findViewById(R.id.chart_row_low);
+    CurrencyTextView highView = (CurrencyTextView)row.findViewById(R.id.chart_row_high);
 
     BigMoney last = BigMoney.parse("BTC " + entry.getClose());
     BigMoney low = BigMoney.parse("BTC " + entry.getLow());
     BigMoney high = BigMoney.parse("BTC " + entry.getHigh());
     BigMoney avg = BigMoney.parse("BTC " + entry.getAvg());
-    
-    if(last.isLessThan(avg)){
+
+    if (last.isLessThan(avg)) {
       trendView.setImageResource(R.drawable.trend_down);
     }
-    else if(last.isGreaterThan(avg)){
+    else if (last.isGreaterThan(avg)) {
       trendView.setImageResource(R.drawable.trend_up);
     }
-    else if(last.isEqual(avg)){
+    else if (last.isEqual(avg)) {
       trendView.setImageResource(R.drawable.trend_stable);
     }
-    
-    
+
     symbolView.setText(entry.getSymbol());
-    
+
     volView.setAmount(entry.getVolume());
     volView.setPrecision(2);
-    
+
     lastView.setAmount(last);
     lastView.setDisplayMode(DISPLAY_MODE.NO_CURRENCY_CODE);
     lastView.setPrecision(2);

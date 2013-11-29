@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingLeft="@dimen/list_entry_padding_vertical"
+              android:orientation="vertical"
+>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  >
+    <TextView
+      android:id="@+id/wallet_history_row_balance_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+      android:text="@string/wallet_history_balance"
+    />
+  
+    <de.dev.eth0.bitcointrader.ui.views.CurrencyTextView
+      android:id="@+id/wallet_history_row_balance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@id/wallet_history_row_balance_label"
+    />
+  
+    <TextView
+      android:id="@+id/wallet_history_row_price_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@id/wallet_history_row_balance_label"
+      android:layout_below="@id/wallet_history_row_balance_label"
+      android:text="@string/wallet_history_price"
+    />
+    <TextView
+      android:id="@+id/wallet_history_row_price"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/wallet_history_row_balance"
+      android:layout_alignLeft="@id/wallet_history_row_balance"
+    />
+    <TextView
+      android:id="@+id/wallet_history_row_date_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/wallet_history_row_price_label"
+      android:layout_alignLeft="@id/wallet_history_row_price_label"
+      android:text="@string/wallet_history_date"
+    />
+    <TextView
+      android:id="@+id/wallet_history_row_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/wallet_history_row_price"
+      android:layout_alignLeft="@id/wallet_history_row_price"
+    />
+    
+  </RelativeLayout>
+  <TextView
+    android:id="@+id/wallet_history_row_info"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+  />
+</LinearLayout>

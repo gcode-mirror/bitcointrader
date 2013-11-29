@@ -44,12 +44,11 @@
   <string name="wallet_history_spent">Ausgabe</string>
   <string name="wallet_history_withdraw">Auszahlung</string>
   <string name="wallet_history_deposit">Einzahlung</string>
-  <string name="wallet_history_amount">Betrag:</string>
   <string name="wallet_history_balance">Saldo:</string>
   <string name="wallet_history_date">Datum:</string>
+  <string name="wallet_history_price">Preis:</string>
   <string name="wallet_history_info_bought">BTC gekauft: %1$s für %2$s</string>
   <string name="wallet_history_info_sold">BTC verkauft: %1$s für %2$s</string>
-  <string name="wallet_history_empty_text">Keine Verlauf für die aktuelle Währung verfügbar.</string>
 
   <string name="price_chart_title">Preistafel</string>
   <string name="price_chart_symbol">Symbol</string>
