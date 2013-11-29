@@ -15,8 +15,8 @@ public class Constants {
   public static final int PRECISION_CURRENCY = 5;
   public static final String APP_ACTIVATION_URL = "https://mtgox.com/api/1/generic/api/activate";
   public static final String APP_ACTIVATION_ID = "00287aa0-775a-41b3-b799-2d7a0116bb06";
-  public static final String MTGOX_DEMO_ACCOUNT_APIKEY = "cb7897cc-5c08-4e74-82a4-4c5e72457589";
-  public static final String MTGOX_DEMO_ACCOUNT_SECRETKEY = "1LrjXFwoNped6Tw+7cQVzIkn6ZHnJdoFUEqWyEAplkDdtUAcREEsUn8xfkvQDOunyPhP2TVNv54660e9CFET7w==";
+  public static final String MTGOX_DEMO_ACCOUNT_APIKEY = "3e699400-ef71-437b-9e68-b8c82b1aab2e";
+  public static final String MTGOX_DEMO_ACCOUNT_SECRETKEY = "7jgWz7DN4iaMZiuYQov6KsG8mkDM/Ps+O4wcTHXM4o3zGnFKfy7cYcdvpdGYaDYahrBO/RZo5o+7uZkwAOVpDA==";
   public static final String BITCOINCHARTS_URL = "http://bitcoincharts.com/markets/%s.html";
   // About
   public static final String DONATION_ADDRESS = "1FDLG9HbYAECa9R1o7kE9Rt37XdnWv1teZ";
