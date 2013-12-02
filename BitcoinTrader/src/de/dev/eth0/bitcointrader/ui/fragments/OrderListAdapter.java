@@ -34,9 +34,11 @@ public class OrderListAdapter extends AbstractListAdapter<Order> {
     OrderType theOrderType = order.getType();
     switch (theOrderType){
     case ASK:
-      rowAskBid.setText(R.string.capital_ask);
+        rowAskBid.setText(R.string.capital_ask);
+        break;
     case BID:
-      rowAskBid.setText(R.string.capital_bid);
+        rowAskBid.setText(R.string.capital_bid);
+        break;
     }
 
     // date
