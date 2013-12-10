@@ -32,6 +32,17 @@
       <artifactId>xchange-mtgox</artifactId>
       <version>${xchange-version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.xeiam.xchange</groupId>
+      <artifactId>xchange-bitstamp</artifactId>
+      <version>${xchange-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.xeiam.xchange</groupId>
+      <artifactId>xchange-btcchina</artifactId>
+      <version>${xchange-version}</version>
+    </dependency>
+    
 
   </dependencies>
 
