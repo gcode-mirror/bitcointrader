@@ -5,9 +5,16 @@
   <parent>
     <groupId>com.xeiam.xchange</groupId>
     <artifactId>xchange-parent</artifactId>
-    <version>1.11.0-SNAPSHOT</version>
-    <relativePath>../XChange/pom.xml</relativePath>
+    <version>2.0.0-SNAPSHOT</version>
+    <!--<relativePath>../XChange/pom.xml</relativePath>-->
   </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <xchange-version>2.0.0-SNAPSHOT</xchange-version>
+  </properties>
   
   <groupId>de.dev.eth0</groupId>
   <artifactId>xchange-aggregator-bitcointrader</artifactId>
@@ -45,8 +52,13 @@
     
 
   </dependencies>
-
-
+  <repositories>
+    <repository>
+      <id>sonatype-oss-snapshot</id>
+      <snapshots/>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
   <build>
     <plugins>
       <!-- Ensure compilation is done under Java 6 in all environments -->
@@ -108,11 +120,5 @@
     </plugins>
   </build>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <xchange-version>1.11.0-SNAPSHOT</xchange-version>
-  </properties>
 
 </project>
